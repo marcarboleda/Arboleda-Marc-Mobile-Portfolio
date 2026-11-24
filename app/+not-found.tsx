@@ -1,6 +1,6 @@
 import { Link, Stack } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
-import { color, font } from "../src/theme";
+import { c, font } from "../src/theme";
 
 export default function NotFound() {
   return (
@@ -16,8 +16,8 @@ export default function NotFound() {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: color.bg, alignItems: "center", justifyContent: "center", padding: 24 },
-  code: { fontFamily: font.mono, color: color.accent, letterSpacing: 3, marginBottom: 12 },
-  title: { fontFamily: font.semibold, color: color.text, fontSize: 40, textAlign: "center" },
-  link: { fontFamily: font.medium, color: color.text, marginTop: 24, textDecorationLine: "underline" },
+  wrap: { flex: 1, backgroundColor: c.bg, alignItems: "center", justifyContent: "center", padding: 24 },
+  code: { fontFamily: font.semibold, color: c.sage, letterSpacing: 3, marginBottom: 12 },
+  title: { fontFamily: font.display, color: c.ink, fontSize: 40, textAlign: "center" },
+  link: { fontFamily: font.medium, color: c.ink, marginTop: 24, textDecorationLine: "underline" },
 });

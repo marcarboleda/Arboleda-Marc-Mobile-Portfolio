@@ -1,9 +1,10 @@
-import { Geist_400Regular } from "@expo-google-fonts/geist/400Regular";
-import { Geist_500Medium } from "@expo-google-fonts/geist/500Medium";
-import { Geist_600SemiBold } from "@expo-google-fonts/geist/600SemiBold";
-import { Geist_700Bold } from "@expo-google-fonts/geist/700Bold";
-import { GeistMono_400Regular } from "@expo-google-fonts/geist-mono/400Regular";
-import { GeistMono_500Medium } from "@expo-google-fonts/geist-mono/500Medium";
+import { Fraunces_400Regular_Italic } from "@expo-google-fonts/fraunces/400Regular_Italic";
+import { Fraunces_500Medium } from "@expo-google-fonts/fraunces/500Medium";
+import { Fraunces_600SemiBold } from "@expo-google-fonts/fraunces/600SemiBold";
+import { PlusJakartaSans_400Regular } from "@expo-google-fonts/plus-jakarta-sans/400Regular";
+import { PlusJakartaSans_500Medium } from "@expo-google-fonts/plus-jakarta-sans/500Medium";
+import { PlusJakartaSans_600SemiBold } from "@expo-google-fonts/plus-jakarta-sans/600SemiBold";
+import { PlusJakartaSans_700Bold } from "@expo-google-fonts/plus-jakarta-sans/700Bold";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -11,7 +12,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { Platform } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { color } from "../src/theme";
+import { c } from "../src/theme";
 
 if (Platform.OS !== "web") {
   SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -19,12 +20,13 @@ if (Platform.OS !== "web") {
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    Geist_400Regular,
-    Geist_500Medium,
-    Geist_600SemiBold,
-    Geist_700Bold,
-    GeistMono_400Regular,
-    GeistMono_500Medium,
+    Fraunces_400Regular_Italic,
+    Fraunces_500Medium,
+    Fraunces_600SemiBold,
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
   });
 
   useEffect(() => {
@@ -35,9 +37,9 @@ export default function RootLayout() {
   if (!loaded && !error && Platform.OS !== "web") return null;
 
   return (
-    <SafeAreaProvider style={{ backgroundColor: color.bg }}>
-      <StatusBar style="light" />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: color.bg } }} />
+    <SafeAreaProvider style={{ backgroundColor: c.bg }}>
+      <StatusBar style="dark" />
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: c.bg } }} />
     </SafeAreaProvider>
   );
 }
