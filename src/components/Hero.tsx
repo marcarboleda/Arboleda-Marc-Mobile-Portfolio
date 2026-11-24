@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Animated, Easing, Image, Platform, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { profile } from "../data/profile";
@@ -40,42 +40,6 @@ function Blobs() {
       {blob(c.lilacSoft, 460, -140, 340, 70, -30)}
       {blob(c.butterSoft, 300, width * 0.3, 40, 50, 60)}
     </View>
-  );
-}
-
-function ScrollIndicator() {
-  const reduce = useReduceMotion();
-  const y = useRef(new Animated.Value(0)).current;
-  const opacity = useRef(new Animated.Value(1)).current;
-
-  useEffect(() => {
-    if (reduce) return;
-    const bounce = Animated.loop(
-      Animated.sequence([
-        Animated.timing(y, { toValue: 10, duration: 700, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        Animated.timing(y, { toValue: 0, duration: 700, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-      ])
-    );
-    // fade in after a delay
-    Animated.sequence([
-      Animated.delay(1800),
-      Animated.timing(opacity, { toValue: 1, duration: 600, useNativeDriver: true }),
-    ]).start(() => bounce.start());
-    opacity.setValue(0);
-    return () => bounce.stop();
-  }, [y, opacity, reduce]);
-
-  const chevron = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
-  const uri = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(chevron)))}`;
-
-  return (
-    <Animated.View style={[{ alignItems: "center", marginTop: 36, opacity }]}>
-      <Animated.View style={{ transform: [{ translateY: y }], alignItems: "center", gap: 2 }}>
-        <Text style={{ fontFamily: font.medium, fontSize: 11, letterSpacing: 1.2, textTransform: "uppercase", color: "#6B7280", marginBottom: 6 }}>Scroll</Text>
-        {React.createElement("img", { src: uri, width: 24, height: 24, style: { display: "block" } })}
-        {React.createElement("img", { src: uri, width: 24, height: 24, style: { display: "block", marginTop: -10, opacity: 0.4 } })}
-      </Animated.View>
-    </Animated.View>
   );
 }
 
@@ -142,7 +106,6 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
         </Reveal>
       </View>
 
-      <ScrollIndicator />
     </View>
   );
 }
