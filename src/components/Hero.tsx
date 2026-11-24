@@ -3,7 +3,7 @@ import { Animated, Easing, Image, Platform, StyleSheet, Text, View } from "react
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { c, font, radius, softShadow, useLayout, web } from "../theme";
 import { Float, Reveal, useReduceMotion } from "./motion";
-import { Button, Tag } from "./ui";
+import { Button } from "./ui";
 
 /** Slow-drifting soft color fields behind the hero. */
 function Blobs() {
@@ -47,7 +47,7 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
   const insets = useSafeAreaInsets();
   const desktop = bp === "desktop";
   const phone = bp === "phone";
-  const size = desktop ? 76 : bp === "tablet" ? 60 : 42;
+  const nameSize = desktop ? 86 : bp === "tablet" ? 66 : 46;
   const photoW = desktop ? 380 : bp === "tablet" ? 300 : Math.min(contentWidth, 340);
 
   return (
@@ -62,18 +62,18 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
             </View>
           </Reveal>
           <Reveal immediate delay={120}>
-            <Text style={[styles.headline, { fontSize: size, lineHeight: size * 1.06, letterSpacing: -size * 0.03 }]}>
-              Designing calm interfaces and <Text style={styles.italic}>data people can read.</Text>
+            <Text style={[styles.name, { fontSize: nameSize, lineHeight: nameSize * 1.0, letterSpacing: -nameSize * 0.03 }]}>
+              Marc{"\n"}<Text style={styles.nameAccent}>Arboleda</Text>
             </Text>
           </Reveal>
           <Reveal immediate delay={240}>
             <Text style={[styles.sub, { fontSize: desktop ? 19 : 17 }]}>
-              I’m Marc, a fourth-year Computer Science student at De La Salle Lipa. I design UI and turn raw records into something a team can understand at a glance.
+              CS student at De La Salle Lipa. I work on UI design, data analysis, and building things that are easy for people to use and understand.
             </Text>
           </Reveal>
           <Reveal immediate delay={360}>
             <View style={styles.ctas}>
-              <Button label="See selected work" icon="↓" variant="solid" onPress={onWork} />
+              <Button label="See my work" icon="↓" variant="solid" onPress={onWork} />
               <Button label="Download résumé" onPress={onResume} />
             </View>
           </Reveal>
@@ -106,16 +106,6 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
         </Reveal>
       </View>
 
-      <Reveal immediate delay={520} style={{ width: contentWidth, marginTop: desktop ? 80 : 56 }}>
-        <View style={styles.strip}>
-          <Text style={styles.stripLabel}>Tools I use</Text>
-          <View style={styles.stripTags}>
-            {["UI design", "Google Sheets", "Python", "R", "Unity", "React Native", "Supabase"].map((t) => (
-              <Tag key={t} label={t} />
-            ))}
-          </View>
-        </View>
-      </Reveal>
     </View>
   );
 }
@@ -124,8 +114,8 @@ const styles = StyleSheet.create({
   badge: { alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 9, backgroundColor: c.surface, borderWidth: 1, borderColor: c.line, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 8 },
   live: { width: 8, height: 8, borderRadius: 4, backgroundColor: c.sage, ...web({ boxShadow: `0 0 0 4px ${c.sageSoft}` }) },
   badgeText: { fontFamily: font.semibold, fontSize: 13, color: c.ink },
-  headline: { fontFamily: font.display, color: c.ink, marginTop: 26 },
-  italic: { fontFamily: font.displayItalic, color: c.sage },
+  name: { fontFamily: font.display, color: c.ink, marginTop: 26 },
+  nameAccent: { fontFamily: font.displayItalic, color: c.sage },
   sub: { fontFamily: font.regular, lineHeight: 30, color: c.body, marginTop: 24, maxWidth: 560 },
   ctas: { flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 34 },
   photo: { borderRadius: radius.xl, overflow: "hidden", borderWidth: 6, borderColor: c.surface, backgroundColor: c.bgDeep },
@@ -134,7 +124,4 @@ const styles = StyleSheet.create({
   chipEmoji: { fontSize: 16, color: c.sage },
   chipLabel: { fontFamily: font.medium, fontSize: 11, color: c.muted },
   chipValue: { fontFamily: font.semibold, fontSize: 13.5, color: c.ink },
-  strip: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 16, borderTopWidth: 1, borderTopColor: c.line, paddingTop: 24 },
-  stripLabel: { fontFamily: font.semibold, fontSize: 12.5, letterSpacing: 1.4, textTransform: "uppercase", color: c.muted },
-  stripTags: { flexDirection: "row", flexWrap: "wrap", gap: 8, flex: 1 },
 });

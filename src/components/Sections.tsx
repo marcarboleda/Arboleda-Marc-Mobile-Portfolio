@@ -1,95 +1,135 @@
 import { useState } from "react";
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { certifications, education, experience, profile, skillGroups } from "../data/profile";
 import { c, font, radius, softShadow, useLayout, web, type InteractionState } from "../theme";
 import { Reveal } from "./motion";
 import { openUrl, Tag, TINT } from "./ui";
 
 export function About() {
+  return (
+    <Reveal>
+      <View style={[styles.card, { padding: 30 }, softShadow()]}>
+        {profile.intro.map((p, i) => (
+          <Text key={i} style={[styles.prose, i === 0 && styles.proseLead]}>
+            {p}
+          </Text>
+        ))}
+      </View>
+    </Reveal>
+  );
+}
+
+export function ExperienceSection() {
+  return (
+    <Reveal>
+      <View style={[styles.card, { padding: 26, gap: 18 }, softShadow()]}>
+        {experience.map((e) => (
+          <View key={e.role} style={styles.row}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 8 }}>
+              <Text style={styles.rowTitle}>{e.role}</Text>
+              <Text style={styles.rowMeta}>{e.period}</Text>
+            </View>
+            <Text style={styles.rowSub}>{e.org}</Text>
+            <Text style={styles.rowBody}>{e.summary}</Text>
+          </View>
+        ))}
+      </View>
+    </Reveal>
+  );
+}
+
+export function SkillsSection() {
   const { bp } = useLayout();
-  const wide = bp !== "phone";
   const cols = bp === "desktop" ? 3 : bp === "tablet" ? 3 : 1;
   return (
-    <View style={{ gap: 20 }}>
-      <View style={[{ gap: 20 }, wide && { flexDirection: "row" }]}>
-        <Reveal style={wide ? { flex: 1.5 } : undefined}>
-          <View style={[styles.card, { padding: 30 }, softShadow()]}>
-            {profile.intro.map((p, i) => (
-              <Text key={i} style={[styles.prose, i === 0 && styles.proseLead]}>
-                {p}
-              </Text>
-            ))}
-          </View>
-        </Reveal>
-        <Reveal delay={120} style={wide ? { flex: 1 } : undefined}>
-          <View style={[styles.card, { padding: 26, gap: 18 }, softShadow()]}>
-            <Text style={styles.small}>Experience</Text>
-            {experience.map((e) => (
-              <View key={e.role} style={styles.row}>
-                <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 8 }}>
-                  <Text style={styles.rowTitle}>{e.role}</Text>
-                  <Text style={styles.rowMeta}>{e.period}</Text>
-                </View>
-                <Text style={styles.rowSub}>{e.org}</Text>
-                <Text style={styles.rowBody}>{e.summary}</Text>
+    <View style={{ flexDirection: "row", flexWrap: "wrap", marginHorizontal: -10 }}>
+      {skillGroups.map((g, i) => {
+        const t = TINT[g.tint];
+        return (
+          <Reveal key={g.title} delay={i * 100} style={{ width: `${100 / cols}%`, padding: 10 }}>
+            <HoverCard>
+              <View style={[styles.skillIcon, { backgroundColor: t.bg }]}>
+                <Text style={{ color: t.fg, fontSize: 16 }}>{["◐", "◑", "◒"][i]}</Text>
               </View>
-            ))}
-          </View>
-        </Reveal>
-      </View>
-
-      <View style={{ flexDirection: "row", flexWrap: "wrap", marginHorizontal: -10 }}>
-        {skillGroups.map((g, i) => {
-          const t = TINT[g.tint];
-          return (
-            <Reveal key={g.title} delay={i * 100} style={{ width: `${100 / cols}%`, padding: 10 }}>
-              <HoverCard>
-                <View style={[styles.skillIcon, { backgroundColor: t.bg }]}>
-                  <Text style={{ color: t.fg, fontSize: 16 }}>{["◐", "◑", "◒"][i]}</Text>
-                </View>
-                <Text style={styles.skillTitle}>{g.title}</Text>
-                <View style={styles.tagWrap}>
-                  {g.items.map((s) => (
-                    <Tag key={s} label={s} />
-                  ))}
-                </View>
-              </HoverCard>
-            </Reveal>
-          );
-        })}
-      </View>
-
-      <View style={[{ gap: 20 }, wide && { flexDirection: "row" }]}>
-        <Reveal style={wide ? { flex: 1 } : undefined}>
-          <View style={[styles.card, { padding: 26 }, softShadow()]}>
-            <Text style={styles.small}>Education</Text>
-            {education.map((e) => (
-              <View key={e.school} style={styles.line}>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.rowTitle}>{e.school}</Text>
-                  <Text style={styles.rowSub}>{e.detail}</Text>
-                </View>
-                <Text style={styles.rowMeta}>{e.period}</Text>
+              <Text style={styles.skillTitle}>{g.title}</Text>
+              <View style={styles.tagWrap}>
+                {g.items.map((s) => (
+                  <Tag key={s} label={s} />
+                ))}
               </View>
-            ))}
-          </View>
-        </Reveal>
-        <Reveal delay={120} style={wide ? { flex: 1 } : undefined}>
-          <View style={[styles.card, { padding: 26 }, softShadow()]}>
-            <Text style={styles.small}>Certifications</Text>
-            {certifications.map((ce) => (
-              <View key={ce.title} style={styles.line}>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.rowTitle}>{ce.title}</Text>
-                  <Text style={styles.rowSub}>{ce.issuer}</Text>
-                </View>
-                <Text style={styles.rowMeta}>{ce.date}</Text>
-              </View>
-            ))}
-          </View>
-        </Reveal>
-      </View>
+            </HoverCard>
+          </Reveal>
+        );
+      })}
     </View>
+  );
+}
+
+const TOOLS = [
+  { name: "Google Sheets", icon: "📊", color: "#0F9D58" },
+  { name: "Excel", icon: "📗", color: "#217346" },
+  { name: "Python", icon: "🐍", color: "#3572A5" },
+  { name: "R", icon: "R", color: "#276DC3" },
+  { name: "Unity", icon: "⬡", color: "#1E2230" },
+  { name: "React / React Native", icon: "⚛", color: "#61DAFB" },
+  { name: "TypeScript", icon: "TS", color: "#3178C6" },
+  { name: "Supabase", icon: "⚡", color: "#3ECF8E" },
+  { name: "Git", icon: "⎇", color: "#F05032" },
+  { name: "GitHub", icon: "⬡", color: "#1E2230" },
+] as const;
+
+export function ToolsSection() {
+  const { bp } = useLayout();
+  const cols = bp === "desktop" ? 5 : bp === "tablet" ? 4 : 3;
+  return (
+    <View style={{ flexDirection: "row", flexWrap: "wrap", marginHorizontal: -8 }}>
+      {TOOLS.map((tool, i) => (
+        <Reveal key={tool.name} delay={i * 60} style={{ width: `${100 / cols}%`, padding: 8 }}>
+          <View style={[styles.toolCard, softShadow()]}>
+            <View style={[styles.toolIcon, { backgroundColor: tool.color + "18" }]}>
+              <Text style={[styles.toolIconText, { color: tool.color, fontSize: tool.icon.length <= 2 ? 15 : 20 }]}>{tool.icon}</Text>
+            </View>
+            <Text style={styles.toolName} numberOfLines={2}>{tool.name}</Text>
+          </View>
+        </Reveal>
+      ))}
+    </View>
+  );
+}
+
+export function EducationSection() {
+  return (
+    <Reveal>
+      <View style={[styles.card, { padding: 26 }, softShadow()]}>
+        {education.map((e) => (
+          <View key={e.school} style={styles.line}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.rowTitle}>{e.school}</Text>
+              <Text style={styles.rowSub}>{e.detail}</Text>
+            </View>
+            <Text style={styles.rowMeta}>{e.period}</Text>
+          </View>
+        ))}
+      </View>
+    </Reveal>
+  );
+}
+
+export function CertificationsSection() {
+  return (
+    <Reveal>
+      <View style={[styles.card, { padding: 26 }, softShadow()]}>
+        {certifications.map((ce) => (
+          <View key={ce.title} style={styles.line}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.rowTitle}>{ce.title}</Text>
+              <Text style={styles.rowSub}>{ce.issuer}</Text>
+            </View>
+            <Text style={styles.rowMeta}>{ce.date}</Text>
+          </View>
+        ))}
+      </View>
+    </Reveal>
   );
 }
 
@@ -107,19 +147,7 @@ function HoverCard({ children }: { children: React.ReactNode }) {
 
 export function Contact({ onResume }: { onResume: () => void }) {
   const { bp } = useLayout();
-  const [copied, setCopied] = useState(false);
   const big = bp === "desktop" ? 58 : bp === "tablet" ? 44 : 30;
-  const copy = async () => {
-    try {
-      if (Platform.OS === "web" && typeof navigator !== "undefined" && navigator.clipboard) {
-        await navigator.clipboard.writeText(profile.email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1800);
-      }
-    } catch {
-      // The mailto link still works if clipboard access is blocked.
-    }
-  };
   const links = [
     { label: "LinkedIn", url: profile.linkedin },
     { label: "GitHub", url: profile.github },
@@ -129,20 +157,15 @@ export function Contact({ onResume }: { onResume: () => void }) {
     <Reveal>
       <View style={[styles.contact, softShadow(1.4)]}>
         <View style={[styles.contactGlow, web({ filter: "blur(60px)" })]} pointerEvents="none" />
-        <Text style={styles.small}>Let’s work together</Text>
+        <Text style={styles.small}>Get in touch</Text>
         <Text style={[styles.contactTitle, { fontSize: big, lineHeight: big * 1.12 }]}>
-          Have a role in <Text style={{ fontFamily: font.displayItalic, color: c.sage }}>design or data?</Text>
+          Looking for someone in <Text style={{ fontFamily: font.displayItalic, color: c.sage }}>design or data?</Text>
         </Text>
-        <Text style={styles.contactSub}>I’m open to internships, on-site, hybrid or remote. Email is the fastest way to reach me.</Text>
+        <Text style={styles.contactSub}>I’m open to internships — on-site, hybrid, or remote. Email is the best way to reach me.</Text>
         <View style={styles.contactRow}>
-          <Pressable onPress={() => openUrl(`mailto:${profile.email}`)} accessibilityRole="link" style={(s) => [styles.mail, (s as InteractionState).hovered && { backgroundColor: c.sage }, web({ transition: "all 220ms ease" })]}>
+          <View style={styles.mail}>
             <Text style={styles.mailText}>{profile.email}</Text>
-          </Pressable>
-          {Platform.OS === "web" ? (
-            <Pressable onPress={copy} accessibilityRole="button" style={(s) => [styles.copy, (s as InteractionState).hovered && { borderColor: c.ink }]}>
-              <Text style={styles.copyText}>{copied ? "Copied ✓" : "Copy email"}</Text>
-            </Pressable>
-          ) : null}
+          </View>
         </View>
         <View style={styles.contactLinks}>
           {links.map((l) => (
@@ -153,18 +176,6 @@ export function Contact({ onResume }: { onResume: () => void }) {
         </View>
       </View>
     </Reveal>
-  );
-}
-
-export function Footer() {
-  const { gutter, contentWidth, bp } = useLayout();
-  return (
-    <View style={{ paddingHorizontal: gutter, alignItems: "center", paddingTop: 70, paddingBottom: 36 }}>
-      <View style={[styles.footer, { width: contentWidth }, bp === "phone" && { flexDirection: "column", alignItems: "flex-start" }]}>
-        <Text style={styles.footText}>© 2026 Marc Bradley Arboleda</Text>
-        <Text style={styles.footText}>Designed and built with Expo · Laguna, Philippines</Text>
-      </View>
-    </View>
   );
 }
 
@@ -182,17 +193,17 @@ const styles = StyleSheet.create({
   skillIcon: { width: 42, height: 42, borderRadius: 13, alignItems: "center", justifyContent: "center" },
   skillTitle: { fontFamily: font.display, fontSize: 25, color: c.ink, marginTop: 16 },
   tagWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 16 },
+  toolCard: { backgroundColor: c.surface, borderRadius: radius.lg, borderWidth: 1, borderColor: c.line, padding: 18, alignItems: "center", gap: 10 },
+  toolIcon: { width: 48, height: 48, borderRadius: 14, alignItems: "center", justifyContent: "center" },
+  toolIconText: { fontFamily: font.semibold },
+  toolName: { fontFamily: font.medium, fontSize: 12.5, color: c.body, textAlign: "center" },
   contact: { backgroundColor: c.surface, borderRadius: radius.xl, borderWidth: 1, borderColor: c.line, padding: 34, overflow: "hidden" },
   contactGlow: { position: "absolute", right: -80, top: -120, width: 380, height: 380, borderRadius: 190, backgroundColor: c.sageSoft, opacity: 0.9 },
   contactTitle: { fontFamily: font.display, color: c.ink, letterSpacing: -1, marginTop: 6, maxWidth: 760 },
   contactSub: { fontFamily: font.regular, fontSize: 17, lineHeight: 28, color: c.body, marginTop: 16, maxWidth: 560 },
   contactRow: { flexDirection: "row", flexWrap: "wrap", gap: 10, marginTop: 30 },
-  mail: { backgroundColor: c.ink, borderRadius: 999, paddingHorizontal: 22, paddingVertical: 15 },
-  mailText: { fontFamily: font.semibold, fontSize: 15, color: c.white },
-  copy: { borderRadius: 999, paddingHorizontal: 20, paddingVertical: 15, borderWidth: 1, borderColor: c.lineStrong },
-  copyText: { fontFamily: font.semibold, fontSize: 15, color: c.ink },
+  mail: { backgroundColor: c.bgDeep, borderRadius: radius.md, paddingHorizontal: 22, paddingVertical: 15, borderWidth: 1, borderColor: c.line },
+  mailText: { fontFamily: font.semibold, fontSize: 15, color: c.ink },
   contactLinks: { flexDirection: "row", flexWrap: "wrap", gap: 26, marginTop: 30, borderTopWidth: 1, borderTopColor: c.line, paddingTop: 22 },
   contactLink: { fontFamily: font.semibold, fontSize: 15, color: c.ink },
-  footer: { flexDirection: "row", justifyContent: "space-between", gap: 8, borderTopWidth: 1, borderTopColor: c.line, paddingTop: 20 },
-  footText: { fontFamily: font.medium, fontSize: 13, color: c.muted },
 });

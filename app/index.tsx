@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Hero } from "../src/components/Hero";
 import { ScrollContext } from "../src/components/motion";
 import { Nav, type NavItem } from "../src/components/Nav";
-import { About, Contact, Footer } from "../src/components/Sections";
+import { About, CertificationsSection, Contact, EducationSection, ExperienceSection, SkillsSection, ToolsSection } from "../src/components/Sections";
 import { openUrl, SectionHead } from "../src/components/ui";
 import { WorkGrid } from "../src/components/Work";
 import { profile } from "../src/data/profile";
@@ -15,8 +15,8 @@ const RESUME_FILE = "Marc-Arboleda-Resume.pdf";
 const RESUME_URL = Platform.OS === "web" ? `/${RESUME_FILE}` : `https://raw.githubusercontent.com/marcarboleda/Arboleda-Marc-Mobile-Portfolio/master/public/${RESUME_FILE}`;
 
 const NAV: NavItem[] = [
-  { id: "work", label: "Work" },
   { id: "about", label: "About" },
+  { id: "work", label: "Projects" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -71,41 +71,91 @@ export default function Portfolio() {
   return (
     <View style={{ flex: 1, backgroundColor: c.bg, opacity: hydrated ? 1 : 0 }}>
       <Head>
-        <title>{`${profile.name} — UI Design & Data Portfolio`}</title>
-        <meta name="description" content={`${profile.headline} ${profile.seeking}.`} />
+        <title>{`${profile.name} — Portfolio`}</title>
+        <meta name="description" content={profile.seeking} />
         <meta property="og:title" content={`${profile.name} — Portfolio`} />
         <meta property="og:description" content={profile.headline} />
       </Head>
       <ScrollContext.Provider value={scrollValue}>
-        <ScrollView ref={scrollRef} onScroll={onScroll} scrollEventThrottle={32} onLayout={() => setTick((t) => t + 1)} contentContainerStyle={{ paddingBottom: insets.bottom }}>
+        <ScrollView ref={scrollRef} onScroll={onScroll} scrollEventThrottle={32} onLayout={() => setTick((t) => t + 1)} contentContainerStyle={{ paddingBottom: insets.bottom + 60 }}>
           <Hero onWork={() => navigate("work")} onResume={resume} />
 
+          {/* 2. About */}
+          {section(
+            "about",
+            <>
+              <SectionHead eyebrow="About" title="About" size={titleSize} style={{ marginBottom: 32 }} />
+              <About />
+            </>,
+          )}
+
+          {/* 3. Projects */}
           {section(
             "work",
             <>
               <SectionHead
-                eyebrow="Selected work"
-                title="Three projects,"
-                accent="one habit: make it clear."
-                lede="A thesis game where I focused on design and data analysis, a farm management UI, and a membership database made visual. Open any project for the full case."
+                eyebrow="Projects"
+                title="Projects"
+                lede="A thesis game I designed and analyzed, a UI for a farm management system, and a visual membership database I built for my org."
                 size={titleSize}
                 style={{ marginBottom: 44 }}
               />
               <WorkGrid />
             </>,
-            40,
+            80,
           )}
 
+          {/* 4. Experience */}
           {section(
-            "about",
+            "experience",
             <>
-              <SectionHead eyebrow="About" title="A designer who" accent="checks the numbers." size={titleSize} style={{ marginBottom: 40 }} />
-              <About />
+              <SectionHead eyebrow="Experience" title="Experience" size={titleSize} style={{ marginBottom: 32 }} />
+              <ExperienceSection />
             </>,
           )}
 
-          {section("contact", <Contact onResume={resume} />)}
-          <Footer />
+          {/* 5. My Skills */}
+          {section(
+            "skills",
+            <>
+              <SectionHead eyebrow="My Skills" title="My Skills" size={titleSize} style={{ marginBottom: 32 }} />
+              <SkillsSection />
+            </>,
+            80,
+          )}
+
+          {/* 6. Tools I Use */}
+          {section(
+            "tools",
+            <>
+              <SectionHead eyebrow="Tools I Use" title="Tools I Use" size={titleSize} style={{ marginBottom: 32 }} />
+              <ToolsSection />
+            </>,
+            80,
+          )}
+
+          {/* 7. Education */}
+          {section(
+            "education",
+            <>
+              <SectionHead eyebrow="Education" title="Education" size={titleSize} style={{ marginBottom: 32 }} />
+              <EducationSection />
+            </>,
+            80,
+          )}
+
+          {/* 8. Certifications */}
+          {section(
+            "certifications",
+            <>
+              <SectionHead eyebrow="Certifications" title="Certifications" size={titleSize} style={{ marginBottom: 32 }} />
+              <CertificationsSection />
+            </>,
+            80,
+          )}
+
+          {/* 9. Contact */}
+          {section("contact", <Contact onResume={resume} />, 80)}
         </ScrollView>
       </ScrollContext.Provider>
       <Nav items={NAV} active={active} scrolled={scrolled} onNavigate={navigate} onResume={resume} />
