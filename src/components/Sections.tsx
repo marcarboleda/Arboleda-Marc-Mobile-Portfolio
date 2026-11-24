@@ -1,3 +1,4 @@
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { certifications, education, experience, profile, skillGroups } from "../data/profile";
@@ -5,73 +6,45 @@ import { c, font, radius, softShadow, useLayout, web, type InteractionState } fr
 import { Reveal } from "./motion";
 import { openUrl, Tag, TINT } from "./ui";
 
-// ─── SVG icons via dangerouslySetInnerHTML on web ───────────────────────────
+// ─── Skill category icons ────────────────────────────────────────────────────
 
-function SvgIcon({ path, size = 24, color = "currentColor" }: { path: string; size?: number; color?: string }) {
-  return (
-    <View
-      style={{ width: size, height: size }}
-      // @ts-ignore – web only
-      {...({
-        dangerouslySetInnerHTML: {
-          __html: `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`,
-        },
-      } as object)}
-    />
-  );
+type SkillIconDef = { lib: "Feather" | "MCI"; name: string };
+const SKILL_ICONS: Record<string, SkillIconDef> = {
+  Design: { lib: "Feather", name: "pen-tool" },
+  Data:   { lib: "Feather", name: "bar-chart-2" },
+  Build:  { lib: "Feather", name: "code" },
+};
+
+function SkillCatIcon({ def, size, color }: { def: SkillIconDef; size: number; color: string }) {
+  if (def.lib === "MCI") return <MaterialCommunityIcons name={def.name as any} size={size} color={color} />;
+  return <Feather name={def.name as any} size={size} color={color} />;
 }
 
-// Skill category icons (filled SVG paths)
-const SKILL_ICONS: Record<string, string> = {
-  Design:
-    '<circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20" fill="currentColor" fill-opacity=".15"/><path d="M8 12h8M12 8v8"/>',
-  Data: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>',
-  Build: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+// ─── Tool icon definitions ───────────────────────────────────────────────────
+
+type ToolIconDef =
+  | { lib: "MCI"; name: string; color: string }
+  | { lib: "Feather"; name: string; color: string };
+
+const TOOL_ICONS: Record<string, ToolIconDef> = {
+  "Google Sheets":       { lib: "MCI",    name: "google-spreadsheet", color: "#0F9D58" },
+  "Excel":               { lib: "MCI",    name: "microsoft-excel",    color: "#217346" },
+  "Python":              { lib: "MCI",    name: "language-python",    color: "#3572A5" },
+  "R":                   { lib: "MCI",    name: "language-r",         color: "#276DC3" },
+  "Unity":               { lib: "MCI",    name: "unity",              color: "#1E2230" },
+  "React / React Native":{ lib: "MCI",    name: "react",              color: "#61DAFB" },
+  "TypeScript":          { lib: "MCI",    name: "language-typescript", color: "#3178C6" },
+  "Supabase":            { lib: "Feather", name: "database",           color: "#3ECF8E" },
+  "Git":                 { lib: "MCI",    name: "git",                color: "#F05032" },
+  "GitHub":              { lib: "MCI",    name: "github",             color: "#24292F" },
 };
 
-// Tool SVG paths (Feather/Lucide style, 24×24 viewBox)
-const TOOL_SVG: Record<string, { path: string; color: string; fillColor?: string }> = {
-  "Google Sheets": {
-    color: "#0F9D58",
-    path: '<rect x="4" y="2" width="16" height="20" rx="2" fill="#0F9D58" fill-opacity=".12" stroke="#0F9D58" stroke-width="1.5"/><line x1="4" y1="8" x2="20" y2="8" stroke="#0F9D58" stroke-width="1.5"/><line x1="4" y1="13" x2="20" y2="13" stroke="#0F9D58" stroke-width="1.5"/><line x1="9" y1="8" x2="9" y2="22" stroke="#0F9D58" stroke-width="1.5"/>',
-  },
-  Excel: {
-    color: "#217346",
-    path: '<rect x="4" y="2" width="16" height="20" rx="2" fill="#217346" fill-opacity=".12" stroke="#217346" stroke-width="1.5"/><path d="M8 7l8 10M16 7l-8 10" stroke="#217346" stroke-width="2" stroke-linecap="round"/>',
-  },
-  Python: {
-    color: "#3572A5",
-    path: '<path d="M12 2C8.5 2 7 3.5 7 5.5V8h5v1H5.5C3.5 9 2 10.5 2 13s1.5 4 3.5 4H7v-2.5c0-2 1.5-3.5 5-3.5s5 1.5 5 3.5V17h1.5c2 0 3.5-1.5 3.5-4s-1.5-4-3.5-4H17V8h-5V7h5V5.5C17 3.5 15.5 2 12 2z" fill="#3572A5" fill-opacity=".15" stroke="#3572A5" stroke-width="1.5"/><circle cx="9" cy="5.5" r="1" fill="#3572A5"/><circle cx="15" cy="18.5" r="1" fill="#3572A5"/>',
-  },
-  R: {
-    color: "#276DC3",
-    path: '<rect x="3" y="3" width="18" height="18" rx="3" fill="#276DC3" fill-opacity=".12" stroke="#276DC3" stroke-width="1.5"/><path d="M8 7h4a3 3 0 0 1 0 6H8V7z" stroke="#276DC3" stroke-width="1.5" fill="none" stroke-linejoin="round"/><path d="M11 13l4 4" stroke="#276DC3" stroke-width="1.5" stroke-linecap="round"/>',
-  },
-  Unity: {
-    color: "#1E2230",
-    path: '<path d="M12 2l9 5v10l-9 5-9-5V7z" fill="#1E2230" fill-opacity=".1" stroke="#1E2230" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 7l5 2.8v5.4L12 18l-5-2.8V9.8z" stroke="#1E2230" stroke-width="1.5" fill="none"/>',
-  },
-  "React / React Native": {
-    color: "#61DAFB",
-    path: '<ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1.5" fill="none"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1.5" fill="none" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" stroke-width="1.5" fill="none" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="2" fill="#61DAFB"/>',
-  },
-  TypeScript: {
-    color: "#3178C6",
-    path: '<rect x="2" y="2" width="20" height="20" rx="3" fill="#3178C6" fill-opacity=".12" stroke="#3178C6" stroke-width="1.5"/><path d="M8 10h8M12 10v8" stroke="#3178C6" stroke-width="2" stroke-linecap="round"/><path d="M6 7h4" stroke="#3178C6" stroke-width="2" stroke-linecap="round"/>',
-  },
-  Supabase: {
-    color: "#3ECF8E",
-    path: '<path d="M4 20V8l8-6 8 6v12H4z" fill="#3ECF8E" fill-opacity=".12" stroke="#3ECF8E" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 20v-8h6v8" stroke="#3ECF8E" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 7v5l3-3" stroke="#3ECF8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
-  },
-  Git: {
-    color: "#F05032",
-    path: '<circle cx="6" cy="6" r="2.5" stroke="#F05032" stroke-width="1.5" fill="none"/><circle cx="18" cy="6" r="2.5" stroke="#F05032" stroke-width="1.5" fill="none"/><circle cx="6" cy="18" r="2.5" stroke="#F05032" stroke-width="1.5" fill="none"/><path d="M6 8.5V15.5M8.5 6h7M6 18" stroke="#F05032" stroke-width="1.5" stroke-linecap="round"/><path d="M15.5 6C15.5 10 8.5 11 8.5 15.5" stroke="#F05032" stroke-width="1.5" fill="none" stroke-linecap="round"/>',
-  },
-  GitHub: {
-    color: "#24292F",
-    path: '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="#24292F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
-  },
-};
+function ToolIcon({ name, size }: { name: string; size: number }) {
+  const def = TOOL_ICONS[name];
+  if (!def) return null;
+  if (def.lib === "MCI") return <MaterialCommunityIcons name={def.name as any} size={size} color={def.color} />;
+  return <Feather name={def.name as any} size={size} color={def.color} />;
+}
 
 // ─── About ───────────────────────────────────────────────────────────────────
 
@@ -126,11 +99,12 @@ export function SkillsSection() {
       <View style={{ flexDirection: "row", flexWrap: "wrap", marginHorizontal: -10, marginTop: 24 }}>
         {skillGroups.map((g, i) => {
           const t = TINT[g.tint];
+          const iconDef = SKILL_ICONS[g.title];
           return (
             <Reveal key={g.title} delay={i * 100} style={{ width: `${100 / cols}%`, padding: 10 }}>
               <HoverCard>
                 <View style={[styles.skillIconWrap, { backgroundColor: t.bg }]}>
-                  <SvgIcon path={SKILL_ICONS[g.title] ?? ""} size={22} color={t.fg} />
+                  {iconDef && <SkillCatIcon def={iconDef} size={22} color={t.fg} />}
                 </View>
                 <Text style={styles.skillTitle}>{g.title}</Text>
                 <View style={styles.tagWrap}>
@@ -172,21 +146,13 @@ export function ToolsSection() {
       </Text>
       <View style={{ flexDirection: "row", flexWrap: "wrap", marginHorizontal: -8, marginTop: 24 }}>
         {TOOLS.map((name, i) => {
-          const icon = TOOL_SVG[name];
-          if (!icon) return null;
+          const def = TOOL_ICONS[name];
+          if (!def) return null;
           return (
             <Reveal key={name} delay={i * 55} style={{ width: `${100 / cols}%`, padding: 8 }}>
               <View style={[styles.toolCard, softShadow()]}>
-                <View style={[styles.toolIconWrap, { backgroundColor: icon.color + "15" }]}>
-                  <View
-                    style={{ width: 28, height: 28 }}
-                    // @ts-ignore – web only
-                    {...({
-                      dangerouslySetInnerHTML: {
-                        __html: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">${icon.path}</svg>`,
-                      },
-                    } as object)}
-                  />
+                <View style={[styles.toolIconWrap, { backgroundColor: def.color + "18" }]}>
+                  <ToolIcon name={name} size={28} />
                 </View>
                 <Text style={styles.toolName} numberOfLines={2}>{name}</Text>
               </View>
