@@ -5,10 +5,10 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { About, Contact, Experience, Footer, Skills } from "../src/components/Content";
 import { Hero } from "../src/components/Hero";
 import { Nav, NAV_HEIGHT, type NavItem } from "../src/components/Nav";
-import { RegistryDemo, RegistryNotes } from "../src/components/RegistryDemo";
 import { Section } from "../src/components/Section";
 import { openUrl } from "../src/components/ui";
-import { Work } from "../src/components/Work";
+import { GithubCard, Projects } from "../src/components/Projects";
+import { Backdrop } from "../src/components/Backdrop";
 import { profile } from "../src/data/profile";
 import { color, useLayout } from "../src/theme";
 
@@ -19,9 +19,8 @@ const RESUME_URL =
     : `https://raw.githubusercontent.com/marcarboleda/Arboleda-Marc-Mobile-Portfolio/master/public/${RESUME_FILE}`;
 
 const NAV: NavItem[] = [
+  { id: "work", label: "Projects" },
   { id: "about", label: "About" },
-  { id: "work", label: "Work" },
-  { id: "registry", label: "Data demo" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
@@ -32,7 +31,7 @@ export default function Portfolio() {
   const offsets = useRef<Record<string, number>>({});
   const insets = useSafeAreaInsets();
   const { height, bp, hydrated } = useLayout();
-  const sectionPad = bp === "phone" ? 84 : 120;
+  const sectionPad = bp === "phone" ? 96 : 140;
   const [active, setActive] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [seen, setSeen] = useState(0);
@@ -73,7 +72,7 @@ export default function Portfolio() {
   return (
     <View style={{ flex: 1, backgroundColor: color.bg, opacity: hydrated ? 1 : 0 }}>
       <Head>
-        <title>{`${profile.name} — Data, QA & Software Portfolio`}</title>
+        <title>{`${profile.name} — Data, QA & ML Portfolio`}</title>
         <meta name="description" content={`${profile.headline} ${profile.seeking}.`} />
         <meta property="og:title" content={`${profile.name} — Portfolio`} />
         <meta property="og:description" content={profile.headline} />
@@ -88,48 +87,38 @@ export default function Portfolio() {
         contentContainerStyle={{ paddingBottom: insets.bottom }}
         style={{ flex: 1 }}
       >
+        <Backdrop />
         <Hero onWork={() => navigate("work")} onResume={resume} onContact={() => navigate("contact")} />
 
-        <Section index="01" label="About" title="Background" visible={visible("about")} onLayout={register("about")}>
-          <About />
-        </Section>
-
         <Section
-          index="02"
-          label="Work"
-          title="Selected work"
-          lede="Projects grouped by the kind of role they relate to. Filter by track, then open a project for my role, the approach and the tools used."
+          index="01"
+          label="Projects"
+          title="Three projects, from data to deployment."
+          lede="A database I run for my organization, a machine-learning capstone and my thesis. Each one shows what I personally did and the results."
           visible={visible("work")}
           onLayout={register("work")}
         >
-          <Work onDemo={() => navigate("registry")} />
+          <Projects visible={visible("work")} />
+          <GithubCard onPress={() => openUrl(profile.github)} />
         </Section>
 
-        <Section
-          index="03"
-          label="Data demo"
-          title="The membership registry, rebuilt to explore."
-          lede="An interactive copy of the spreadsheet I run as Statistics Officer. It has the same columns, validation rules and search formula, with fictional records in place of real members."
-          visible={visible("registry")}
-          onLayout={register("registry")}
-        >
-          <RegistryNotes />
-          <RegistryDemo />
+        <Section index="02" label="About" title="Making information trustworthy." visible={visible("about")} onLayout={register("about")}>
+          <About />
         </Section>
 
-        <Section index="04" label="Skills" title="Tools I reach for" visible={visible("skills")} onLayout={register("skills")}>
+        <Section index="03" label="Skills" title="What I work with" visible={visible("skills")} onLayout={register("skills")}>
           <Skills />
         </Section>
 
-        <Section index="05" label="Experience" title="Experience & credentials" visible={visible("experience")} onLayout={register("experience")}>
+        <Section index="04" label="Experience" title="Experience & credentials" visible={visible("experience")} onLayout={register("experience")}>
           <Experience />
         </Section>
 
         <Section
-          index="06"
+          index="05"
           label="Contact"
           title="Hiring for a data or QA internship?"
-          lede="Open to on-site, hybrid and remote internships. Email is the fastest way to reach me."
+          lede="I'm open to on-site, hybrid and remote internships. Email is the fastest way to reach me."
           visible={visible("contact")}
           onLayout={register("contact")}
         >

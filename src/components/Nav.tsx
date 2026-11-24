@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { color, font, useLayout, type InteractionState } from "../theme";
-import { Mono } from "./ui";
+import { color, font, useLayout, webOnly, type InteractionState } from "../theme";
 
 export type NavItem = { id: string; label: string };
 
@@ -14,7 +13,7 @@ type Props = {
   onResume: () => void;
 };
 
-export const NAV_HEIGHT = 64;
+export const NAV_HEIGHT = 76;
 
 export function Nav({ items, active, scrolled, onNavigate, onResume }: Props) {
   const { gutter, contentWidth, isDesktop } = useLayout();
@@ -27,68 +26,63 @@ export function Nav({ items, active, scrolled, onNavigate, onResume }: Props) {
   };
 
   return (
-    <View
-      style={[
-        styles.bar,
-        { paddingTop: insets.top, paddingHorizontal: gutter },
-        scrolled && styles.barScrolled,
-      ]}
-    >
-      <View style={[styles.inner, { width: contentWidth }]}>
-        <Pressable onPress={() => go("top")} accessibilityRole="button" accessibilityLabel="Back to top">
-          <Text style={styles.mark}>
-            M<Text style={{ fontFamily: font.displayItalic }}>a</Text>
-            <Text style={{ color: color.accent }}>.</Text>
-          </Text>
+    <View pointerEvents="box-none" style={[styles.wrap, { paddingTop: insets.top + 12, paddingHorizontal: gutter }]}>
+      <View style={[styles.bar, { width: contentWidth }, scrolled && styles.barScrolled]}>
+        <Pressable onPress={() => go("top")} accessibilityRole="button" accessibilityLabel="Back to top" style={styles.brand}>
+          <View style={styles.logo}>
+            <Text style={styles.logoText}>MA</Text>
+          </View>
+          {isDesktop ? <Text style={styles.brandText}>Marc Arboleda</Text> : null}
         </Pressable>
 
         {isDesktop ? (
           <View style={styles.links}>
-            {items.map((it, i) => (
-              <Pressable key={it.id} onPress={() => go(it.id)} accessibilityRole="link">
-                {(s) => {
-                  const { hovered } = s as InteractionState;
-                  const on = active === it.id;
-                  return (
-                    <Text style={[styles.link, (on || hovered) && { color: color.text }]}>
-                      <Text style={{ color: on ? color.accent : color.faint }}>{String(i + 1).padStart(2, "0")} </Text>
-                      {it.label}
-                    </Text>
-                  );
-                }}
-              </Pressable>
-            ))}
-            <Pressable
-              onPress={onResume}
-              accessibilityRole="link"
-              style={(s) => [styles.resume, (s as InteractionState).hovered && { backgroundColor: color.text, borderColor: color.text }]}
-            >
-              {(s) => <Text style={[styles.resumeText, (s as InteractionState).hovered && { color: color.bg }]}>Résumé ↓</Text>}
-            </Pressable>
+            {items.map((it) => {
+              const on = active === it.id;
+              return (
+                <Pressable
+                  key={it.id}
+                  onPress={() => go(it.id)}
+                  accessibilityRole="link"
+                  style={(s) => [styles.link, on && styles.linkOn, (s as InteractionState).hovered && !on && { backgroundColor: color.glass }, webOnly({ transitionDuration: "150ms" })]}
+                >
+                  <Text style={[styles.linkText, on && { color: color.text }]}>{it.label}</Text>
+                </Pressable>
+              );
+            })}
           </View>
+        ) : null}
+
+        {isDesktop ? (
+          <Pressable
+            onPress={onResume}
+            accessibilityRole="link"
+            style={(s) => [styles.cta, (s as InteractionState).hovered && { backgroundColor: "#D4FA8A" }, webOnly({ transitionDuration: "150ms" })]}
+          >
+            <Text style={styles.ctaText}>Résumé ↓</Text>
+          </Pressable>
         ) : (
-          <Pressable onPress={() => setOpen(true)} accessibilityRole="button" accessibilityLabel="Open menu" style={styles.menuBtn}>
-            <Text style={styles.menuText}>Menu</Text>
-            <View style={{ gap: 4 }}>
-              <View style={styles.burger} />
-              <View style={[styles.burger, { width: 12 }]} />
-            </View>
+          <Pressable onPress={() => setOpen(true)} accessibilityRole="button" accessibilityLabel="Open menu" style={styles.menuBtn} hitSlop={8}>
+            <View style={styles.burger} />
+            <View style={[styles.burger, { width: 12 }]} />
           </Pressable>
         )}
       </View>
 
       <Modal visible={open} animationType="fade" transparent onRequestClose={() => setOpen(false)} statusBarTranslucent>
-        <View style={[styles.sheet, { paddingTop: insets.top + 18, paddingBottom: insets.bottom + 24, paddingHorizontal: gutter }]}>
+        <View style={[styles.sheet, { paddingTop: insets.top + 22, paddingBottom: insets.bottom + 24, paddingHorizontal: gutter }]}>
           <View style={styles.sheetHead}>
-            <Mono>Navigate</Mono>
-            <Pressable onPress={() => setOpen(false)} accessibilityRole="button" accessibilityLabel="Close menu" hitSlop={12}>
-              <Text style={styles.menuText}>Close ✕</Text>
+            <View style={styles.logo}>
+              <Text style={styles.logoText}>MA</Text>
+            </View>
+            <Pressable onPress={() => setOpen(false)} accessibilityRole="button" accessibilityLabel="Close menu" hitSlop={12} style={styles.close}>
+              <Text style={{ color: color.text, fontSize: 18 }}>✕</Text>
             </Pressable>
           </View>
-          <View style={{ marginTop: 32 }}>
+          <View style={{ marginTop: 40, gap: 6 }}>
             {items.map((it, i) => (
               <Pressable key={it.id} onPress={() => go(it.id)} accessibilityRole="link" style={styles.sheetRow}>
-                <Mono style={{ color: color.accent, width: 36 }}>{String(i + 1).padStart(2, "0")}</Mono>
+                <Text style={styles.sheetNum}>{String(i + 1).padStart(2, "0")}</Text>
                 <Text style={styles.sheetLink}>{it.label}</Text>
               </Pressable>
             ))}
@@ -101,7 +95,7 @@ export function Nav({ items, active, scrolled, onNavigate, onResume }: Props) {
             style={styles.sheetResume}
             accessibilityRole="link"
           >
-            <Text style={[styles.resumeText, { color: color.bg }]}>Download résumé ↓</Text>
+            <Text style={styles.ctaText}>Download résumé ↓</Text>
           </Pressable>
         </View>
       </Modal>
@@ -110,35 +104,49 @@ export function Nav({ items, active, scrolled, onNavigate, onResume }: Props) {
 }
 
 const styles = StyleSheet.create({
+  wrap: { position: "absolute", top: 0, left: 0, right: 0, zIndex: 50, alignItems: "center" },
   bar: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 50,
-    alignItems: "center",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "transparent",
-  },
-  barScrolled: { backgroundColor: "rgba(11,11,10,0.92)", borderBottomColor: color.line },
-  inner: { height: NAV_HEIGHT, flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  mark: { fontFamily: font.display, fontSize: 30, color: color.text, letterSpacing: -0.5 },
-  links: { flexDirection: "row", alignItems: "center", gap: 28 },
-  link: { fontFamily: font.mono, fontSize: 12, letterSpacing: 0.8, color: color.muted, textTransform: "uppercase" },
-  resume: { borderWidth: 1, borderColor: color.lineHi, paddingVertical: 8, paddingHorizontal: 14, borderRadius: 2 },
-  resumeText: { fontFamily: font.monoMedium, fontSize: 12, letterSpacing: 1, color: color.text, textTransform: "uppercase" },
-  menuBtn: { flexDirection: "row", alignItems: "center", gap: 10, paddingVertical: 8 },
-  menuText: { fontFamily: font.mono, fontSize: 12, letterSpacing: 1.2, color: color.text, textTransform: "uppercase" },
-  burger: { width: 18, height: 1.5, backgroundColor: color.text, alignSelf: "flex-end" },
-  sheet: { flex: 1, backgroundColor: color.bg },
-  sheetHead: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: 46 },
-  sheetRow: {
+    height: 56,
     flexDirection: "row",
-    alignItems: "baseline",
-    paddingVertical: 14,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.line,
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: "transparent",
   },
-  sheetLink: { fontFamily: font.display, fontSize: 40, color: color.text, lineHeight: 46 },
-  sheetResume: { marginTop: "auto", backgroundColor: color.accent, paddingVertical: 16, alignItems: "center", borderRadius: 2 },
+  barScrolled: {
+    backgroundColor: "rgba(14,14,18,0.72)",
+    borderColor: color.border,
+    ...webOnly({ backdropFilter: "blur(18px) saturate(140%)", WebkitBackdropFilter: "blur(18px) saturate(140%)" }),
+  },
+  brand: { flexDirection: "row", alignItems: "center", gap: 10 },
+  logo: { width: 36, height: 36, borderRadius: 18, backgroundColor: color.text, alignItems: "center", justifyContent: "center" },
+  logoText: { fontFamily: font.bold, fontSize: 13, color: color.bg, letterSpacing: -0.3 },
+  brandText: { fontFamily: font.medium, fontSize: 15, color: color.text },
+  links: { flexDirection: "row", alignItems: "center", gap: 2 },
+  link: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 999 },
+  linkOn: { backgroundColor: color.glassHi },
+  linkText: { fontFamily: font.medium, fontSize: 14, color: color.muted },
+  cta: { backgroundColor: color.accent, borderRadius: 999, paddingHorizontal: 16, paddingVertical: 10 },
+  ctaText: { fontFamily: font.semibold, fontSize: 14, color: color.accentInk },
+  menuBtn: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 5,
+    backgroundColor: "rgba(14,14,18,0.7)",
+    borderWidth: 1,
+    borderColor: color.border,
+  },
+  burger: { width: 18, height: 1.5, backgroundColor: color.text, borderRadius: 1 },
+  sheet: { flex: 1, backgroundColor: color.bg },
+  sheetHead: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
+  close: { width: 44, height: 44, borderRadius: 22, borderWidth: 1, borderColor: color.border, alignItems: "center", justifyContent: "center" },
+  sheetRow: { flexDirection: "row", alignItems: "baseline", gap: 16, paddingVertical: 12 },
+  sheetNum: { fontFamily: font.mono, fontSize: 13, color: color.accent, width: 24 },
+  sheetLink: { fontFamily: font.semibold, fontSize: 38, color: color.text, letterSpacing: -1.2 },
+  sheetResume: { marginTop: "auto", backgroundColor: color.accent, paddingVertical: 17, alignItems: "center", borderRadius: 999 },
 });

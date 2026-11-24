@@ -1,10 +1,9 @@
-import { IBMPlexMono_400Regular } from "@expo-google-fonts/ibm-plex-mono/400Regular";
-import { IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono/500Medium";
-import { IBMPlexSans_400Regular } from "@expo-google-fonts/ibm-plex-sans/400Regular";
-import { IBMPlexSans_500Medium } from "@expo-google-fonts/ibm-plex-sans/500Medium";
-import { IBMPlexSans_600SemiBold } from "@expo-google-fonts/ibm-plex-sans/600SemiBold";
-import { InstrumentSerif_400Regular } from "@expo-google-fonts/instrument-serif/400Regular";
-import { InstrumentSerif_400Regular_Italic } from "@expo-google-fonts/instrument-serif/400Regular_Italic";
+import { Geist_400Regular } from "@expo-google-fonts/geist/400Regular";
+import { Geist_500Medium } from "@expo-google-fonts/geist/500Medium";
+import { Geist_600SemiBold } from "@expo-google-fonts/geist/600SemiBold";
+import { Geist_700Bold } from "@expo-google-fonts/geist/700Bold";
+import { GeistMono_400Regular } from "@expo-google-fonts/geist-mono/400Regular";
+import { GeistMono_500Medium } from "@expo-google-fonts/geist-mono/500Medium";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -20,13 +19,12 @@ if (Platform.OS !== "web") {
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    InstrumentSerif_400Regular,
-    InstrumentSerif_400Regular_Italic,
-    IBMPlexSans_400Regular,
-    IBMPlexSans_500Medium,
-    IBMPlexSans_600SemiBold,
-    IBMPlexMono_400Regular,
-    IBMPlexMono_500Medium,
+    Geist_400Regular,
+    Geist_500Medium,
+    Geist_600SemiBold,
+    Geist_700Bold,
+    GeistMono_400Regular,
+    GeistMono_500Medium,
   });
 
   useEffect(() => {

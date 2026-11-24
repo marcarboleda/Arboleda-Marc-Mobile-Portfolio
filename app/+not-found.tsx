@@ -18,6 +18,6 @@ export default function NotFound() {
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: color.bg, alignItems: "center", justifyContent: "center", padding: 24 },
   code: { fontFamily: font.mono, color: color.accent, letterSpacing: 3, marginBottom: 12 },
-  title: { fontFamily: font.display, color: color.text, fontSize: 40, textAlign: "center" },
-  link: { fontFamily: font.sansMedium, color: color.text, marginTop: 24, textDecorationLine: "underline" },
+  title: { fontFamily: font.semibold, color: color.text, fontSize: 40, textAlign: "center" },
+  link: { fontFamily: font.medium, color: color.text, marginTop: 24, textDecorationLine: "underline" },
 });

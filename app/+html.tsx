@@ -9,7 +9,7 @@ export default function Root({ children }: PropsWithChildren) {
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
-        <meta name="theme-color" content="#0B0B0A" />
+        <meta name="theme-color" content="#060608" />
         <meta name="color-scheme" content="dark" />
         <ScrollViewStyleReset />
         <style dangerouslySetInnerHTML={{ __html: css }} />
@@ -20,9 +20,10 @@ export default function Root({ children }: PropsWithChildren) {
 }
 
 const css = `
-html, body { background-color: #0B0B0A; color: #ECEAE3; }
+html, body { background-color: #060608; color: #F5F5F4; }
+html { scroll-behavior: smooth; }
 body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
-::selection { background: #A3C96F; color: #0B0B0A; }
-*:focus-visible { outline: 1px solid #A3C96F; outline-offset: 3px; }
+::selection { background: #C5F36B; color: #060608; }
+*:focus-visible { outline: 1px solid #C5F36B; outline-offset: 3px; }
 input:focus { outline: none; }
 `;

@@ -8,7 +8,7 @@ Built with **Expo (React Native + React Native Web)**, so the same code runs as 
 - **Responsive layout** for phones, tablets and desktops (`src/theme.ts` → `useLayout`).
 - **Interactive data demo**: a working copy of the Musikalista membership registry, with sheet-style frozen columns, raw vs. cleaned view, the original search-formula logic and live insights.
   The demo uses **fictional records only** (`src/data/registry.ts`). No real member data is in this repository.
-- **Filterable project index** grouped by track (Data, QA, ML / AI, Software, Games).
+- **Three project showcases** (Tabula Rasa, the membership registry, helmet detection) with image galleries, charts built from real results and a "What I did" breakdown.
 - **Unit tests** for the registry search, cleaning and validation logic (`tests/`).
 
 ## Scripts
@@ -33,7 +33,7 @@ Requires Node 22.6 or newer.
 
 ```
 app/            routes (index page, root layout, HTML shell, 404)
-src/components  Hero, Nav, Work, RegistryDemo, Content sections, UI primitives
+src/components  Hero, Nav, Projects, Charts, RegistryDemo, Content sections, UI primitives
 src/data        profile, projects, demo registry rows
 src/lib         registry search / cleaning / validation logic
 tests/          node:test unit tests

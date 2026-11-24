@@ -1,297 +1,132 @@
 import type { ImageSourcePropType } from "react-native";
 
-export type Track = "Data" | "QA" | "ML / AI" | "Software" | "Games";
+export type Visual =
+  | { kind: "image"; label: string; source: ImageSourcePropType; aspect: number; frame?: "browser" | "plain"; url?: string }
+  | { kind: "helmet-chart"; label: string }
+  | { kind: "tabula-chart"; label: string };
 
-export const TRACKS: Track[] = ["Data", "QA", "ML / AI", "Software", "Games"];
+export interface Metric {
+  value: string;
+  label: string;
+}
 
 export interface Project {
   id: string;
+  index: string;
   title: string;
-  year?: string;
-  context: string;
-  tracks: Track[];
+  tagline: string;
+  category: string;
+  year: string;
+  team: string;
   role: string;
   summary: string;
-  points: string[];
+  did: string[];
+  metrics: Metric[];
   stack: string[];
-  link?: { label: string; url: string };
-  image?: ImageSourcePropType;
-  /** Anchor to an in-page demo. */
+  visuals: Visual[];
   demo?: boolean;
 }
 
-const gh = (repo: string) => ({ label: "Repository", url: `https://github.com/marcarboleda/${repo}` });
+/** Helmet-detection trial T04, transcribed from the Colab training log (25 epochs). */
+export const HELMET_T04 = {
+  epochs: {
+    train: [0.6527, 0.6604, 0.6864, 0.7218, 0.7192, 0.7265, 0.7465, 0.7482, 0.7512, 0.7627, 0.7712, 0.7703, 0.784, 0.7921, 0.8117, 0.8057, 0.8219, 0.821, 0.8172, 0.8223, 0.8249, 0.8266, 0.827, 0.8338, 0.8432],
+    val: [0.6327, 0.6327, 0.7585, 0.7245, 0.7704, 0.7177, 0.6871, 0.682, 0.6633, 0.784, 0.7313, 0.7653, 0.699, 0.801, 0.7653, 0.8044, 0.8435, 0.818, 0.7789, 0.8401, 0.8129, 0.8027, 0.8265, 0.8197, 0.8299],
+    auc: [0.8045, 0.7949, 0.7972, 0.7683, 0.8134, 0.7979, 0.8232, 0.8118, 0.7029, 0.827, 0.8181, 0.8447, 0.845, 0.8432, 0.8492, 0.8628, 0.8824, 0.8726, 0.8656, 0.8923, 0.8888, 0.8867, 0.8965, 0.8916, 0.9129],
+  },
+  testAccuracy: 0.789,
+  testMacroF1: 0.754,
+  noHelmetRecall: 0.767,
+};
 
-export const FEATURED: Project[] = [
+/** Tabula Rasa evaluation results (from the thesis defense slides). */
+export const TABULA_RESULTS = { pre: 15.49, post: 18.84, maxScore: 25, n: 37, t: 5.83, dz: 0.96 };
+
+export const PROJECTS: Project[] = [
+  {
+    id: "tabula-rasa",
+    index: "01",
+    title: "Tabula Rasa",
+    tagline: "A game that teaches reinforcement learning by letting players train their own agents.",
+    category: "Undergraduate thesis · ML & research",
+    year: "2026",
+    team: "Team of 3",
+    role: "Co-author & developer",
+    summary:
+      "Players shape reward parameters, watch an agent learn through an on-device PPO trainer, and enter their agent in tournaments. We tested whether playing it improves understanding of core RL concepts.",
+    did: [
+      "Co-developed the Unity 6 game, built around a custom Proximal Policy Optimization (PPO) trainer written in C# that runs on the device without cloud services.",
+      "Co-wrote the thesis manuscript, including the operational and theoretical framework diagrams.",
+      "Helped design the evaluation: a one-group pretest–posttest study analyzed with a paired t-test, plus a 31-item user-acceptance questionnaire adapted from MEEGA+.",
+    ],
+    metrics: [
+      { value: "+3.35", label: "mean score gain (15.49 → 18.84)" },
+      { value: "61.9% → 75.4%", label: "pretest to posttest" },
+      { value: "p < .001", label: "paired t(36) = 5.83" },
+      { value: "0.96", label: "effect size dz (large)" },
+    ],
+    stack: ["Unity 6", "C#", "PPO", "Supabase", "iOS · macOS", "Paired t-test", "MEEGA+"],
+    visuals: [
+      { kind: "image", label: "Study website", source: require("../../assets/images/work/tabula-landing.jpg"), aspect: 2102 / 1270, frame: "browser", url: "tabularasa · reinforcement learning simulation" },
+      { kind: "tabula-chart", label: "Learning results" },
+    ],
+  },
   {
     id: "registry",
+    index: "02",
     title: "Musikalista Membership Registry",
+    tagline: "The organization's member database, designed so bad data can't get in and any record can be found in seconds.",
+    category: "Data management · Statistics Officer",
     year: "2026",
-    context: "Student organization · Statistics Officer",
-    tracks: ["Data"],
+    team: "Solo",
     role: "Designer & maintainer",
     summary:
-      "A Google Sheets registry for the org's members and bands. Validation stops bad entries at the source, and a search sheet answers questions like \"who plays drums?\" or \"whose birthday is in March?\" without filtering by hand.",
-    points: [
-      "Dropdown validation for college department and member role; custom formulas reject non-numeric year levels and non-date birthdates.",
-      "Search built on one LET + XMATCH + FILTER formula: choose any column, type a term, and matching rows appear. Birthdate searches match by month.",
-      "Zebra banding through conditional formatting, a live COUNTA member total and a separate band-roster sheet with reps and lineups.",
+      "A structured Google Sheets database for the organization's members and bands. It holds every member's department, program, contact details and music roles, and supports rosters, event planning and band coordination.",
+    did: [
+      "Designed the 11-field member schema, adding dropdown validation for department and member role and custom formulas that reject invalid year levels and birthdates.",
+      "Wrote a single dynamic LET + XMATCH + FILTER formula that powers a search sheet: pick any column, type a term, and matching records appear. Birthdate searches match by month for birthday greetings.",
+      "Added an automatic member count, zebra banding through conditional formatting, and a separate band-roster sheet with band reps and lineups.",
+      "Keep the records accurate and confidential. The demo on this site uses fictional members only.",
     ],
-    stack: ["Google Sheets", "Data validation", "LET / XMATCH / FILTER", "Conditional formatting"],
+    metrics: [
+      { value: "11", label: "fields per member record" },
+      { value: "6", label: "searchable fields" },
+      { value: "4", label: "validation rules" },
+      { value: "1", label: "formula behind the search" },
+    ],
+    stack: ["Google Sheets", "Data validation", "LET · XMATCH · FILTER", "Conditional formatting"],
+    visuals: [
+      { kind: "image", label: "Member sheet", source: require("../../assets/images/work/registry-sheet.jpg"), aspect: 1600 / 842, frame: "browser", url: "Members 26-27 · demo data" },
+      { kind: "image", label: "Insights", source: require("../../assets/images/work/registry-insights.jpg"), aspect: 1.6, frame: "browser", url: "Insights · demo data" },
+    ],
     demo: true,
   },
   {
     id: "helmet",
+    index: "03",
     title: "Helmet Compliance Detection",
+    tagline: "A CNN that flags motorcycle riders without helmets, as decision support for traffic and campus security.",
+    category: "Data Science 2 capstone · Computer vision",
     year: "2026",
-    context: "Data Science 2 capstone · Team of 7",
-    tracks: ["ML / AI", "Data"],
-    role: "Co-developer",
+    team: "Team of 7",
+    role: "Model training & documentation",
     summary:
-      "A convolutional neural network that classifies motorcycle riders as helmeted or not and reports a confidence score. It is meant as decision support for traffic offices and campus gate security, with a human making the final call.",
-    points: [
-      "Combined public Kaggle helmet datasets with photos the team took at campus entry points and nearby roads.",
-      "Used transfer learning on MobileNetV2 and ResNet backbones, with augmentation to cover lighting and angle variation.",
-      "Logged each training trial in a Jupyter notebook (epochs, batch size, layers, optimizer) and interpreted every run in the paper.",
+      "The model classifies a rider image as helmet or no-helmet and reports its confidence, so a human reviewer can act on the uncertain cases. The dataset combines public Kaggle images with photos the team took at campus gates and nearby roads.",
+    did: [
+      "Ran and logged training trials T03 and T04 in Google Colab, comparing classifier-head designs on a transfer-learning backbone.",
+      "Tracked accuracy, AUC, precision, recall and macro-F1 for every epoch, and the no-helmet recall that matters most for safety.",
+      "Documented each trial's settings (epochs, batch size, layers, optimizer) and interpreted the results for the team's paper.",
     ],
-    stack: ["Python", "Jupyter", "CNN", "Transfer learning", "Data augmentation"],
-  },
-  {
-    id: "tabula-rasa",
-    title: "Tabula Rasa",
-    year: "2026",
-    context: "Undergraduate thesis · Team of 3",
-    tracks: ["ML / AI", "QA", "Games"],
-    role: "Co-author & developer",
-    summary:
-      "A gamified simulation for teaching reinforcement learning. Players tune reward parameters, watch agents learn through an on-device PPO implementation, then enter them in tournaments.",
-    points: [
-      "Custom PPO trainer written in C# that runs on the device. It needs no cloud service, Python or ML-Agents.",
-      "Supabase server functions with anonymous sign-in support multiplayer modes and a study website for the tests.",
-      "Evaluated with a one-group pretest–posttest design (paired t-test) and a 31-item user-acceptance instrument adapted from MEEGA+.",
+    metrics: [
+      { value: "78.9%", label: "test accuracy (trial T04)" },
+      { value: "0.754", label: "test macro-F1" },
+      { value: "0.767", label: "no-helmet recall" },
+      { value: "0.913", label: "final validation AUC" },
     ],
-    stack: ["Unity 6", "C#", "PPO", "Supabase", "iOS / macOS", "MEEGA+"],
-  },
-  {
-    id: "achroma",
-    title: "Achroma",
-    year: "2025",
-    context: "Web Development finals · Team project",
-    tracks: ["QA", "Games"],
-    role: "UI & quality assurance",
-    summary:
-      "A first-person psychological horror game that runs in the browser. I designed the atmospheric interface and tested responsiveness and tension pacing across desktop and touch controls.",
-    points: [
-      "Real-time 3D in Next.js with React Three Fiber, plus dedicated mobile controls and a pointer-lock flow for desktop.",
-      "Built-in color-vision modes (protanopia, deuteranopia, tritanopia) applied as a shader pass.",
-      "Narrated radio sequences with subtitle overlays and debug overlays used during testing.",
+    stack: ["Python", "Keras", "Google Colab", "Transfer learning", "MobileNetV2 / ResNet", "Data augmentation"],
+    visuals: [
+      { kind: "helmet-chart", label: "Training curve" },
+      { kind: "image", label: "Colab training log", source: require("../../assets/images/work/helmet-training-log.jpg"), aspect: 1600 / 838, frame: "browser", url: "Marc_T03_T04_helmet_cnn.ipynb" },
     ],
-    stack: ["Next.js", "React Three Fiber", "TypeScript", "GLSL"],
-    link: gh("webdev-finals-achroma"),
-    image: require("../../assets/images/work/achroma.jpg"),
-  },
-  {
-    id: "traffic-guardian",
-    title: "Traffic Guardian",
-    context: "AI road-safety system · Collaborative project",
-    tracks: ["QA", "ML / AI"],
-    role: "UI/UX consultant & lead QA tester",
-    summary:
-      "A CCTV dashboard that flags traffic violations with AI so enforcers can review them. My work focused on how enforcers read and act on alerts.",
-    points: [
-      "Refined the alert hierarchy and visual feedback to reduce notification fatigue.",
-      "Led testing of the violation-log and analytics views that summarize top violation types and daily averages.",
-    ],
-    stack: ["UI/UX", "QA testing", "Computer vision"],
-    image: require("../../assets/images/work/traffic-guardian.jpg"),
-  },
-  {
-    id: "forty31",
-    title: "Forty31 Cafe POS",
-    context: "Point-of-sale & inventory · Local cafe",
-    tracks: ["Data", "Software"],
-    role: "UI/UX designer",
-    summary:
-      "An internal point-of-sale system for a local cafe, with daily sales tracking and inventory alerts that give management a clear view of the business.",
-    points: [
-      "Order flow designed so baristas can take dine-in and take-out orders quickly.",
-      "Sales and inventory views planned around the numbers the owners check every day.",
-    ],
-    stack: ["UI/UX", "Dashboard design"],
-    image: require("../../assets/images/work/forty31.jpg"),
-  },
-];
-
-export const ARCHIVE: Project[] = [
-  {
-    id: "ocr-quiz",
-    title: "Slide-to-Quiz OCR Pipeline",
-    year: "2026",
-    context: "IT Ethics coursework",
-    tracks: ["Data", "Software"],
-    role: "Solo",
-    summary:
-      "Pulled text from lecture slides, including text inside images, through LibreOffice → pdftoppm → Tesseract, then turned it into an interactive multiple-choice reviewer.",
-    points: [],
-    stack: ["Tesseract OCR", "Python", "React"],
-  },
-  {
-    id: "leads-dataset",
-    title: "Buyer-Leads Dataset Preparation",
-    year: "2026",
-    context: "Data practice",
-    tracks: ["Data"],
-    role: "Solo",
-    summary:
-      "Iteratively shaped a ~600-row leads dataset so it is realistically messy but still plausible, with controlled null rates, sensible age ranges and weighted categorical values.",
-    points: [],
-    stack: ["Excel", "Python"],
-  },
-  {
-    id: "trackiq",
-    title: "TrackIQ",
-    year: "2026",
-    context: "Personal project",
-    tracks: ["Software", "Data"],
-    role: "Solo",
-    summary:
-      "An expense tracker with AI receipt scanning, budgets, spending analytics and multi-currency support (PHP by default).",
-    points: [],
-    stack: ["React Native", "Expo", "TypeScript", "Zustand", "MMKV"],
-  },
-  {
-    id: "faremate",
-    title: "FareMate",
-    context: "Commuter utility",
-    tracks: ["Software"],
-    role: "UI & navigation",
-    summary:
-      "Fare estimates for Batangas commuters based on GPS and LTFRB fare rules, designed so fares can be checked in a few taps.",
-    points: [],
-    stack: ["Mobile", "GPS", "UI/UX"],
-    image: require("../../assets/images/work/faremate.jpg"),
-  },
-  {
-    id: "booth-games",
-    title: "Musikalista Booth Games",
-    year: "2026",
-    context: "Org event booths",
-    tracks: ["Games", "Software"],
-    role: "Developer",
-    summary:
-      "Browser games for org booths: Match the Pitch (single-note and three-note sequence modes) with Supabase leaderboards, a memory-match game and a tiered scratch-card raffle.",
-    points: [],
-    stack: ["JavaScript", "Web Audio", "Supabase"],
-    link: gh("MusikalistaV2"),
-  },
-  {
-    id: "travel-diary",
-    title: "Travel Diary",
-    year: "2026",
-    context: "Mobile development · Device features",
-    tracks: ["Software"],
-    role: "Solo",
-    summary:
-      "A travel journal that uses the camera, geolocation and notifications, with persistent local storage and a theme switcher.",
-    points: [],
-    stack: ["React Native", "Expo", "AsyncStorage"],
-    link: gh("device-features-react-native"),
-  },
-  {
-    id: "job-finder",
-    title: "Job Finder",
-    year: "2026",
-    context: "Mobile development midterm",
-    tracks: ["Software"],
-    role: "Solo",
-    summary: "Fetches job listings from an API, with saved jobs, detail views and an application form built on shared context state.",
-    points: [],
-    stack: ["React Native", "TypeScript", "Axios"],
-    link: gh("midterm-project-react-native"),
-  },
-  {
-    id: "shopping-app",
-    title: "Shopping App",
-    year: "2026",
-    context: "Mobile development",
-    tracks: ["Software"],
-    role: "Solo",
-    summary: "A storefront with product listing, cart and checkout, using file-based routing.",
-    points: [],
-    stack: ["Expo Router", "TypeScript"],
-    link: gh("ShoppingApp"),
-  },
-  {
-    id: "solitaire",
-    title: "Block Ten Solitaire Solver",
-    year: "2026",
-    context: "Game programming assignment",
-    tracks: ["Games"],
-    role: "Solo",
-    summary:
-      "A Unity simulation that always wins. A memoized depth-first search finds the solution off the main thread before the moves are played back.",
-    points: [],
-    stack: ["Unity", "C#", "DFS + memoization"],
-  },
-  {
-    id: "codelearn",
-    title: "CodeLearn",
-    year: "2026",
-    context: "Education platform prototype",
-    tracks: ["Software"],
-    role: "Solo",
-    summary:
-      "A programming course platform in the style of CodeChum and Canvas, with a custom recursive Python interpreter and per-user chat.",
-    points: [],
-    stack: ["HTML", "CSS", "JavaScript"],
-  },
-  {
-    id: "san-gubat",
-    title: "San Gubat",
-    year: "2025",
-    context: "Web development midterm",
-    tracks: ["Games", "Software"],
-    role: "Developer",
-    summary:
-      "A branching story based on Philippine folklore, driven by a JSON story graph, with an inventory, typewriter text and scene music.",
-    points: [],
-    stack: ["React", "Vite", "JSON"],
-    link: gh("midterm-project"),
-  },
-  {
-    id: "pokemon",
-    title: "Pokémon Team Builder",
-    year: "2025",
-    context: "Web development",
-    tracks: ["Software"],
-    role: "Solo",
-    summary: "Browse the first 151 Pokémon from PokéAPI and build a team.",
-    points: [],
-    stack: ["React", "Vite", "REST API"],
-    link: gh("pokemon-team-builder"),
-  },
-  {
-    id: "airline",
-    title: "Airline Booking System",
-    year: "2024",
-    context: "Object-oriented programming finals",
-    tracks: ["Software"],
-    role: "Team",
-    summary: "A console system for flights, seats and bookings, with class inheritance (User → Customer) and an in-memory flight database.",
-    points: [],
-    stack: ["C++", "OOP"],
-    link: gh("final-project-7-ooprog"),
-  },
-  {
-    id: "inventory",
-    title: "Inventory Management System",
-    year: "2024",
-    context: "Object-oriented programming midterm",
-    tracks: ["Data", "Software"],
-    role: "Solo",
-    summary: "Category-validated inventory records with add, update and search, plus capacity checks and input validation, built on abstract base classes.",
-    points: [],
-    stack: ["C++", "Abstraction", "Encapsulation"],
-    link: gh("midterm-project-oop"),
   },
 ];
