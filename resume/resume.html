@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Marc Bradley Arboleda — Résumé</title>
+<style>
+  @page { size: A4; margin: 13mm 15mm 12mm 15mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; font-size: 10pt; line-height: 1.38; color: #151515; margin: 0; }
+  h1 { font-family: Georgia, "DejaVu Serif", serif; font-weight: 400; font-size: 23pt; letter-spacing: 0.4pt; margin: 0; }
+  .contact { margin-top: 3pt; font-size: 8.8pt; color: #333; }
+  .contact span + span::before { content: "  |  "; color: #999; }
+  h2 { font-size: 9pt; font-weight: 700; letter-spacing: 1.4pt; text-transform: uppercase; margin: 9pt 0 4pt; padding-bottom: 2pt; border-bottom: 0.8pt solid #222; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
+  .entry { margin-bottom: 6pt; break-inside: avoid; }
+  .title { font-weight: 700; }
+  .sub { font-style: italic; color: #333; }
+  .date { white-space: nowrap; color: #333; font-size: 9.4pt; }
+  ul { margin: 2pt 0 0 0; padding-left: 13pt; }
+  li { margin: 1.2pt 0; }
+  p { margin: 0; }
+  .skills { display: grid; grid-template-columns: 112pt 1fr; row-gap: 2.5pt; }
+  .skills b { font-weight: 700; }
+  .stack { color: #444; font-size: 9.2pt; }
+  .certs { display: grid; grid-template-columns: 1fr 1fr; column-gap: 22pt; row-gap: 1.5pt; }
+  a { color: inherit; text-decoration: none; }
+</style>
+</head>
+<body>
+  <h1>MARC BRADLEY ARBOLEDA</h1>
+  <div class="contact">
+    <span>Laguna, PH</span><span>0969 138 0174</span><span>marcarboleda1220@gmail.com</span><span>linkedin.com/in/marcarboleda</span><span>github.com/marcarboleda</span>
+  </div>
+
+  <h2>Professional Summary</h2>
+  <p>Fourth-year Computer Science student who designed and maintains an organizational membership database, has led QA testing on team projects and builds machine-learning models in coursework. Proficient in Excel, Google Sheets, Python and R. Seeking an internship in data analytics, quality assurance or data management.</p>
+
+  <h2>Education</h2>
+  <div class="row"><span><span class="title">De La Salle Lipa</span> — <span class="sub">BS Computer Science</span>, Lipa City, Batangas</span><span class="date">2023 – Present</span></div>
+  <div class="row"><span><span class="title">National University – Laguna</span> — <span class="sub">Senior High School, STEM</span>, Calamba City</span><span class="date">Graduated 2023</span></div>
+
+  <h2>Leadership &amp; Organizational Experience</h2>
+  <div class="entry">
+    <div class="row"><span class="title">Statistics Officer, Musikalista (De La Salle Lipa)</span><span class="date">A.Y. 2026–2027</span></div>
+    <ul>
+      <li>Designed the membership database in Google Sheets with dropdown and formula-based validation for every key field.</li>
+      <li>Built a search sheet on a single dynamic formula (LET, XMATCH, FILTER) that queries any field and supports birth-month lookups for event planning.</li>
+      <li>Maintain the official band roster and keep member records accurate, complete and confidential.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><span class="title">Logistics Officer, Musikalista (De La Salle Lipa)</span><span class="date">A.Y. 2025–2026</span></div>
+    <ul>
+      <li>Organized inventories, documents and event records, and coordinated with committees to finish logistical tasks on schedule.</li>
+    </ul>
+  </div>
+
+  <h2>Selected Projects</h2>
+  <div class="entry">
+    <div class="row"><span><span class="title">Helmet Compliance Detection</span> <span class="sub">— Data Science 2 capstone, team of 7</span></span><span class="date">2026</span></div>
+    <ul>
+      <li>Developed a CNN that classifies riders as helmeted or not, using transfer learning (MobileNetV2, ResNet) on Kaggle and team-collected photos, with every training trial documented and interpreted.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><span><span class="title">Tabula Rasa</span> <span class="sub">— Undergraduate thesis, team of 3</span></span><span class="date">2026</span></div>
+    <ul>
+      <li>Co-developing a game that teaches reinforcement learning with an on-device PPO trainer in C#; evaluated through a pretest–posttest design (paired t-test) and a 31-item MEEGA+ user-acceptance instrument.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><span><span class="title">Traffic Guardian</span> <span class="sub">— AI road-safety dashboard</span></span><span class="date"></span></div>
+    <ul>
+      <li>Served as UI/UX consultant and lead QA tester, refining the alert hierarchy to reduce notification fatigue for traffic enforcers.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row"><span><span class="title">Achroma</span> <span class="sub">— Browser-based horror game, team project</span></span><span class="date">2025</span></div>
+    <ul>
+      <li>Designed the interface and tested responsiveness on desktop and touch controls, including color-vision accessibility modes. <span class="stack">Next.js, React Three Fiber</span></li>
+    </ul>
+  </div>
+  <h2>Certifications</h2>
+  <div class="certs">
+    <div class="row"><span><span class="title">PyTorch Bootcamp</span> — OpenCV Univ.</span><span class="date">Oct 2026</span></div>
+    <div class="row"><span><span class="title">Intermediate R</span> — DataCamp</span><span class="date">Apr 2026</span></div>
+    <div class="row"><span><span class="title">Elements of AI</span> — Univ. of Helsinki</span><span class="date">Nov 2025</span></div>
+    <div class="row"><span><span class="title">Introduction to R</span> — DataCamp</span><span class="date">Mar 2026</span></div>
+  </div>
+
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <b>Data</b><span>Excel and Google Sheets (LET, XMATCH, FILTER, data validation), data cleaning, Python, R, Jupyter</span>
+    <b>Quality Assurance</b><span>Functional, usability and user-acceptance testing, test cases, bug reports, accessibility</span>
+    <b>Programming</b><span>Python, R, C++, C#, TypeScript/JavaScript, Java</span>
+    <b>Tools</b><span>Git and GitHub, Supabase, React Native/Expo, Unity, UiPath (RPA), Microsoft Office</span>
+  </div>
+</body>
+</html>

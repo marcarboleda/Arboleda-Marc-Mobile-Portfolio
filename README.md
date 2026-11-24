@@ -1,50 +1,42 @@
-# Welcome to your Expo app 👋
+# Marc Arboleda — Portfolio
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Personal portfolio for internships in data analytics, quality assurance and data management.
+Built with **Expo (React Native + React Native Web)**, so the same code runs as a static website (deployed on Vercel) and as an iOS/Android app.
 
-## Get started
+## Highlights
 
-1. Install dependencies
+- **Responsive layout** for phones, tablets and desktops (`src/theme.ts` → `useLayout`).
+- **Interactive data demo**: a working copy of the Musikalista membership registry, with sheet-style frozen columns, raw vs. cleaned view, the original search-formula logic and live insights.
+  The demo uses **fictional records only** (`src/data/registry.ts`). No real member data is in this repository.
+- **Filterable project index** grouped by track (Data, QA, ML / AI, Software, Games).
+- **Unit tests** for the registry search, cleaning and validation logic (`tests/`).
 
-   ```bash
-   npm install
-   ```
+## Scripts
 
-2. Start the app
+| Command | What it does |
+| --- | --- |
+| `npm start` | Expo dev server (press `w` for web, or scan with Expo Go) |
+| `npm run build` | Static web export to `dist/` |
+| `npm run preview` | Serve `dist/` locally |
+| `npm run check` | Type-check, lint and unit tests |
 
-   ```bash
-   npx expo start
-   ```
+Requires Node 22.6 or newer.
 
-In the output, you'll find options to open the app in a
+## Deploying to Vercel
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+`vercel.json` is already configured. Import the repo in Vercel and keep the defaults:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Build command: `npx expo export --platform web`
+- Output directory: `dist`
 
-## Get a fresh project
+## Structure
 
-When you're ready, run:
-
-```bash
-npm run reset-project
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+app/            routes (index page, root layout, HTML shell, 404)
+src/components  Hero, Nav, Work, RegistryDemo, Content sections, UI primitives
+src/data        profile, projects, demo registry rows
+src/lib         registry search / cleaning / validation logic
+tests/          node:test unit tests
+public/         résumé PDF (served at /Marc-Arboleda-Resume.pdf)
+resume/         HTML source used to generate the résumé PDF
+```
