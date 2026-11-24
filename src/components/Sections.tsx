@@ -140,7 +140,7 @@ export function SkillsSection() {
             <Reveal key={g.title} delay={i * 100} style={{ width: `${100 / cols}%`, padding: 10 }}>
               <HoverCard>
                 <View style={[styles.skillIconWrap, { backgroundColor: t.bg }]}>
-                  {svgFn && <SvgImg svg={svgFn(t.fg)} size={22} />}
+                  {svgFn && <SvgImg svg={svgFn(t.fg)} size={28} />}
                 </View>
                 <Text style={styles.skillTitle}>{g.title}</Text>
                 <View style={styles.tagWrap}>
@@ -186,8 +186,10 @@ export function ToolsSection() {
           if (!def) return null;
           return (
             <Reveal key={name} delay={i * 55} style={{ width: `${100 / cols}%`, padding: 8 }}>
-              <View style={styles.toolItem}>
-                <SvgImg svg={def.svg} size={32} />
+              <View style={[styles.toolCard, softShadow(0.6)]}>
+                <View style={[styles.toolIconBox, { backgroundColor: def.color + "18" }]}>
+                  <SvgImg svg={def.svg} size={44} />
+                </View>
                 <Text style={styles.toolName} numberOfLines={2}>{name}</Text>
               </View>
             </Reveal>
@@ -387,9 +389,9 @@ const styles = StyleSheet.create({
   },
   // Skills
   skillIconWrap: {
-    width: 44,
-    height: 44,
-    borderRadius: 13,
+    width: 56,
+    height: 56,
+    borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -400,17 +402,29 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   tagWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 14 },
-  // Tools — just icon + label, no box
-  toolItem: {
+  // Tools — card with icon box + label
+  toolCard: {
+    backgroundColor: c.surface,
+    borderWidth: 1,
+    borderColor: c.line,
+    borderRadius: 16,
+    padding: 16,
     alignItems: "center",
-    gap: 8,
-    paddingVertical: 4,
+    gap: 10,
+  },
+  toolIconBox: {
+    width: 60,
+    height: 60,
+    borderRadius: 14,
+    alignItems: "center",
+    justifyContent: "center",
   },
   toolName: {
     fontFamily: font.semibold,
-    fontSize: 14,
+    fontSize: 13,
     color: c.ink,
     textAlign: "center",
+    lineHeight: 18,
   },
   // Contact
   contact: {
