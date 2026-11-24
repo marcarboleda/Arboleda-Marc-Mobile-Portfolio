@@ -82,7 +82,7 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
         <Reveal immediate delay={300} style={{ alignItems: "center" }}>
           <Float amount={10} duration={5200}>
             <View style={[styles.photo, { width: photoW, height: photoW * 1.18 }, softShadow(1.6)]}>
-              <Image source={require("../../assets/images/profile/marc.jpg")} style={{ width: "100%", height: "100%" }} resizeMode="cover" accessibilityLabel="Portrait of Marc Arboleda" />
+              <Image source={require("../../assets/images/marc.jpg")} style={{ width: "100%", height: "100%" }} resizeMode="cover" accessibilityLabel="Portrait of Marc Arboleda" />
             </View>
           </Float>
           <Float amount={7} duration={3800} delay={600} style={[styles.chip, { left: phone ? 0 : -48, top: photoW * 0.18 }]}>
