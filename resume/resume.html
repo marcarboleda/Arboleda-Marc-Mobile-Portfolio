@@ -9,21 +9,21 @@
   @font-face { font-family: "EB Garamond"; src: url("fonts/eb-garamond-latin-600-normal.woff2"); font-weight: 600; font-style: normal; }
   @font-face { font-family: "EB Garamond"; src: url("fonts/eb-garamond-latin-700-normal.woff2"); font-weight: 700; font-style: normal; }
 
-  @page { size: A4; margin: 12mm 17mm 11mm 17mm; }
+  @page { size: A4; margin: 11mm 17mm 10mm 17mm; }
   * { box-sizing: border-box; }
-  body { font-family: "EB Garamond", Garamond, "Times New Roman", serif; font-size: 11pt; line-height: 1.24; color: #000; margin: 0; }
+  body { font-family: "EB Garamond", Garamond, "Times New Roman", serif; font-size: 10.8pt; line-height: 1.22; color: #000; margin: 0; }
   header { text-align: center; }
-  h1 { font-size: 20pt; font-weight: 600; letter-spacing: 1.6pt; margin: 0; }
-  .contact { margin-top: 3pt; font-size: 10.5pt; }
+  h1 { font-size: 19pt; font-weight: 600; letter-spacing: 1.6pt; margin: 0; }
+  .contact { margin-top: 2.5pt; font-size: 10pt; }
   .contact span + span::before { content: "  |  "; white-space: pre; }
-  h2 { font-size: 11pt; font-weight: 700; letter-spacing: 1pt; text-transform: uppercase; margin: 8.5pt 0 3.5pt; padding-bottom: 1.5pt; border-bottom: 0.75pt solid #000; }
+  h2 { font-size: 10.8pt; font-weight: 700; letter-spacing: 1pt; text-transform: uppercase; margin: 7pt 0 3pt; padding-bottom: 1.5pt; border-bottom: 0.75pt solid #000; }
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
-  .entry { margin-bottom: 5pt; break-inside: avoid; }
+  .entry { margin-bottom: 4pt; break-inside: avoid; }
   .title { font-weight: 700; }
   .sub { font-style: italic; }
   .date { white-space: nowrap; }
-  ul { margin: 1.5pt 0 0 0; padding-left: 15pt; }
-  li { margin: 0.8pt 0; text-align: justify; }
+  ul { margin: 1pt 0 0 0; padding-left: 15pt; }
+  li { margin: 0.5pt 0; text-align: justify; }
   p { margin: 0; text-align: justify; }
   .skills { display: grid; grid-template-columns: 118pt 1fr; row-gap: 1.5pt; }
   .skills b { font-weight: 700; }
@@ -41,81 +41,69 @@
   </header>
 
   <h2>Professional Summary</h2>
-  <p>Fourth-year Computer Science student with hands-on experience in database design, data validation, statistical analysis, and machine learning. I built and maintain a membership database for a university organization, contributed to a thesis that produced a statistically significant learning gain, and trained convolutional neural networks for image classification. Currently looking for an internship where I can apply these skills in data analytics, quality assurance, or data management.</p>
+  <p>Fourth-year Computer Science student with experience in database design, data validation, statistical analysis, and machine learning. Built and maintain a membership database for a university organization, co-authored a thesis with statistically significant learning outcomes, and trained CNNs for image classification. Seeking an internship in data analytics, quality assurance, or data management.</p>
 
   <h2>Education</h2>
   <div class="entry">
-    <div class="row"><span class="title">De La Salle Lipa</span><span class="date">Lipa City, Batangas</span></div>
-    <div class="row"><span class="sub">Bachelor of Science in Computer Science</span><span class="date">2023 – Present</span></div>
+    <div class="row"><span class="title">De La Salle Lipa</span><span class="date">Lipa City, Batangas · 2023 – Present</span></div>
+    <div class="row"><span class="sub">Bachelor of Science in Computer Science</span></div>
   </div>
   <div class="entry">
-    <div class="row"><span class="title">National University – Laguna</span><span class="date">Calamba City, Laguna</span></div>
-    <div class="row"><span class="sub">Senior High School, Science, Technology, Engineering, and Mathematics Strand</span><span class="date">Graduated 2023</span></div>
+    <div class="row"><span class="title">National University – Laguna</span><span class="date">Calamba City, Laguna · Graduated 2023</span></div>
+    <div class="row"><span class="sub">Senior High School, Science, Technology, Engineering, and Mathematics Strand</span></div>
   </div>
 
   <h2>Leadership Experience</h2>
   <div class="entry">
-    <div class="row"><span class="title">Statistics Officer</span><span class="date">Academic Year 2026 – 2027</span></div>
-    <div class="row"><span class="sub">Musikalista, De La Salle Lipa</span><span></span></div>
+    <div class="row"><span class="title">Statistics Officer — Musikalista, De La Salle Lipa</span><span class="date">AY 2026 – 2027</span></div>
     <ul>
-      <li>Built the organization's membership database in Google Sheets with an 11-field member schema and four validation rules covering departments, roles, year levels, and birthdates.</li>
-      <li>Created a search sheet powered by a single dynamic formula (LET, XMATCH, FILTER) that lets officers look up records by any of six fields, including birth month.</li>
+      <li>Designed the organization's membership database in Google Sheets: 11-field schema, four validation rules, and a dynamic search sheet (LET, XMATCH, FILTER) for querying records across six fields.</li>
       <li>Maintain the official band roster and keep all member records accurate, complete, and confidential.</li>
     </ul>
   </div>
   <div class="entry">
-    <div class="row"><span class="title">Logistics Officer</span><span class="date">Academic Year 2025 – 2026</span></div>
-    <div class="row"><span class="sub">Musikalista, De La Salle Lipa</span><span></span></div>
+    <div class="row"><span class="title">Logistics Officer — Musikalista, De La Salle Lipa</span><span class="date">AY 2025 – 2026</span></div>
     <ul>
-      <li>Managed inventories, documents, and event records, and coordinated logistics across committees.</li>
+      <li>Managed inventories, documents, and event records; coordinated logistics across committees.</li>
     </ul>
   </div>
 
   <h2>Academic Projects</h2>
   <div class="entry">
     <div class="row"><span class="title">Tabula Rasa: A Gamified Simulation Environment for Teaching Reinforcement Learning</span><span class="date">2026</span></div>
-    <div class="row"><span class="sub">Undergraduate Thesis, Co-author and Developer</span><span></span></div>
+    <div class="row"><span class="sub">Undergraduate Thesis, Co-author and Developer</span></div>
     <ul>
-      <li>Co-built a Unity 6 game with an on-device Proximal Policy Optimization trainer written in C# and a Supabase backend for user tracking.</li>
-      <li>Helped design a pretest–posttest study (n = 37): mean scores improved from 15.49 to 18.84 out of 25, a significant result (paired t(36) = 5.83, p &lt; .001, d<sub>z</sub> = 0.96).</li>
-    </ul>
-  </div>
-  <div class="entry">
-    <div class="row"><span class="title">Membership Database — Musikalista Organization</span><span class="date">2026</span></div>
-    <div class="row"><span class="sub">Statistics Officer Project, De La Salle Lipa</span><span></span></div>
-    <ul>
-      <li>Designed and built the organization's membership database in Google Sheets with an 11-field schema and four validation rules covering departments, roles, year levels, and birthdates.</li>
-      <li>Created a dynamic search sheet using LET, XMATCH, and FILTER functions that enables officers to query records across six fields; added band assignment tracking and an automated visual summary dashboard.</li>
+      <li>Co-built a Unity 6 game with an on-device PPO trainer (C#) and a Supabase backend for user tracking.</li>
+      <li>Designed a pretest–posttest study (n = 37): scores improved 15.49 → 18.84 out of 25 (t(36) = 5.83, p &lt; .001, d<sub>z</sub> = 0.96).</li>
     </ul>
   </div>
   <div class="entry">
     <div class="row"><span class="title">Dairy Farm Inventory Management System</span><span class="date">2026</span></div>
-    <div class="row"><span class="sub">UI Design and Prototyping</span><span></span></div>
+    <div class="row"><span class="sub">UI Design and Prototyping</span></div>
     <ul>
-      <li>Designed the user interface for a desktop inventory management system for a dairy farm, collaborating with a developer to align the UI with functional requirements.</li>
-      <li>Created screen layouts for inventory tracking, purchase order management, and low-stock alerts, applying usability principles to ensure a clear and practical interface.</li>
+      <li>Designed screen layouts for inventory tracking, purchase orders, and low-stock alerts; collaborated with a developer to align the UI with functional requirements.</li>
     </ul>
   </div>
   <div class="entry">
     <div class="row"><span class="title">Helmet Compliance Detection Using Convolutional Neural Networks</span><span class="date">2026</span></div>
-    <div class="row"><span class="sub">Capstone Project, Data Science 2</span><span></span></div>
+    <div class="row"><span class="sub">Capstone Project, Data Science 2</span></div>
     <ul>
-      <li>Ran and documented transfer-learning trials in Google Colab; the best trial (T04) reached 78.9% test accuracy, 0.754 macro-F1, and 0.767 recall on the no-helmet class.</li>
+      <li>Ran transfer-learning trials in Google Colab; best trial reached 78.9% test accuracy, 0.754 macro-F1, and 0.767 no-helmet recall.</li>
     </ul>
   </div>
 
   <h2>Certifications</h2>
-  <div class="row"><span><span class="title">PyTorch Bootcamp</span>, OpenCV University</span><span class="date">October 2026</span></div>
-  <div class="row"><span><span class="title">Intermediate R</span>, DataCamp</span><span class="date">April 2026</span></div>
-  <div class="row"><span><span class="title">Introduction to R</span>, DataCamp</span><span class="date">March 2026</span></div>
-  <div class="row"><span><span class="title">Elements of AI</span>, MinnaLearn and University of Helsinki (Score: 89%)</span><span class="date">November 2025</span></div>
+  <div class="row" style="margin-bottom:1.5pt"><span><span class="title">PyTorch Bootcamp</span>, OpenCV University</span><span class="date">October 2026</span></div>
+  <div class="row" style="margin-bottom:1.5pt"><span><span class="title">Intermediate R</span>, DataCamp</span><span class="date">April 2026</span></div>
+  <div class="row" style="margin-bottom:1.5pt"><span><span class="title">Introduction to R</span>, DataCamp</span><span class="date">March 2026</span></div>
+  <div class="row"><span><span class="title">Elements of AI</span>, MinnaLearn &amp; University of Helsinki (Score: 89%)</span><span class="date">November 2025</span></div>
 
   <h2>Technical Skills</h2>
   <div class="skills">
-    <b>Data Management</b><span>Microsoft Excel and Google Sheets (advanced formulas, data validation), data cleaning and verification</span>
+    <b>Data Management</b><span>Excel and Google Sheets (advanced formulas, validation), data cleaning and verification</span>
     <b>Analysis</b><span>Paired t-test, effect sizes, classification metrics (accuracy, AUC, precision, recall, F1)</span>
     <b>Programming</b><span>Python, R, C++, C#, Java, JavaScript, TypeScript</span>
-    <b>Tools</b><span>Git, GitHub, MySQL, Jupyter Notebook, Google Colab, Supabase, Unity, UiPath, Microsoft Office (Word, Excel), ChatGPT, Claude</span>
+    <b>Tools</b><span>Git, GitHub, MySQL, Jupyter, Google Colab, Supabase, Unity, UiPath, Microsoft Office, ChatGPT, Claude</span>
   </div>
 </body>
 </html>
