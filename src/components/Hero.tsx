@@ -75,7 +75,6 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
           <Reveal immediate delay={360}>
             <View style={styles.ctas}>
               <Button label="See my work" icon="↓" variant="solid" onPress={onWork} />
-              <Button label="Download résumé" onPress={onResume} />
             </View>
           </Reveal>
         </View>
