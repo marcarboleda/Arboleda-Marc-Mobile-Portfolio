@@ -2,13 +2,14 @@ import { useEffect, useRef } from "react";
 import { Animated, Easing, Image, Platform, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { profile } from "../data/profile";
-import { c, font, radius, softShadow, useLayout, web } from "../theme";
+import { font, radius, softShadow, useColors, useLayout, web } from "../theme";
 import { Float, Reveal, useReduceMotion } from "./motion";
 import { Button } from "./ui";
 
 /** Slow-drifting soft color fields behind the hero. */
 function Blobs() {
   const { width, bp } = useLayout();
+  const c = useColors();
   const reduce = useReduceMotion();
   const a = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -44,7 +45,8 @@ function Blobs() {
 }
 
 export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () => void }) {
-  const { gutter, contentWidth, bp, height } = useLayout();
+  const { gutter, contentWidth, bp } = useLayout();
+  const c = useColors();
   const insets = useSafeAreaInsets();
   const desktop = bp === "desktop";
   const phone = bp === "phone";
@@ -57,23 +59,23 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
       <View style={[{ width: contentWidth, gap: desktop ? 72 : 48 }, !phone && { flexDirection: "row", alignItems: "center" }]}>
         <View style={{ flex: phone ? undefined : 1 }}>
           <Reveal immediate>
-            <View style={styles.badge}>
-              <View style={styles.live} />
-              <Text style={styles.badgeText}>Open to internships · 2026</Text>
+            <View style={{ alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 9, backgroundColor: c.surface, borderWidth: 1, borderColor: c.line, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 8 }}>
+              <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: c.sage, ...web({ boxShadow: `0 0 0 4px ${c.sageSoft}` }) }} />
+              <Text style={{ fontFamily: font.semibold, fontSize: 13, color: c.ink }}>Open to internships · 2026</Text>
             </View>
           </Reveal>
           <Reveal immediate delay={120}>
-            <Text style={[styles.name, { fontSize: nameSize, lineHeight: nameSize * 1.0, letterSpacing: -nameSize * 0.03 }]}>
-              Marc{"\n"}<Text style={styles.nameAccent}>Arboleda</Text>
+            <Text style={[{ fontFamily: font.display, color: c.ink, marginTop: 26 }, { fontSize: nameSize, lineHeight: nameSize * 1.0, letterSpacing: -nameSize * 0.03 }]}>
+              Marc{"\n"}<Text style={{ fontFamily: font.displayItalic, color: c.sage }}>Arboleda</Text>
             </Text>
           </Reveal>
           <Reveal immediate delay={240}>
-            <Text style={[styles.sub, { fontSize: desktop ? 19 : 17 }]}>
+            <Text style={{ fontFamily: font.regular, lineHeight: 30, color: c.body, marginTop: 24, maxWidth: 560, fontSize: desktop ? 19 : 17 }}>
               {profile.heroDesc}
             </Text>
           </Reveal>
           <Reveal immediate delay={360}>
-            <View style={styles.ctas}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 34 }}>
               <Button label="See my work" icon="↓" variant="solid" onPress={onWork} />
             </View>
           </Reveal>
@@ -81,25 +83,25 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
 
         <Reveal immediate delay={300} style={{ alignItems: "center" }}>
           <Float amount={10} duration={5200}>
-            <View style={[styles.photo, { width: photoW, height: photoW * 1.18 }, softShadow(1.6)]}>
+            <View style={[{ borderRadius: radius.xl, overflow: "hidden", borderWidth: 6, borderColor: c.surface, backgroundColor: c.bgDeep, width: photoW, height: photoW * 1.18 }, softShadow(1.6)]}>
               <Image source={require("../../assets/images/marc.jpg")} style={{ width: "100%", height: "100%" }} resizeMode="cover" accessibilityLabel="Portrait of Marc Arboleda" />
             </View>
           </Float>
-          <Float amount={7} duration={3800} delay={600} style={[styles.chip, { left: phone ? 0 : -48, top: photoW * 0.18 }]}>
-            <View style={[styles.chipInner, softShadow(1.2)]}>
-              <Text style={styles.chipEmoji}>✦</Text>
+          <Float amount={7} duration={3800} delay={600} style={[{ position: "absolute" }, { left: phone ? 0 : -48, top: photoW * 0.18 }]}>
+            <View style={[{ flexDirection: "row", alignItems: "center", gap: 10, backgroundColor: c.surface, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: c.line }, softShadow(1.2)]}>
+              <Text style={{ fontSize: 16, color: c.sage }}>✦</Text>
               <View>
-                <Text style={styles.chipLabel}>Focus</Text>
-                <Text style={styles.chipValue}>UI design · Data</Text>
+                <Text style={{ fontFamily: font.medium, fontSize: 11, color: c.muted }}>Focus</Text>
+                <Text style={{ fontFamily: font.semibold, fontSize: 13.5, color: c.ink }}>UI design · Data</Text>
               </View>
             </View>
           </Float>
-          <Float amount={8} duration={4600} delay={1200} style={[styles.chip, { right: phone ? 0 : -36, bottom: photoW * 0.16 }]}>
-            <View style={[styles.chipInner, softShadow(1.2)]}>
-              <Text style={[styles.chipEmoji, { color: c.clay }]}>●</Text>
+          <Float amount={8} duration={4600} delay={1200} style={[{ position: "absolute" }, { right: phone ? 0 : -36, bottom: photoW * 0.16 }]}>
+            <View style={[{ flexDirection: "row", alignItems: "center", gap: 10, backgroundColor: c.surface, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: c.line }, softShadow(1.2)]}>
+              <Text style={{ fontSize: 16, color: c.clay }}>●</Text>
               <View>
-                <Text style={styles.chipLabel}>Based in</Text>
-                <Text style={styles.chipValue}>Laguna, Philippines</Text>
+                <Text style={{ fontFamily: font.medium, fontSize: 11, color: c.muted }}>Based in</Text>
+                <Text style={{ fontFamily: font.semibold, fontSize: 13.5, color: c.ink }}>Laguna, Philippines</Text>
               </View>
             </View>
           </Float>
@@ -109,19 +111,3 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  badge: { alignSelf: "flex-start", flexDirection: "row", alignItems: "center", gap: 9, backgroundColor: c.surface, borderWidth: 1, borderColor: c.line, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 8 },
-  live: { width: 8, height: 8, borderRadius: 4, backgroundColor: c.sage, ...web({ boxShadow: `0 0 0 4px ${c.sageSoft}` }) },
-  badgeText: { fontFamily: font.semibold, fontSize: 13, color: c.ink },
-  name: { fontFamily: font.display, color: c.ink, marginTop: 26 },
-  nameAccent: { fontFamily: font.displayItalic, color: c.sage },
-  sub: { fontFamily: font.regular, lineHeight: 30, color: c.body, marginTop: 24, maxWidth: 560 },
-  ctas: { flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 34 },
-  photo: { borderRadius: radius.xl, overflow: "hidden", borderWidth: 6, borderColor: c.surface, backgroundColor: c.bgDeep },
-  chip: { position: "absolute" },
-  chipInner: { flexDirection: "row", alignItems: "center", gap: 10, backgroundColor: c.surface, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 10, borderWidth: 1, borderColor: c.line },
-  chipEmoji: { fontSize: 16, color: c.sage },
-  chipLabel: { fontFamily: font.medium, fontSize: 11, color: c.muted },
-  chipValue: { fontFamily: font.semibold, fontSize: 13.5, color: c.ink },
-});
