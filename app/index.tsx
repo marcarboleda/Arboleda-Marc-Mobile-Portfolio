@@ -96,7 +96,7 @@ export default function Portfolio() {
               <SectionHead
                 eyebrow="Projects"
                 title="Projects"
-                lede="A thesis game I designed and analyzed, a UI for a farm management system, and a visual membership database I built for my org."
+                lede="A few projects I've worked on through academics and organizational experience. Each gave me the opportunity to apply what I've learned, solve practical problems, and explore different areas of technology."
                 size={titleSize}
                 style={{ marginBottom: 44 }}
               />

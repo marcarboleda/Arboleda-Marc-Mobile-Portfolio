@@ -1,7 +1,7 @@
 export const profile = {
   name: "Marc Bradley Arboleda",
   shortName: "Marc Arboleda",
-  headline: "Computer Science student designing clear interfaces and making data easy to read.",
+  headline: "CS student at De La Salle Lipa — UI/UX design, data analysis, and software development.",
   location: "Laguna, Philippines",
   email: "marcarboleda1220@gmail.com",
   github: "https://github.com/marcarboleda",
@@ -9,9 +9,11 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/marcarboleda",
   linkedinLabel: "linkedin.com/in/marcarboleda",
   seeking: "Internships in UI design, data analytics, QA and data management",
+  heroDesc:
+    "I'm a fourth-year Computer Science student at De La Salle Lipa with an interest in UI/UX design, data analysis, and software development. I enjoy creating practical solutions, making information easier to understand, and building things that people can actually use.",
   intro: [
-    "I'm a fourth-year BS Computer Science student at De La Salle Lipa. I care about the moment someone opens a screen or a spreadsheet and understands it right away.",
-    "That shows up in two kinds of work: interfaces that stay calm and consistent, and data that is clean, checked and easy to read. My thesis, a farm management UI and my org's database all sit where those two meet.",
+    "I'm a Computer Science student who enjoys working on projects that combine design, technology, and data. I like figuring out how things work, finding ways to improve them, and making systems easier for people to use.",
+    "Through academic projects and my experience in student organizations, I've worked on application interfaces, data management, visualization, and software development. I'm always looking to learn new things and improve how I approach problems.",
   ],
 };
 
@@ -20,13 +22,15 @@ export const experience = [
     role: "Statistics Officer",
     org: "Musikalista, De La Salle Lipa",
     period: "2026 – 2027",
-    summary: "Designed and maintain the membership database: validation, search, band roster and the visual dashboard.",
+    summary:
+      "Manage the organization's membership database, keeping member records organized and updated. I also handle data validation, band assignments, searching, and visual summaries to make membership information easier to access.",
   },
   {
     role: "Logistics Officer",
     org: "Musikalista, De La Salle Lipa",
     period: "2025 – 2026",
-    summary: "Organized inventories, documents and event records, and coordinated logistics with committees.",
+    summary:
+      "Helped organize event inventories, documents, and records while coordinating logistics requirements with different committees.",
   },
 ];
 
@@ -43,7 +47,19 @@ export const certifications = [
 ];
 
 export const skillGroups = [
-  { title: "Design", tint: "clay", items: ["UI design", "Dashboard layout", "Design systems", "Visual design", "Usability testing"] },
-  { title: "Data", tint: "sage", items: ["Google Sheets & Excel", "Data validation", "Data visualization", "Statistical analysis", "Python", "R"] },
-  { title: "Build", tint: "lilac", items: ["TypeScript & React", "React Native / Expo", "C# & Unity", "Supabase", "Git & GitHub"] },
+  {
+    title: "Design",
+    tint: "clay",
+    items: ["UI Design", "Dashboard Layout", "Design Systems", "Visual Design", "Usability Testing"],
+  },
+  {
+    title: "Data",
+    tint: "sage",
+    items: ["Google Sheets & Excel", "Data Validation", "Data Visualization", "Statistical Analysis", "Python", "R"],
+  },
+  {
+    title: "Build",
+    tint: "lilac",
+    items: ["TypeScript", "React", "React Native / Expo", "C#", "Unity", "Supabase", "Git & GitHub"],
+  },
 ] as const;
