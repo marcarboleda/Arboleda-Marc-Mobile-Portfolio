@@ -2,98 +2,104 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Marc Bradley Arboleda — Résumé</title>
+<title>Marc Bradley A. Arboleda — Résumé</title>
 <style>
-  @page { size: A4; margin: 13mm 15mm 12mm 15mm; }
+  @font-face { font-family: "EB Garamond"; src: url("fonts/eb-garamond-latin-400-normal.woff2"); font-weight: 400; font-style: normal; }
+  @font-face { font-family: "EB Garamond"; src: url("fonts/eb-garamond-latin-400-italic.woff2"); font-weight: 400; font-style: italic; }
+  @font-face { font-family: "EB Garamond"; src: url("fonts/eb-garamond-latin-600-normal.woff2"); font-weight: 600; font-style: normal; }
+  @font-face { font-family: "EB Garamond"; src: url("fonts/eb-garamond-latin-700-normal.woff2"); font-weight: 700; font-style: normal; }
+
+  @page { size: A4; margin: 12mm 17mm 11mm 17mm; }
   * { box-sizing: border-box; }
-  body { font-family: "Inter", "Helvetica Neue", Arial, sans-serif; font-size: 10pt; line-height: 1.38; color: #151515; margin: 0; }
-  h1 { font-family: Georgia, "DejaVu Serif", serif; font-weight: 400; font-size: 23pt; letter-spacing: 0.4pt; margin: 0; }
-  .contact { margin-top: 3pt; font-size: 8.8pt; color: #333; }
-  .contact span + span::before { content: "  |  "; color: #999; }
-  h2 { font-size: 9pt; font-weight: 700; letter-spacing: 1.4pt; text-transform: uppercase; margin: 9pt 0 4pt; padding-bottom: 2pt; border-bottom: 0.8pt solid #222; }
-  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
-  .entry { margin-bottom: 6pt; break-inside: avoid; }
+  body { font-family: "EB Garamond", Garamond, "Times New Roman", serif; font-size: 11pt; line-height: 1.24; color: #000; margin: 0; }
+  header { text-align: center; }
+  h1 { font-size: 20pt; font-weight: 600; letter-spacing: 1.6pt; margin: 0; }
+  .contact { margin-top: 3pt; font-size: 10.5pt; }
+  .contact span + span::before { content: "  |  "; white-space: pre; }
+  h2 { font-size: 11pt; font-weight: 700; letter-spacing: 1pt; text-transform: uppercase; margin: 8.5pt 0 3.5pt; padding-bottom: 1.5pt; border-bottom: 0.75pt solid #000; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .entry { margin-bottom: 5pt; break-inside: avoid; }
   .title { font-weight: 700; }
-  .sub { font-style: italic; color: #333; }
-  .date { white-space: nowrap; color: #333; font-size: 9.4pt; }
-  ul { margin: 2pt 0 0 0; padding-left: 13pt; }
-  li { margin: 1.2pt 0; }
-  p { margin: 0; }
-  .skills { display: grid; grid-template-columns: 112pt 1fr; row-gap: 2.5pt; }
+  .sub { font-style: italic; }
+  .date { white-space: nowrap; }
+  ul { margin: 1.5pt 0 0 0; padding-left: 15pt; }
+  li { margin: 0.8pt 0; text-align: justify; }
+  p { margin: 0; text-align: justify; }
+  .skills { display: grid; grid-template-columns: 118pt 1fr; row-gap: 1.5pt; }
   .skills b { font-weight: 700; }
-  .stack { color: #444; font-size: 9.2pt; }
-  .certs { display: grid; grid-template-columns: 1fr 1fr; column-gap: 22pt; row-gap: 1.5pt; }
-  a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
-  <h1>MARC BRADLEY ARBOLEDA</h1>
-  <div class="contact">
-    <span>Laguna, PH</span><span>0969 138 0174</span><span>marcarboleda1220@gmail.com</span><span>linkedin.com/in/marcarboleda</span><span>github.com/marcarboleda</span>
-  </div>
+  <header>
+    <h1>MARC BRADLEY A. ARBOLEDA</h1>
+    <div class="contact">
+      <span>Laguna, Philippines</span><span>+63 969 138 0174</span><span>marcarboleda1220@gmail.com</span>
+    </div>
+    <div class="contact" style="margin-top:0">
+      <span>linkedin.com/in/marcarboleda</span><span>github.com/marcarboleda</span>
+    </div>
+  </header>
 
   <h2>Professional Summary</h2>
-  <p>Fourth-year Computer Science student who designed and maintains an organizational membership database, has led QA testing on team projects and builds machine-learning models in coursework. Proficient in Excel, Google Sheets, Python and R. Seeking an internship in data analytics, quality assurance or data management.</p>
+  <p>Fourth-year Computer Science student with practical experience in database design, data validation, statistical evaluation, and machine learning. Designed and maintains the membership database of a university organization, contributed to a thesis study that produced a statistically significant learning gain, and trained convolutional neural networks for image classification. Seeking an internship in data analytics, quality assurance, or data management.</p>
 
   <h2>Education</h2>
-  <div class="row"><span><span class="title">De La Salle Lipa</span> — <span class="sub">BS Computer Science</span>, Lipa City, Batangas</span><span class="date">2023 – Present</span></div>
-  <div class="row"><span><span class="title">National University – Laguna</span> — <span class="sub">Senior High School, STEM</span>, Calamba City</span><span class="date">Graduated 2023</span></div>
-
-  <h2>Leadership &amp; Organizational Experience</h2>
   <div class="entry">
-    <div class="row"><span class="title">Statistics Officer, Musikalista (De La Salle Lipa)</span><span class="date">A.Y. 2026–2027</span></div>
-    <ul>
-      <li>Designed the membership database in Google Sheets with dropdown and formula-based validation for every key field.</li>
-      <li>Built a search sheet on a single dynamic formula (LET, XMATCH, FILTER) that queries any field and supports birth-month lookups for event planning.</li>
-      <li>Maintain the official band roster and keep member records accurate, complete and confidential.</li>
-    </ul>
+    <div class="row"><span class="title">De La Salle Lipa</span><span class="date">Lipa City, Batangas</span></div>
+    <div class="row"><span class="sub">Bachelor of Science in Computer Science</span><span class="date">2023 – Present</span></div>
   </div>
   <div class="entry">
-    <div class="row"><span class="title">Logistics Officer, Musikalista (De La Salle Lipa)</span><span class="date">A.Y. 2025–2026</span></div>
-    <ul>
-      <li>Organized inventories, documents and event records, and coordinated with committees to finish logistical tasks on schedule.</li>
-    </ul>
+    <div class="row"><span class="title">National University – Laguna</span><span class="date">Calamba City, Laguna</span></div>
+    <div class="row"><span class="sub">Senior High School, Science, Technology, Engineering, and Mathematics Strand</span><span class="date">Graduated 2023</span></div>
   </div>
 
-  <h2>Selected Projects</h2>
+  <h2>Leadership Experience</h2>
   <div class="entry">
-    <div class="row"><span><span class="title">Helmet Compliance Detection</span> <span class="sub">— Data Science 2 capstone, team of 7</span></span><span class="date">2026</span></div>
+    <div class="row"><span class="title">Statistics Officer</span><span class="date">Academic Year 2026 – 2027</span></div>
+    <div class="row"><span class="sub">Musikalista, De La Salle Lipa</span><span></span></div>
     <ul>
-      <li>Developed a CNN that classifies riders as helmeted or not, using transfer learning (MobileNetV2, ResNet) on Kaggle and team-collected photos, with every training trial documented and interpreted.</li>
+      <li>Designed the organization’s membership database in Google Sheets: an 11-field member schema with four validation rules covering departments, member roles, year levels, and birthdates.</li>
+      <li>Developed a search sheet driven by a single dynamic formula (LET, XMATCH, FILTER) that retrieves records by any of six fields, including birth month.</li>
+      <li>Maintain the official band roster and ensure that member records remain accurate, complete, and confidential.</li>
     </ul>
   </div>
   <div class="entry">
-    <div class="row"><span><span class="title">Tabula Rasa</span> <span class="sub">— Undergraduate thesis, team of 3</span></span><span class="date">2026</span></div>
+    <div class="row"><span class="title">Logistics Officer</span><span class="date">Academic Year 2025 – 2026</span></div>
+    <div class="row"><span class="sub">Musikalista, De La Salle Lipa</span><span></span></div>
     <ul>
-      <li>Co-developing a game that teaches reinforcement learning with an on-device PPO trainer in C#; evaluated through a pretest–posttest design (paired t-test) and a 31-item MEEGA+ user-acceptance instrument.</li>
+      <li>Organized inventories, documents, and event records, and coordinated logistics with committees.</li>
+    </ul>
+  </div>
+
+  <h2>Academic Projects</h2>
+  <div class="entry">
+    <div class="row"><span class="title">Tabula Rasa: A Gamified Simulation Environment for Teaching Reinforcement Learning</span><span class="date">2026</span></div>
+    <div class="row"><span class="sub">Undergraduate Thesis, Co-author and Developer</span><span></span></div>
+    <ul>
+      <li>Co-developed a Unity 6 game with an on-device Proximal Policy Optimization trainer written in C# and a Supabase backend.</li>
+      <li>Helped design a pretest–posttest evaluation (n = 37): mean scores rose from 15.49 to 18.84 out of 25, a significant gain (paired t(36) = 5.83, p &lt; .001, d<sub>z</sub> = 0.96).</li>
     </ul>
   </div>
   <div class="entry">
-    <div class="row"><span><span class="title">Traffic Guardian</span> <span class="sub">— AI road-safety dashboard</span></span><span class="date"></span></div>
+    <div class="row"><span class="title">Helmet Compliance Detection Using Convolutional Neural Networks</span><span class="date">2026</span></div>
+    <div class="row"><span class="sub">Capstone Project, Data Science 2</span><span></span></div>
     <ul>
-      <li>Served as UI/UX consultant and lead QA tester, refining the alert hierarchy to reduce notification fatigue for traffic enforcers.</li>
+      <li>Trained and documented transfer-learning trials in Google Colab; one trial (T04) reached 78.9% test accuracy, 0.754 macro-F1, and 0.767 recall on the no-helmet class.</li>
     </ul>
   </div>
-  <div class="entry">
-    <div class="row"><span><span class="title">Achroma</span> <span class="sub">— Browser-based horror game, team project</span></span><span class="date">2025</span></div>
-    <ul>
-      <li>Designed the interface and tested responsiveness on desktop and touch controls, including color-vision accessibility modes. <span class="stack">Next.js, React Three Fiber</span></li>
-    </ul>
-  </div>
+
   <h2>Certifications</h2>
-  <div class="certs">
-    <div class="row"><span><span class="title">PyTorch Bootcamp</span> — OpenCV Univ.</span><span class="date">Oct 2026</span></div>
-    <div class="row"><span><span class="title">Intermediate R</span> — DataCamp</span><span class="date">Apr 2026</span></div>
-    <div class="row"><span><span class="title">Elements of AI</span> — Univ. of Helsinki</span><span class="date">Nov 2025</span></div>
-    <div class="row"><span><span class="title">Introduction to R</span> — DataCamp</span><span class="date">Mar 2026</span></div>
-  </div>
+  <div class="row"><span><span class="title">PyTorch Bootcamp</span>, OpenCV University</span><span class="date">October 2026</span></div>
+  <div class="row"><span><span class="title">Intermediate R</span>, DataCamp</span><span class="date">April 2026</span></div>
+  <div class="row"><span><span class="title">Introduction to R</span>, DataCamp</span><span class="date">March 2026</span></div>
+  <div class="row"><span><span class="title">Elements of AI</span>, MinnaLearn and University of Helsinki (Score: 89%)</span><span class="date">November 2025</span></div>
 
   <h2>Technical Skills</h2>
   <div class="skills">
-    <b>Data</b><span>Excel and Google Sheets (LET, XMATCH, FILTER, data validation), data cleaning, Python, R, Jupyter</span>
-    <b>Quality Assurance</b><span>Functional, usability and user-acceptance testing, test cases, bug reports, accessibility</span>
-    <b>Programming</b><span>Python, R, C++, C#, TypeScript/JavaScript, Java</span>
-    <b>Tools</b><span>Git and GitHub, Supabase, React Native/Expo, Unity, UiPath (RPA), Microsoft Office</span>
+    <b>Data Management</b><span>Microsoft Excel and Google Sheets (advanced formulas, data validation), data cleaning and verification</span>
+    <b>Analysis</b><span>Paired t-test, effect sizes, classification metrics (accuracy, AUC, precision, recall, F1)</span>
+    <b>Programming</b><span>Python, R, C++, C#, Java, JavaScript, TypeScript</span>
+    <b>Tools</b><span>Git, GitHub, Jupyter Notebook, Google Colab, Supabase, Unity, UiPath, Microsoft Office</span>
   </div>
 </body>
 </html>

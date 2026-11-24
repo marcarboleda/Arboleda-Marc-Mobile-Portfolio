@@ -10,16 +10,11 @@ export const profile = {
   linkedinLabel: "linkedin.com/in/marcarboleda",
   seeking: "Internships in Data Analytics, Quality Assurance and Data Management",
   intro: [
-    "I'm a fourth-year BS Computer Science student at De La Salle Lipa. Most of my work ends up being about one thing: making information trustworthy. That means validating records before they spread, testing software before people rely on it, and turning raw data into something a team can actually act on.",
-    "As Statistics Officer of Musikalista I designed and run the organization's membership registry. My coursework and thesis have taken me through computer vision, reinforcement learning, mobile development and user-acceptance testing.",
+    "I'm a fourth-year BS Computer Science student at De La Salle Lipa. Most of my work comes down to making information trustworthy: validating data before it spreads, testing software before people depend on it, and turning results into numbers a team can act on.",
+    "I designed and maintain my organization's membership database, helped build and evaluate a reinforcement-learning game for my thesis, and trained computer-vision models for my capstone.",
   ],
 };
 
-export const stats = [
-  { value: "20", label: "Projects across data, QA and software" },
-  { value: "4", label: "Certifications in R, AI and deep learning" },
-  { value: "2", label: "Officer roles handling records and logistics" },
-];
 
 export const experience = [
   {

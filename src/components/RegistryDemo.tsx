@@ -19,7 +19,7 @@ import {
   validateMember,
 } from "../lib/registryLogic";
 import { color, font, useLayout, type InteractionState } from "../theme";
-import { Body, Chip, Mono } from "./ui";
+import { Chip, Mono } from "./ui";
 
 type Tab = "members" | "search" | "insights";
 const TABS: { id: Tab; label: string }[] = [
@@ -53,7 +53,7 @@ export function RegistryDemo() {
   const formula = tab === "members" ? `=COUNTA(A3:A${MEMBERS.length + 2})` : tab === "search" ? SEARCH_FORMULA : "Insights are computed live from 'Members 26-27' for this demo";
 
   return (
-    <View style={styles.window}>
+    <View style={styles.window} nativeID="registry-demo">
       <View style={styles.formulaBar}>
         <Text style={styles.fx}>fx</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flex: 1 }}>
@@ -74,7 +74,7 @@ export function RegistryDemo() {
             onPress={() => setTab(t.id)}
             accessibilityRole="tab"
             accessibilityState={{ selected: tab === t.id }}
-            style={(s) => [styles.tab, tab === t.id && styles.tabOn, (s as InteractionState).hovered && tab !== t.id && { backgroundColor: color.surfaceHi }]}
+            style={(s) => [styles.tab, tab === t.id && styles.tabOn, (s as InteractionState).hovered && tab !== t.id && { backgroundColor: "rgba(255,255,255,0.05)" }]}
           >
             <Text style={[styles.tabText, tab === t.id && { color: color.accent }]}>{t.label}</Text>
           </Pressable>
@@ -394,27 +394,27 @@ function Grid({
 }
 
 const styles = StyleSheet.create({
-  window: { borderWidth: StyleSheet.hairlineWidth, borderColor: color.lineHi, backgroundColor: color.surface },
+  window: { borderWidth: 1, borderColor: color.borderHi, backgroundColor: color.bgRaised, borderRadius: 16, overflow: "hidden" },
   formulaBar: {
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: color.lineHi,
+    borderBottomColor: color.borderHi,
     height: 38,
   },
   fx: {
-    fontFamily: font.displayItalic,
-    fontSize: 18,
+    fontFamily: font.mono,
+    fontSize: 14,
     color: color.muted,
     width: 44,
     textAlign: "center",
     borderRightWidth: StyleSheet.hairlineWidth,
-    borderRightColor: color.lineHi,
+    borderRightColor: color.borderHi,
     lineHeight: 38,
   },
   formula: { fontFamily: font.mono, fontSize: 12, color: color.text, paddingHorizontal: 12, lineHeight: 38 },
   toolbar: { flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12, padding: 14 },
-  totalCell: { flexDirection: "row", borderWidth: StyleSheet.hairlineWidth, borderColor: color.lineHi },
+  totalCell: { flexDirection: "row", borderWidth: StyleSheet.hairlineWidth, borderColor: color.borderHi },
   totalLabel: {
     fontFamily: font.monoMedium,
     fontSize: 11,
@@ -425,27 +425,27 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   totalValue: { fontFamily: font.monoMedium, fontSize: 12, color: color.text, paddingHorizontal: 14, paddingVertical: 7 },
-  note: { fontFamily: font.sans, fontSize: 13, lineHeight: 20, color: color.muted, marginHorizontal: 14, marginBottom: 12 },
-  grid: { flexDirection: "row", borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: color.lineHi },
-  frozen: { borderRightWidth: 2, borderRightColor: color.lineHi, backgroundColor: color.surface, zIndex: 1 },
+  note: { fontFamily: font.regular, fontSize: 13, lineHeight: 20, color: color.muted, marginHorizontal: 14, marginBottom: 12 },
+  grid: { flexDirection: "row", borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: color.borderHi },
+  frozen: { borderRightWidth: 2, borderRightColor: color.borderHi, backgroundColor: color.bgRaised, zIndex: 1 },
   letter: {
     height: LETTER_H,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: color.surfaceHi,
+    backgroundColor: "rgba(255,255,255,0.05)",
     borderRightWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: color.line,
+    borderColor: color.border,
   },
   letterText: { fontFamily: font.mono, fontSize: 10, color: color.faint },
   head: {
     height: HEAD_H,
     justifyContent: "center",
     paddingHorizontal: 10,
-    backgroundColor: color.accentDim,
+    backgroundColor: "rgba(197,243,107,0.16)",
     borderRightWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: color.line,
+    borderColor: color.border,
   },
   headText: { fontFamily: font.monoMedium, fontSize: 11, letterSpacing: 0.6, color: color.text },
   rowNum: {
@@ -453,10 +453,10 @@ const styles = StyleSheet.create({
     height: ROW_H,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: color.surfaceHi,
+    backgroundColor: "rgba(255,255,255,0.05)",
     borderRightWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: color.line,
+    borderColor: color.border,
   },
   rowNumText: { fontFamily: font.mono, fontSize: 10, color: color.faint },
   cell: {
@@ -465,16 +465,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRightWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: color.line,
+    borderColor: color.border,
   },
   cellChanged: { backgroundColor: "rgba(163,201,111,0.14)" },
-  cellText: { fontFamily: font.sans, fontSize: 13, color: color.text },
+  cellText: { fontFamily: font.regular, fontSize: 13, color: color.text },
   pager: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", padding: 14, flexWrap: "wrap", gap: 10 },
-  pagerBtn: { borderWidth: 1, borderColor: color.lineHi, paddingHorizontal: 12, paddingVertical: 7 },
+  pagerBtn: { borderWidth: 1, borderColor: color.borderHi, paddingHorizontal: 12, paddingVertical: 7 },
   pagerText: { fontFamily: font.mono, fontSize: 12, color: color.text },
-  tabs: { flexDirection: "row", borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: color.lineHi, backgroundColor: color.bg, flexWrap: "wrap" },
-  tab: { paddingHorizontal: 16, paddingVertical: 11, borderRightWidth: StyleSheet.hairlineWidth, borderRightColor: color.line },
-  tabOn: { backgroundColor: color.surface, borderTopWidth: 2, borderTopColor: color.accent, marginTop: -1 },
+  tabs: { flexDirection: "row", borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: color.borderHi, backgroundColor: color.bg, flexWrap: "wrap" },
+  tab: { paddingHorizontal: 16, paddingVertical: 11, borderRightWidth: StyleSheet.hairlineWidth, borderRightColor: color.border },
+  tabOn: { backgroundColor: color.bgRaised, borderTopWidth: 2, borderTopColor: color.accent, marginTop: -1 },
   tabText: { fontFamily: font.mono, fontSize: 12, color: color.muted },
   searchPanel: { padding: 14, gap: 12 },
   searchRow: { flexDirection: "row", gap: 12, alignItems: "flex-start", flexWrap: "wrap" },
@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
     flex: 1,
     minWidth: 200,
     borderWidth: 1,
-    borderColor: color.lineHi,
+    borderColor: color.borderHi,
     backgroundColor: color.bg,
     color: color.text,
     fontFamily: font.mono,
@@ -491,32 +491,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 9,
   },
-  example: { fontFamily: font.mono, fontSize: 12, color: color.muted, textDecorationLine: "underline", textDecorationColor: color.lineHi },
-  kpis: { flexDirection: "row", flexWrap: "wrap", borderWidth: StyleSheet.hairlineWidth, borderColor: color.line, marginBottom: 14 },
-  kpi: { flexGrow: 1, flexBasis: 140, padding: 16, gap: 4, borderRightWidth: StyleSheet.hairlineWidth, borderRightColor: color.line },
-  kpiValue: { fontFamily: font.display, fontSize: 40, color: color.text, lineHeight: 44 },
-  card: { borderWidth: StyleSheet.hairlineWidth, borderColor: color.line, padding: 16, backgroundColor: color.bg, minHeight: 100 },
-  barLabel: { fontFamily: font.sans, fontSize: 13, color: color.text, flex: 1, marginRight: 8 },
+  example: { fontFamily: font.mono, fontSize: 12, color: color.muted, textDecorationLine: "underline", textDecorationColor: color.borderHi },
+  kpis: { flexDirection: "row", flexWrap: "wrap", borderWidth: StyleSheet.hairlineWidth, borderColor: color.border, marginBottom: 14 },
+  kpi: { flexGrow: 1, flexBasis: 140, padding: 16, gap: 4, borderRightWidth: StyleSheet.hairlineWidth, borderRightColor: color.border },
+  kpiValue: { fontFamily: font.semibold, fontSize: 34, letterSpacing: -1, color: color.text, lineHeight: 44 },
+  card: { borderWidth: StyleSheet.hairlineWidth, borderColor: color.border, padding: 16, backgroundColor: color.bg, minHeight: 100 },
+  barLabel: { fontFamily: font.regular, fontSize: 13, color: color.text, flex: 1, marginRight: 8 },
   barValue: { fontFamily: font.mono, fontSize: 12, color: color.muted },
-  barTrack: { height: 6, backgroundColor: color.surfaceHi },
+  barTrack: { height: 6, backgroundColor: "rgba(255,255,255,0.05)" },
   barFill: { height: 6, backgroundColor: color.accent },
 });
-
-export function RegistryNotes() {
-  const { bp } = useLayout();
-  const items = [
-    { k: "Validation", v: "Dropdowns limit department and role to allowed values. Custom formulas reject a year level that isn't a number and a birthdate that isn't a real date." },
-    { k: "Search", v: "One dynamic formula. XMATCH finds the chosen column, FILTER returns the matching rows, and birthdates match on the month number." },
-    { k: "Privacy", v: "The real registry is shared only with officers. Every name, email and link in this demo is fictional." },
-  ];
-  return (
-    <View style={{ flexDirection: bp === "phone" ? "column" : "row", gap: bp === "phone" ? 20 : 32, marginBottom: 32 }}>
-      {items.map((i) => (
-        <View key={i.k} style={{ flex: 1 }}>
-          <Mono style={{ color: color.accent, marginBottom: 8 }}>{i.k}</Mono>
-          <Body style={{ fontSize: 15, lineHeight: 24 }}>{i.v}</Body>
-        </View>
-      ))}
-    </View>
-  );
-}
