@@ -9,7 +9,7 @@ import { About, CertificationsSection, Contact, EducationSection, ExperienceSect
 import { openUrl, SectionHead } from "../src/components/ui";
 import { WorkGrid } from "../src/components/Work";
 import { profile } from "../src/data/profile";
-import { c, useLayout } from "../src/theme";
+import { ThemeContext, useLayout, useThemeState } from "../src/theme";
 
 const RESUME_FILE = "Marc-Arboleda-Resume.pdf";
 const RESUME_URL = Platform.OS === "web" ? `/${RESUME_FILE}` : `https://raw.githubusercontent.com/marcarboleda/Arboleda-Marc-Mobile-Portfolio/master/public/${RESUME_FILE}`;
@@ -21,6 +21,7 @@ const NAV: NavItem[] = [
 ];
 
 export default function Portfolio() {
+  const theme = useThemeState();
   const scrollRef = useRef<ScrollView>(null);
   const offsets = useRef<Record<string, number>>({});
   const insets = useSafeAreaInsets();
@@ -69,7 +70,8 @@ export default function Portfolio() {
   );
 
   return (
-    <View style={{ flex: 1, backgroundColor: c.bg, opacity: hydrated ? 1 : 0 }}>
+    <ThemeContext.Provider value={theme}>
+    <View style={{ flex: 1, backgroundColor: theme.c.bg, opacity: hydrated ? 1 : 0 }}>
       <Head>
         <title>{`${profile.name} — Portfolio`}</title>
         <meta name="description" content={profile.seeking} />
@@ -161,5 +163,6 @@ export default function Portfolio() {
       </ScrollContext.Provider>
       <Nav items={NAV} active={active} scrolled={scrolled} onNavigate={navigate} onResume={resume} />
     </View>
+    </ThemeContext.Provider>
   );
 }

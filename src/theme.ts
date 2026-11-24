@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Platform, useWindowDimensions } from "react-native";
 
-/** Soft, warm palette. Accents are taken from the Tabula Rasa study artwork. */
-export const c = {
+/** Soft, warm palette — light mode */
+const light = {
   bg: "#F6F2EA",
   bgDeep: "#EEE8DC",
   surface: "#FFFDF8",
@@ -22,6 +22,47 @@ export const c = {
   white: "#FFFFFF",
 } as const;
 
+/** Dark mode palette */
+const dark = {
+  bg: "#141418",
+  bgDeep: "#0E0E12",
+  surface: "#1C1C22",
+  ink: "#EEEAE0",
+  body: "#A8A5A0",
+  muted: "#6B6870",
+  line: "rgba(238,234,224,0.08)",
+  lineStrong: "rgba(238,234,224,0.16)",
+  sage: "#5DB88A",
+  sageSoft: "#1A2E24",
+  clay: "#E08066",
+  claySoft: "#2E1D18",
+  butter: "#F0C85A",
+  butterSoft: "#2A2314",
+  lilac: "#A89FDF",
+  lilacSoft: "#201E36",
+  white: "#FFFFFF",
+} as const;
+
+export type ColorTokens = typeof light;
+
+export const ThemeContext = createContext<{
+  isDark: boolean;
+  toggle: () => void;
+  c: ColorTokens;
+}>({ isDark: false, toggle: () => {}, c: light });
+
+export function useTheme() {
+  return useContext(ThemeContext);
+}
+
+/** Use this everywhere instead of importing c directly */
+export function useColors() {
+  return useContext(ThemeContext).c;
+}
+
+/** Static fallback for StyleSheet.create() — components that need reactive colors use useColors() */
+export const c = light;
+
 export const font = {
   display: "Fraunces_500Medium",
   displayItalic: "Fraunces_400Regular_Italic",
@@ -37,7 +78,6 @@ export const MAX_WIDTH = 1180;
 
 export type Breakpoint = "phone" | "tablet" | "desktop";
 
-/** False during static rendering and the first web render, so hydration matches the server HTML. */
 export function useHydrated() {
   const [ready, setReady] = useState(Platform.OS !== "web");
   useEffect(() => setReady(true), []);
@@ -58,9 +98,32 @@ export function useLayout() {
 
 export type InteractionState = { pressed: boolean; hovered?: boolean; focused?: boolean };
 export const isWeb = Platform.OS === "web";
-/** Web-only CSS (transitions, blur, shadows). Ignored on native. */
 export const web = (style: Record<string, unknown>) => (isWeb ? (style as object) : {});
 
-/** Soft layered shadow used on cards. */
 export const softShadow = (strength = 1) =>
   web({ boxShadow: `0 1px 2px rgba(30,34,48,${0.04 * strength}), 0 12px 32px -12px rgba(30,34,48,${0.16 * strength})` });
+
+export function useDarkSoftShadow(strength = 1) {
+  const { isDark } = useTheme();
+  return isDark
+    ? web({ boxShadow: `0 1px 2px rgba(0,0,0,${0.18 * strength}), 0 12px 32px -12px rgba(0,0,0,${0.44 * strength})` })
+    : softShadow(strength);
+}
+
+/** Build a ThemeProvider value — call once in the root component */
+export function useThemeState() {
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = localStorage.getItem("theme");
+    if (stored === "dark") setIsDark(true);
+  }, []);
+  const toggle = () => {
+    setIsDark((d) => {
+      const next = !d;
+      if (typeof window !== "undefined") localStorage.setItem("theme", next ? "dark" : "light");
+      return next;
+    });
+  };
+  return { isDark, toggle, c: isDark ? dark : light };
+}
