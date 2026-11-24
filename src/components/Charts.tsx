@@ -11,9 +11,9 @@ function useWidth(initial = 320) {
 }
 
 /** Training vs validation accuracy and validation AUC for helmet-detection trial T04 (values from the Colab training log). */
-export function HelmetCurve() {
+export function HelmetCurve({ height = 300, compact = false }: { height?: number; compact?: boolean }) {
   const { w, onLayout } = useWidth();
-  const h = 300;
+  const h = height;
   const pad = { l: 40, r: 16, t: 20, b: 34 };
   const { train, val, auc } = HELMET_T04.epochs;
   const n = train.length;
@@ -26,11 +26,13 @@ export function HelmetCurve() {
 
   return (
     <View onLayout={onLayout} style={styles.panel}>
-      <View style={styles.legend}>
-        <Legend c={color.accent} label="Validation accuracy" />
-        <Legend c={color.teal} label="Validation AUC" />
-        <Legend c={color.faint} label="Training accuracy" dashed />
-      </View>
+      {compact ? null : (
+        <View style={styles.legend}>
+          <Legend c={color.accent} label="Validation accuracy" />
+          <Legend c={color.teal} label="Validation AUC" />
+          <Legend c={color.faint} label="Training accuracy" dashed />
+        </View>
+      )}
       <Svg width={w} height={h}>
         <Defs>
           <LinearGradient id="hc" x1="0" y1="0" x2="0" y2="1">
@@ -58,16 +60,16 @@ export function HelmetCurve() {
         <Circle cx={x(n - 1)} cy={y(val[n - 1])} r={4.5} fill={color.accent} />
         <Circle cx={x(n - 1)} cy={y(auc[n - 1])} r={4.5} fill={color.teal} />
       </Svg>
-      <Text style={styles.caption}>Epoch · Trial T04 (GAP + Dense-128 head), 25 epochs</Text>
+      {compact ? null : <Text style={styles.caption}>Epoch · Trial T04 (GAP + Dense-128 head), 25 epochs</Text>}
     </View>
   );
 }
 
 /** Pretest vs posttest mean score for the Tabula Rasa evaluation (n = 37). */
-export function TabulaResultsChart() {
+export function TabulaResultsChart({ height = 260, compact = false }: { height?: number; compact?: boolean }) {
   const { w, onLayout } = useWidth();
   const r = TABULA_RESULTS;
-  const h = 260;
+  const h = height;
   const barW = Math.min(120, (w - 80) / 3);
   const base = h - 40;
   const scale = (base - 30) / r.maxScore;
@@ -102,7 +104,7 @@ export function TabulaResultsChart() {
           </SvgText>
         ))}
       </Svg>
-      <Text style={styles.caption}>Mean score out of {r.maxScore}, one-group pretest–posttest, n = {r.n}</Text>
+      {compact ? null : <Text style={styles.caption}>Mean score out of {r.maxScore}, one-group pretest–posttest, n = {r.n}</Text>}
     </View>
   );
 }

@@ -96,7 +96,7 @@ export const PROJECTS: Project[] = [
     ],
     stack: ["Google Sheets", "Data validation", "LET · XMATCH · FILTER", "Conditional formatting"],
     visuals: [
-      { kind: "image", label: "Member sheet", source: require("../../assets/images/work/registry-sheet.jpg"), aspect: 1600 / 842, frame: "browser", url: "Members 26-27 · demo data" },
+      { kind: "image", label: "Member sheet", source: require("../../assets/images/work/registry-sheet.jpg"), aspect: 1600 / 841, frame: "browser", url: "Members 26-27 · demo data" },
       { kind: "image", label: "Insights", source: require("../../assets/images/work/registry-insights.jpg"), aspect: 1.6, frame: "browser", url: "Insights · demo data" },
     ],
     demo: true,
