@@ -52,7 +52,7 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
   const photoW = desktop ? 380 : bp === "tablet" ? 300 : Math.min(contentWidth, 340);
 
   return (
-    <View style={{ minHeight: desktop ? Math.max(height, 760) : undefined, paddingTop: insets.top + (desktop ? 150 : 120), paddingBottom: 70, paddingHorizontal: gutter, alignItems: "center" }}>
+    <View style={{ paddingTop: insets.top + (desktop ? 120 : 90), paddingBottom: 60, paddingHorizontal: gutter, alignItems: "center" }}>
       <Blobs />
       <View style={[{ width: contentWidth, gap: desktop ? 72 : 48 }, !phone && { flexDirection: "row", alignItems: "center" }]}>
         <View style={{ flex: phone ? undefined : 1 }}>
