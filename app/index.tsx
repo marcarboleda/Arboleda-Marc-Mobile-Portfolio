@@ -84,9 +84,10 @@ export default function Portfolio() {
           {section(
             "about",
             <>
-              <SectionHead eyebrow="About" title="About" size={titleSize} style={{ marginBottom: 32 }} />
+              <SectionHead eyebrow="A bit about me" title="About" size={titleSize} style={{ marginBottom: 32 }} />
               <About />
             </>,
+            60,
           )}
 
           {/* 3. Projects */}
@@ -94,7 +95,7 @@ export default function Portfolio() {
             "work",
             <>
               <SectionHead
-                eyebrow="Projects"
+                eyebrow="Selected work"
                 title="Projects"
                 lede="A few projects I've worked on through academics and organizational experience. Each gave me the opportunity to apply what I've learned, solve practical problems, and explore different areas of technology."
                 size={titleSize}
@@ -109,7 +110,7 @@ export default function Portfolio() {
           {section(
             "experience",
             <>
-              <SectionHead eyebrow="Experience" title="Experience" size={titleSize} style={{ marginBottom: 32 }} />
+              <SectionHead eyebrow="Where I've contributed" title="Experience" size={titleSize} style={{ marginBottom: 32 }} />
               <ExperienceSection />
             </>,
           )}
@@ -118,7 +119,7 @@ export default function Portfolio() {
           {section(
             "skills",
             <>
-              <SectionHead eyebrow="My Skills" title="My Skills" size={titleSize} style={{ marginBottom: 32 }} />
+              <SectionHead eyebrow="What I work with" title="My Skills" size={titleSize} style={{ marginBottom: 32 }} />
               <SkillsSection />
             </>,
             80,
@@ -128,7 +129,7 @@ export default function Portfolio() {
           {section(
             "tools",
             <>
-              <SectionHead eyebrow="Tools I Use" title="Tools I Use" size={titleSize} style={{ marginBottom: 32 }} />
+              <SectionHead eyebrow="Day-to-day stack" title="Tools I Use" size={titleSize} style={{ marginBottom: 32 }} />
               <ToolsSection />
             </>,
             80,
@@ -138,7 +139,7 @@ export default function Portfolio() {
           {section(
             "education",
             <>
-              <SectionHead eyebrow="Education" title="Education" size={titleSize} style={{ marginBottom: 32 }} />
+              <SectionHead eyebrow="Academic background" title="Education" size={titleSize} style={{ marginBottom: 32 }} />
               <EducationSection />
             </>,
             80,
@@ -148,7 +149,7 @@ export default function Portfolio() {
           {section(
             "certifications",
             <>
-              <SectionHead eyebrow="Certifications" title="Certifications" size={titleSize} style={{ marginBottom: 32 }} />
+              <SectionHead eyebrow="Continued learning" title="Certifications" size={titleSize} style={{ marginBottom: 32 }} />
               <CertificationsSection />
             </>,
             80,
