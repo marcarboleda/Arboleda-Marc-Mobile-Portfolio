@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Animated, Easing, Image, Platform, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { profile } from "../data/profile";
 import { c, font, radius, softShadow, useLayout, web } from "../theme";
 import { Float, Reveal, useReduceMotion } from "./motion";
 import { Button } from "./ui";
@@ -68,7 +69,7 @@ export function Hero({ onWork, onResume }: { onWork: () => void; onResume: () =>
           </Reveal>
           <Reveal immediate delay={240}>
             <Text style={[styles.sub, { fontSize: desktop ? 19 : 17 }]}>
-              CS student at De La Salle Lipa. I work on UI design, data analysis, and building things that are easy for people to use and understand.
+              {profile.heroDesc}
             </Text>
           </Reveal>
           <Reveal immediate delay={360}>
