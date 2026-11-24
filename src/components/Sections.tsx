@@ -1,18 +1,21 @@
-import { useState } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { certifications, education, experience, profile, skillGroups } from "../data/profile";
 import { c, font, radius, softShadow, useLayout, web, type InteractionState } from "../theme";
 import { Reveal } from "./motion";
 import { openUrl, Tag, TINT } from "./ui";
 
-// ─── SVG icons as data URIs (works in Expo web static export, no font needed) ─
-
-function svgUri(svg: string) {
-  return { uri: `data:image/svg+xml;utf8,${encodeURIComponent(svg)}` };
-}
+// ─── Inline SVG via <img> tag (Expo web static export — data URIs work on <img>, not RN Image) ─
 
 function SvgImg({ svg, size }: { svg: string; size: number }) {
-  return <Image source={svgUri(svg)} style={{ width: size, height: size }} />;
+  const uri = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`;
+  // React Native Web renders React.createElement('img') as a real <img> DOM element
+  return React.createElement("img", {
+    src: uri,
+    width: size,
+    height: size,
+    style: { display: "block", width: size, height: size },
+  });
 }
 
 // Skill category icons — Figma-style pen nib / bar chart / code brackets
