@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
-import { Linking, Platform, Pressable, StyleSheet, Text, View, type StyleProp, type TextStyle, type ViewStyle } from "react-native";
-import { c, font, web, type InteractionState } from "../theme";
+import { Linking, Platform, Pressable, Text, View, type StyleProp, type TextStyle, type ViewStyle } from "react-native";
+import { c as staticC, font, useColors, web, type InteractionState } from "../theme";
 import { Reveal } from "./motion";
 
 export function openUrl(url: string) {
@@ -12,10 +12,10 @@ export function openUrl(url: string) {
 }
 
 export const TINT = {
-  sage: { fg: c.sage, bg: c.sageSoft },
-  clay: { fg: c.clay, bg: c.claySoft },
-  lilac: { fg: c.lilac, bg: c.lilacSoft },
-  butter: { fg: "#9A7414", bg: c.butterSoft },
+  sage: { fg: staticC.sage, bg: staticC.sageSoft },
+  clay: { fg: staticC.clay, bg: staticC.claySoft },
+  lilac: { fg: staticC.lilac, bg: staticC.lilacSoft },
+  butter: { fg: "#9A7414", bg: staticC.butterSoft },
 } as const;
 export type Tint = keyof typeof TINT;
 
@@ -32,6 +32,7 @@ export function Button({
   icon?: string;
   accessibilityLabel?: string;
 }) {
+  const c = useColors();
   const solid = variant === "solid";
   return (
     <Pressable
@@ -41,7 +42,7 @@ export function Button({
       style={(s) => {
         const { hovered, pressed } = s as InteractionState;
         return [
-          styles.btn,
+          { borderRadius: 999, borderWidth: 1, paddingVertical: 14, paddingHorizontal: 22 },
           solid ? { backgroundColor: c.ink, borderColor: c.ink } : { backgroundColor: c.surface, borderColor: c.lineStrong },
           hovered && (solid ? { backgroundColor: c.sage, borderColor: c.sage } : { borderColor: c.ink }),
           hovered && { transform: [{ translateY: -2 }] },
@@ -50,7 +51,7 @@ export function Button({
         ];
       }}
     >
-      <Text style={[styles.btnText, { color: solid ? c.white : c.ink }]}>
+      <Text style={{ fontFamily: font.semibold, fontSize: 15, color: solid ? c.white : c.ink }}>
         {label}
         {icon ? `  ${icon}` : ""}
       </Text>
@@ -59,16 +60,18 @@ export function Button({
 }
 
 export function Tag({ label, tint }: { label: string; tint?: Tint }) {
+  const c = useColors();
   const t = tint ? TINT[tint] : null;
   return (
-    <View style={[styles.tag, t ? { backgroundColor: t.bg, borderColor: "transparent" } : null]}>
-      <Text style={[styles.tagText, t ? { color: t.fg } : null]}>{label}</Text>
+    <View style={[{ borderWidth: 1, borderColor: c.line, backgroundColor: c.surface, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 }, t ? { backgroundColor: t.bg, borderColor: "transparent" } : null]}>
+      <Text style={[{ fontFamily: font.medium, fontSize: 12.5, color: c.body }, t ? { color: t.fg } : null]}>{label}</Text>
     </View>
   );
 }
 
 export function Eyebrow({ children, style }: { children: ReactNode; style?: StyleProp<TextStyle> }) {
-  return <Text style={[styles.eyebrow, style]}>{children}</Text>;
+  const c = useColors();
+  return <Text style={[{ fontFamily: font.semibold, fontSize: 12.5, letterSpacing: 1.6, textTransform: "uppercase", color: c.muted }, style]}>{children}</Text>;
 }
 
 /** Section heading: small eyebrow, large serif title with an italic accent, optional lede. */
@@ -87,30 +90,18 @@ export function SectionHead({
   size: number;
   style?: StyleProp<ViewStyle>;
 }) {
+  const c = useColors();
   return (
     <Reveal style={style}>
-      <View style={styles.eyebrowRow}>
-        <View style={styles.eyebrowDot} />
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 16 }}>
+        <View style={{ width: 7, height: 7, borderRadius: 4, backgroundColor: c.clay }} />
         <Eyebrow>{eyebrow}</Eyebrow>
       </View>
-      <Text style={[styles.title, { fontSize: size, lineHeight: size * 1.12, letterSpacing: -size * 0.02 }]}>
+      <Text style={[{ fontFamily: font.display, color: c.ink, maxWidth: 820 }, { fontSize: size, lineHeight: size * 1.12, letterSpacing: -size * 0.02 }]}>
         {title}
-        {accent ? <Text style={styles.accent}>{` ${accent}`}</Text> : null}
+        {accent ? <Text style={{ fontFamily: font.displayItalic, color: c.sage }}>{` ${accent}`}</Text> : null}
       </Text>
-      {lede ? <Text style={styles.lede}>{lede}</Text> : null}
+      {lede ? <Text style={{ fontFamily: font.regular, fontSize: 17, lineHeight: 28, color: c.body, marginTop: 18, maxWidth: 620 }}>{lede}</Text> : null}
     </Reveal>
   );
 }
-
-const styles = StyleSheet.create({
-  btn: { borderRadius: 999, borderWidth: 1, paddingVertical: 14, paddingHorizontal: 22 },
-  btnText: { fontFamily: font.semibold, fontSize: 15 },
-  tag: { borderWidth: 1, borderColor: c.line, backgroundColor: c.surface, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 },
-  tagText: { fontFamily: font.medium, fontSize: 12.5, color: c.body },
-  eyebrowRow: { flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 16 },
-  eyebrowDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: c.clay },
-  eyebrow: { fontFamily: font.semibold, fontSize: 12.5, letterSpacing: 1.6, textTransform: "uppercase", color: c.muted },
-  title: { fontFamily: font.display, color: c.ink, maxWidth: 820 },
-  accent: { fontFamily: font.displayItalic, color: c.sage },
-  lede: { fontFamily: font.regular, fontSize: 17, lineHeight: 28, color: c.body, marginTop: 18, maxWidth: 620 },
-});

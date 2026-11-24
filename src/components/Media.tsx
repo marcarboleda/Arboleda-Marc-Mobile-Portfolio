@@ -2,7 +2,7 @@ import { useVideoPlayer, VideoView } from "expo-video";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Animated, Image, Pressable, StyleSheet, Text, View, type ImageSourcePropType, type StyleProp, type ViewStyle } from "react-native";
 import type { Media } from "../data/work";
-import { c, font, useHydrated, web, type InteractionState } from "../theme";
+import { font, useColors, useHydrated, web, type InteractionState } from "../theme";
 import { useReduceMotion } from "./motion";
 
 /** Muted looping video. Shows the poster during static rendering and before playback starts. */
@@ -87,17 +87,18 @@ export function ScreenCarousel({
 
 /** Minimal browser window chrome around a screenshot or recording. */
 export function BrowserFrame({ children, label, aspect }: { children: ReactNode; label?: string; aspect: number }) {
+  const c = useColors();
   return (
-    <View style={styles.browser}>
-      <View style={styles.browserBar}>
+    <View style={{ borderRadius: 16, overflow: "hidden", backgroundColor: c.surface, borderWidth: 1, borderColor: c.line }}>
+      <View style={{ height: 34, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, gap: 10, borderBottomWidth: 1, borderBottomColor: c.line }}>
         <View style={{ flexDirection: "row", gap: 6 }}>
           {["#E8A598", "#E9CB8A", "#A9CDB5"].map((col) => (
-            <View key={col} style={[styles.dot, { backgroundColor: col }]} />
+            <View key={col} style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: col }} />
           ))}
         </View>
         {label ? (
-          <View style={styles.url}>
-            <Text style={styles.urlText} numberOfLines={1}>
+          <View style={{ flex: 1, maxWidth: 320, height: 20, borderRadius: 6, backgroundColor: c.bg, justifyContent: "center", paddingHorizontal: 10 }}>
+            <Text style={{ fontFamily: font.medium, fontSize: 10.5, color: c.muted, textAlign: "center" }} numberOfLines={1}>
               {label}
             </Text>
           </View>
@@ -111,10 +112,11 @@ export function BrowserFrame({ children, label, aspect }: { children: ReactNode;
 
 /** Rounded phone frame for vertical video. */
 export function PhoneFrame({ children, width }: { children: ReactNode; width: number }) {
+  const c = useColors();
   return (
-    <View style={[styles.phone, { width, height: (width - 16) * (16 / 9) + 16 }]}>
-      <View style={styles.phoneScreen}>{children}</View>
-      <View style={styles.notch} />
+    <View style={{ borderRadius: 34, backgroundColor: c.ink, padding: 8, alignSelf: "center", width, height: (width - 16) * (16 / 9) + 16 }}>
+      <View style={{ flex: 1, borderRadius: 27, overflow: "hidden", backgroundColor: c.bgDeep }}>{children}</View>
+      <View style={{ position: "absolute", top: 14, alignSelf: "center", width: 70, height: 18, borderRadius: 9, backgroundColor: c.ink }} />
     </View>
   );
 }
@@ -126,8 +128,9 @@ export function MediaFor({ media, active, screenIndex, onScreenIndex, controls }
 }
 
 export function Thumbs({ screens, index, onIndex }: { screens: { label: string; source: ImageSourcePropType }[]; index: number; onIndex: (i: number) => void }) {
+  const c = useColors();
   return (
-    <View style={styles.thumbs}>
+    <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 10, marginTop: 16 }}>
       {screens.map((s, k) => {
         const on = k === index;
         return (
@@ -138,15 +141,15 @@ export function Thumbs({ screens, index, onIndex }: { screens: { label: string; 
             accessibilityState={{ selected: on }}
             accessibilityLabel={s.label}
             style={(st) => [
-              styles.thumb,
+              { width: 118, borderWidth: 1.5, borderRadius: 11, padding: 3 },
               { borderColor: on ? c.ink : "transparent", opacity: on ? 1 : (st as InteractionState).hovered ? 0.9 : 0.6 },
               web({ transition: "all 200ms ease" }),
             ]}
           >
-            <View style={styles.thumbImg}>
+            <View style={{ width: 108, height: 77, borderRadius: 8, overflow: "hidden", backgroundColor: c.bgDeep }}>
               <Image source={s.source} style={{ width: "100%", height: "100%" }} resizeMode="cover" />
             </View>
-            <Text style={[styles.thumbLabel, on && { color: c.ink }]} numberOfLines={1}>
+            <Text style={[{ fontFamily: font.medium, fontSize: 11, color: c.muted, marginTop: 5, marginLeft: 3 }, on && { color: c.ink }]} numberOfLines={1}>
               {s.label}
             </Text>
           </Pressable>
@@ -160,16 +163,4 @@ const COVER = { position: "absolute", top: 0, left: 0, width: "100%", height: "1
 
 const styles = StyleSheet.create({
   fill: { width: "100%", height: "100%", overflow: "hidden" },
-  browser: { borderRadius: 16, overflow: "hidden", backgroundColor: c.surface, borderWidth: 1, borderColor: c.line },
-  browserBar: { height: 34, flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 12, gap: 10, borderBottomWidth: 1, borderBottomColor: c.line },
-  dot: { width: 9, height: 9, borderRadius: 5 },
-  url: { flex: 1, maxWidth: 320, height: 20, borderRadius: 6, backgroundColor: c.bg, justifyContent: "center", paddingHorizontal: 10 },
-  urlText: { fontFamily: font.medium, fontSize: 10.5, color: c.muted, textAlign: "center" },
-  phone: { borderRadius: 34, backgroundColor: c.ink, padding: 8, alignSelf: "center" },
-  phoneScreen: { flex: 1, borderRadius: 27, overflow: "hidden", backgroundColor: c.bgDeep },
-  notch: { position: "absolute", top: 14, alignSelf: "center", width: 70, height: 18, borderRadius: 9, backgroundColor: c.ink },
-  thumbs: { flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 10, marginTop: 16 },
-  thumb: { width: 118, borderWidth: 1.5, borderRadius: 11, padding: 3 },
-  thumbImg: { width: 108, height: 77, borderRadius: 8, overflow: "hidden", backgroundColor: c.bgDeep },
-  thumbLabel: { fontFamily: font.medium, fontSize: 11, color: c.muted, marginTop: 5, marginLeft: 3 },
 });
