@@ -12,10 +12,10 @@
   var metaTheme = $('meta[name="theme-color"]');
   function applyTheme(t) {
     root.setAttribute("data-theme", t);
-    if (metaTheme) metaTheme.setAttribute("content", t === "dark" ? "#0e0d1f" : "#f6f4fb");
+    if (metaTheme) metaTheme.setAttribute("content", t === "dark" ? "#0c1512" : "#eef0ec");
     try { localStorage.setItem("theme", t); } catch (e) {}
   }
-  if (metaTheme && root.getAttribute("data-theme") === "dark") metaTheme.setAttribute("content", "#0e0d1f");
+  if (metaTheme && root.getAttribute("data-theme") === "dark") metaTheme.setAttribute("content", "#0c1512");
   if (themeBtn) themeBtn.addEventListener("click", function () {
     applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
   });
