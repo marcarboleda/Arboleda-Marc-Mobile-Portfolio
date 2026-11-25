@@ -401,10 +401,14 @@ dialog[open] .case-inner { animation: pop 500ms cubic-bezier(.2,.9,.2,1) both; }
 /* ---------- Responsive ---------- */
 @media (max-width: 1000px) {
   .landing-grid { grid-template-columns: 1fr; gap: 36px; }
-  .landing-art { order: -1; width: 132px; justify-self: start; }
-  .arch { aspect-ratio: 1; border-radius: 50%; border: 4px solid var(--surface); box-shadow: var(--shadow-md); }
-  .arch img { object-position: center 12%; }
-  .landing-grid { gap: 24px; }
+  .landing-art { order: -1; width: min(460px, 100%); height: 230px; justify-self: start; margin-top: 56px; }
+  .landing-art::before { content: ""; position: absolute; inset: 0; border-radius: 30px; border: 1px solid var(--line); background:
+      radial-gradient(circle at 50% 135%, transparent 0 34%, color-mix(in srgb, var(--c1) 38%, transparent) 34.4% 35%, transparent 35.4% 52%, color-mix(in srgb, var(--c2) 32%, transparent) 52.4% 53%, transparent 53.4% 72%, color-mix(in srgb, var(--c4) 30%, transparent) 72.4% 73%, transparent 73.4%),
+      linear-gradient(135deg, color-mix(in srgb, var(--c1) 26%, var(--lilac)), color-mix(in srgb, var(--c2) 24%, var(--mint))); }
+  .arch { position: absolute; left: 50%; bottom: 0; translate: -50% 0; width: 214px; aspect-ratio: 4 / 5; border-radius: 999px 999px 0 0; background: var(--surface); box-shadow: 0 -6px 30px -10px rgba(16, 26, 23, 0.35); }
+  .arch img { object-position: center 14%; }
+  .landing-art::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30px; border-radius: 0 0 30px 30px; background: linear-gradient(transparent, color-mix(in srgb, var(--ink) 8%, transparent)); pointer-events: none; }
+  .landing-grid { gap: 28px; }
   .landing { padding-top: 110px; }
   .scroll-cue { display: none; }
   .journey-grid { grid-template-columns: 1fr; }
@@ -424,7 +428,8 @@ dialog[open] .case-inner { animation: pop 500ms cubic-bezier(.2,.9,.2,1) both; }
 }
 
 @media (max-width: 640px) {
-  .landing-art { width: 108px; }
+  .landing-art { height: 220px; }
+  .arch { width: 200px; }
   .skill-grid { grid-template-columns: 1fr; }
   body { font-size: 16.5px; }
   .nav-resume { display: none; }
