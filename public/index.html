@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marc Arboleda — UI/UX · Data · Software</title>
+  <meta name="description" content="Portfolio of Marc Bradley Arboleda, Computer Science student at De La Salle Lipa. Open to internships in UI design, data analytics, QA and data management.">
+  <meta property="og:title" content="Marc Arboleda — Portfolio">
+  <meta property="og:description" content="CS student at De La Salle Lipa — UI/UX design, data analysis, and software development.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#F6F4FB">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (!t) t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      d.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-sheets" viewBox="0 0 24 24" fill="currentColor"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></symbol>
+<symbol id="i-excel" viewBox="0 0 512 512" fill="currentColor"><path fill="currentColor" d="M453.547 273.449H372.12v-40.714h81.427zm0 23.264H372.12v40.714h81.427zm0-191.934H372.12v40.713h81.427zm0 63.978H372.12v40.713h81.427zm0 191.934H372.12v40.714h81.427zm56.242 80.264c-2.326 12.098-16.867 12.388-26.58 12.796H302.326v52.345h-36.119L0 459.566V52.492L267.778 5.904h34.548v46.355h174.66c9.83.407 20.648-.291 29.197 5.583c5.991 8.608 5.41 19.543 5.817 29.43l-.233 302.791c-.29 16.925 1.57 34.2-1.978 50.892m-296.51-91.256c-16.052-32.57-32.395-64.909-48.39-97.48c15.82-31.698 31.408-63.512 46.937-95.327c-13.203.64-26.406 1.454-39.55 2.385c-9.83 23.904-21.288 47.169-28.965 71.888c-7.154-23.323-16.634-45.774-25.3-68.515c-12.796.698-25.592 1.454-38.387 2.21c13.493 29.78 27.86 59.15 40.946 89.104c-15.413 29.081-29.837 58.57-44.785 87.825c12.737.523 25.475 1.047 38.212 1.221c9.074-23.148 20.357-45.424 28.267-69.038c7.096 25.359 19.135 48.798 29.023 73.051c14.017.99 27.976 1.862 41.993 2.676M484.26 79.882H302.326v24.897h46.53v40.713h-46.53v23.265h46.53v40.713h-46.53v23.265h46.53v40.714h-46.53v23.264h46.53v40.714h-46.53v23.264h46.53v40.714h-46.53v26.897H484.26z"/></symbol>
+<symbol id="i-python" viewBox="0 0 24 24" fill="currentColor"><path d="M11.858 0c-.978.005-1.913.088-2.736.234C6.7.662 6.26 1.558 6.26 3.21v2.182h5.725v.727H4.111c-1.664 0-3.121 1-3.577 2.903-.526 2.181-.549 3.542 0 5.82.407 1.694 1.379 2.902 3.043 2.902h1.969v-2.616c0-1.89 1.635-3.557 3.576-3.557h5.72c1.591 0 2.862-1.31 2.862-2.91v-5.45c0-1.553-1.309-2.718-2.863-2.977A18 18 0 0 0 11.858 0M8.762 1.755c.591 0 1.074.491 1.074 1.095 0 .601-.483 1.087-1.074 1.087A1.08 1.08 0 0 1 7.688 2.85c0-.604.48-1.095 1.074-1.095m9.656 4.364v2.543c0 1.971-1.671 3.63-3.577 3.63H9.122c-1.566 0-2.862 1.34-2.862 2.91v5.452c0 1.551 1.349 2.464 2.862 2.91 1.813.532 3.55.628 5.72 0 1.44-.418 2.862-1.258 2.862-2.91V18.47h-5.719v-.727h8.582c1.664 0 2.284-1.16 2.862-2.903.598-1.793.573-3.518 0-5.819-.41-1.656-1.196-2.903-2.862-2.903zm-3.216 13.807a1.08 1.08 0 0 1 1.074 1.088c0 .604-.48 1.094-1.074 1.094-.592 0-1.075-.49-1.075-1.094 0-.601.483-1.088 1.075-1.088"/></symbol>
+<symbol id="i-r" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.746c-6.627 0-12 3.599-12 8.037 0 3.897 4.144 7.144 9.64 7.88V16.26c-2.924-.915-4.925-2.755-4.925-4.877 0-3.035 4.084-5.494 9.12-5.494 5.038 0 8.757 1.683 8.757 5.494 0 1.976-.999 3.379-2.662 4.272.09.066.174.128.258.216.169.149.25.363.372.544 2.128-1.45 3.44-3.437 3.44-5.631 0-4.44-5.373-8.038-12-8.038zm-2.111 4.99v13.516l4.093-.002-.002-5.291h1.1c.225 0 .321.066.549.25.272.22.715.982.715.982l2.164 4.063 4.627-.002-2.864-4.826s-.086-.193-.265-.383a2.22 2.22 0 00-.582-.416c-.422-.214-1.149-.434-1.149-.434s3.578-.264 3.578-3.826c0-3.562-3.744-3.63-3.744-3.63zm4.127 2.93l2.478.002s1.149-.062 1.149 1.127c0 1.165-1.149 1.17-1.149 1.17h-2.478zm1.754 6.119c-.494.049-1.012.079-1.54.088v1.807a16.622 16.622 0 002.37-.473l-.471-.891s-.108-.183-.248-.394c-.039-.054-.08-.098-.111-.137z"/></symbol>
+<symbol id="i-mysql" viewBox="0 0 24 24" fill="currentColor"><path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.18.214.273.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.695h-.927a50.854 50.854 0 00-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01a72.892 72.892 0 00-.195 4.41H0c.055-1.966.192-3.81.41-5.53h1.15l1.335 4.064h.008l1.347-4.064h1.095c.242 2.015.384 3.86.428 5.53zm4.017-4.08c-.378 2.045-.876 3.533-1.492 4.46-.482.716-1.01 1.073-1.583 1.073-.153 0-.34-.046-.566-.138v-.494c.11.017.24.026.386.026.268 0 .483-.075.647-.222.197-.18.295-.382.295-.605 0-.155-.077-.47-.23-.944L6.23 14.615h.91l.727 2.36c.164.536.233.91.205 1.123.4-1.064.678-2.227.835-3.483zm12.325 4.08h-2.63v-5.53h.885v4.85h1.745zm-3.32.135l-1.016-.5c.09-.076.177-.158.255-.25.433-.506.648-1.258.648-2.253 0-1.83-.718-2.746-2.155-2.746-.704 0-1.254.232-1.65.697-.43.508-.646 1.256-.646 2.245 0 .972.19 1.686.574 2.14.35.41.877.615 1.583.615.264 0 .506-.033.725-.098l1.325.772.36-.622zM15.5 17.588c-.225-.36-.337-.94-.337-1.736 0-1.393.424-2.09 1.27-2.09.443 0 .77.167.977.5.224.362.336.936.336 1.723 0 1.404-.424 2.108-1.27 2.108-.445 0-.77-.167-.978-.5zm-1.658-.425c0 .47-.172.856-.516 1.156-.344.3-.803.45-1.384.45-.543 0-1.064-.172-1.573-.515l.237-.476c.438.22.833.328 1.19.328.332 0 .593-.073.783-.22a.754.754 0 00.3-.615c0-.33-.23-.61-.648-.845-.388-.213-1.163-.657-1.163-.657-.422-.307-.632-.636-.632-1.177 0-.45.157-.81.47-1.085.315-.278.72-.415 1.22-.415.512 0 .98.136 1.4.41l-.213.476a2.726 2.726 0 00-1.064-.23c-.283 0-.502.068-.654.206a.685.685 0 00-.248.524c0 .328.234.61.666.85.393.215 1.187.67 1.187.67.433.305.648.63.648 1.168zm9.382-5.852c-.535-.014-.95.04-1.297.188-.1.04-.26.04-.274.167.055.053.063.14.11.214.08.134.218.313.346.407.14.11.28.216.427.31.26.16.555.255.81.416.145.094.293.213.44.313.073.05.12.14.214.172v-.02c-.046-.06-.06-.147-.105-.214-.067-.067-.134-.127-.2-.193a3.223 3.223 0 00-.695-.675c-.214-.146-.682-.35-.77-.595l-.013-.014c.146-.013.32-.066.46-.106.227-.06.435-.047.67-.106.106-.027.213-.06.32-.094v-.06c-.12-.12-.21-.283-.334-.395a8.867 8.867 0 00-1.104-.823c-.21-.134-.476-.22-.697-.334-.08-.04-.214-.06-.26-.127-.12-.146-.19-.34-.275-.514a17.69 17.69 0 01-.547-1.163c-.12-.262-.193-.523-.34-.763-.69-1.137-1.437-1.826-2.586-2.5-.247-.14-.543-.2-.856-.274-.167-.008-.334-.02-.5-.027-.11-.047-.216-.174-.31-.235-.38-.24-1.364-.76-1.644-.072-.18.434.267.862.422 1.082.115.153.26.328.34.5.047.116.06.235.107.356.106.294.207.622.347.897.073.14.153.287.247.413.054.073.146.107.167.227-.094.136-.1.334-.154.5-.24.757-.146 1.693.194 2.25.107.166.362.534.703.393.3-.12.234-.5.32-.835.02-.08.007-.133.048-.187v.015c.094.188.188.367.274.555.206.328.566.668.867.895.16.12.287.328.487.402v-.02h-.015c-.043-.058-.1-.086-.154-.133a3.445 3.445 0 01-.35-.4 8.76 8.76 0 01-.747-1.218c-.11-.21-.202-.436-.29-.643-.04-.08-.04-.2-.107-.24-.1.146-.247.273-.32.453-.127.288-.14.642-.188 1.01-.027.007-.014 0-.027.014-.214-.052-.287-.274-.367-.46-.2-.475-.233-1.238-.06-1.785.047-.14.247-.582.167-.716-.042-.127-.174-.2-.247-.303a2.478 2.478 0 01-.24-.427c-.16-.374-.24-.788-.414-1.162-.08-.173-.22-.354-.334-.513-.127-.18-.267-.307-.368-.52-.033-.073-.08-.194-.027-.274.014-.054.042-.075.094-.09.088-.072.335.022.422.062.247.1.455.194.662.334.094.066.195.193.315.226h.14c.214.047.455.014.655.073.355.114.675.28.962.46a5.953 5.953 0 012.085 2.286c.08.154.115.295.188.455.14.33.313.663.455.982.14.315.275.636.476.897.1.14.502.213.682.286.133.06.34.115.46.188.23.14.454.3.67.454.11.076.443.243.463.378z"/></symbol>
+<symbol id="i-ts" viewBox="0 0 24 24" fill="currentColor"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></symbol>
+<symbol id="i-react" viewBox="0 0 24 24" fill="currentColor"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z"/></symbol>
+<symbol id="i-unity" viewBox="0 0 24 24" fill="currentColor"><path d="m12.9288 4.2939 3.7997 2.1929c.1366.077.1415.2905 0 .3675l-4.515 2.6076a.4192.4192 0 0 1-.4246 0L7.274 6.8543c-.139-.0745-.1415-.293 0-.3675l3.7972-2.193V0L1.3758 5.5977V16.793l3.7177-2.1456v-4.3858c-.0025-.1565.1813-.2682.318-.1838l4.5148 2.6076a.4252.4252 0 0 1 .2136.3676v5.2127c.0025.1565-.1813.2682-.3179.1838l-3.7996-2.1929-3.7178 2.1457L12 24l9.6954-5.5977-3.7178-2.1457-3.7996 2.1929c-.1341.082-.3229-.0248-.3179-.1838V13.053c0-.1565.087-.2956.2136-.3676l4.5149-2.6076c.134-.082.3228.0224.3179.1838v4.3858l3.7177 2.1456V5.5977L12.9288 0Z"/></symbol>
+<symbol id="i-supabase" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></symbol>
+<symbol id="i-git" viewBox="0 0 24 24" fill="currentColor"><path d="M13.09 23.549a1.54 1.54 0 0 1-2.18 0L.451 13.089a1.54 1.54 0 0 1 0-2.179l7.191-7.19 2.733 2.733a1.85 1.85 0 0 0 .964 2.326v6.66a1.849 1.849 0 1 0 1.54 0V8.957l2.508 2.508a1.85 1.85 0 1 0 1.09-1.09l-2.634-2.634a1.85 1.85 0 0 0-2.378-2.377L8.73 2.63 10.91.451a1.54 1.54 0 0 1 2.179 0l10.459 10.46a1.54 1.54 0 0 1 0 2.179z"/></symbol>
+<symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+<symbol id="i-word" viewBox="0 0 512 512" fill="currentColor"><path fill="currentColor" d="M488.877 52.447H302.306V5.92h-34.779L0 52.563v406.99l265.957 46.527h36.349v-46.353h174.59c9.887-.465 20.879.291 29.37-5.757c6.804-10.41 5.06-23.438 5.641-35.186V75.012c1.221-13.26-9.77-23.903-23.03-22.565m-294.862 282.59c-9.712 5.06-24.252-.233-35.767.581c-7.735-38.5-16.75-76.768-23.67-115.443c-6.805 37.57-15.645 74.79-23.438 112.128c-11.166-.581-22.39-1.28-33.615-2.035c-9.655-51.18-20.995-102.01-30.01-153.305c9.945-.465 19.948-.872 29.893-1.221c5.99 37.047 12.795 73.919 18.03 111.024c8.2-38.036 16.574-76.071 24.717-114.106c11.05-.64 22.1-1.105 33.15-1.687c7.735 39.257 15.644 78.455 24.019 117.537c6.572-40.361 13.841-80.607 20.879-120.91c11.631-.407 23.263-1.047 34.836-1.745c-13.143 56.355-24.659 113.176-39.024 169.182m290.212 97.069H302.306v-36.527h151.21v-23.263h-151.21v-29.079h151.21v-23.263h-151.21v-29.08h151.21v-23.262h-151.21v-29.08h151.21V215.29h-151.21v-29.08h151.21v-23.263h-151.21v-29.079h151.21v-23.263h-151.21v-30.71h181.921z"/></symbol>
+<symbol id="i-chatgpt" viewBox="0 0 256 260" fill="currentColor"><path d="M239.184 106.203a64.72 64.72 0 0 0-5.576-53.103C219.452 28.459 191 15.784 163.213 21.74A65.586 65.586 0 0 0 52.096 45.22a64.72 64.72 0 0 0-43.23 31.36c-14.31 24.602-11.061 55.634 8.033 76.74a64.67 64.67 0 0 0 5.525 53.102c14.174 24.65 42.644 37.324 70.446 31.36a64.72 64.72 0 0 0 48.754 21.744c28.481.025 53.714-18.361 62.414-45.481a64.77 64.77 0 0 0 43.229-31.36c14.137-24.558 10.875-55.423-8.083-76.483m-97.56 136.338a48.4 48.4 0 0 1-31.105-11.255l1.535-.87l51.67-29.825a8.6 8.6 0 0 0 4.247-7.367v-72.85l21.845 12.636c.218.111.37.32.409.563v60.367c-.056 26.818-21.783 48.545-48.601 48.601M37.158 197.93a48.35 48.35 0 0 1-5.781-32.589l1.534.921l51.722 29.826a8.34 8.34 0 0 0 8.441 0l63.181-36.425v25.221a.87.87 0 0 1-.358.665l-52.335 30.184c-23.257 13.398-52.97 5.431-66.404-17.803M23.549 85.38a48.5 48.5 0 0 1 25.58-21.333v61.39a8.29 8.29 0 0 0 4.195 7.316l62.874 36.272l-21.845 12.636a.82.82 0 0 1-.767 0L41.353 151.53c-23.211-13.454-31.171-43.144-17.804-66.405zm179.466 41.695l-63.08-36.63L161.73 77.86a.82.82 0 0 1 .768 0l52.233 30.184a48.6 48.6 0 0 1-7.316 87.635v-61.391a8.54 8.54 0 0 0-4.4-7.213m21.742-32.69l-1.535-.922l-51.619-30.081a8.39 8.39 0 0 0-8.492 0L99.98 99.808V74.587a.72.72 0 0 1 .307-.665l52.233-30.133a48.652 48.652 0 0 1 72.236 50.391zM88.061 139.097l-21.845-12.585a.87.87 0 0 1-.41-.614V65.685a48.652 48.652 0 0 1 79.757-37.346l-1.535.87l-51.67 29.825a8.6 8.6 0 0 0-4.246 7.367zm11.868-25.58L128.067 97.3l28.188 16.218v32.434l-28.086 16.218l-28.188-16.218z"/></symbol>
+<symbol id="i-claude" viewBox="0 0 24 24" fill="currentColor"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></symbol>
+<symbol id="i-jupyter" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M7.157 22.201A1.784 1.799 0 0 1 5.374 24a1.784 1.799 0 0 1-1.784-1.799a1.784 1.799 0 0 1 1.784-1.799a1.784 1.799 0 0 1 1.783 1.799M20.582 1.427a1.415 1.427 0 0 1-1.415 1.428a1.415 1.427 0 0 1-1.416-1.428A1.415 1.427 0 0 1 19.167 0a1.415 1.427 0 0 1 1.415 1.427M4.992 3.336A1.047 1.056 0 0 1 3.946 4.39a1.047 1.056 0 0 1-1.047-1.055A1.047 1.056 0 0 1 3.946 2.28a1.047 1.056 0 0 1 1.046 1.056m7.336 1.517c3.769 0 7.06 1.38 8.768 3.424a9.36 9.36 0 0 0-3.393-4.547a9.24 9.24 0 0 0-5.377-1.728A9.24 9.24 0 0 0 6.95 3.73a9.36 9.36 0 0 0-3.394 4.547c1.713-2.04 5.004-3.424 8.772-3.424m.001 13.295c-3.768 0-7.06-1.381-8.768-3.425a9.36 9.36 0 0 0 3.394 4.547A9.24 9.24 0 0 0 12.33 21a9.24 9.24 0 0 0 5.377-1.729a9.36 9.36 0 0 0 3.393-4.547c-1.712 2.044-5.003 3.425-8.772 3.425Z"/></symbol>
+<symbol id="i-colab" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M16.941 4.976a7.03 7.03 0 0 0-4.93 2.064a7.033 7.033 0 0 0-.124 9.807l2.395-2.395a3.646 3.646 0 0 1 5.15-5.148l2.397-2.399a7.03 7.03 0 0 0-4.888-1.93m-9.871.01a7.03 7.03 0 0 0-4.888 1.931l2.391 2.391a3.643 3.643 0 0 1 5.023.127l1.734-2.973l-.1-.08a7.03 7.03 0 0 0-4.16-1.396m15.01 2.172l-2.39 2.39a3.646 3.646 0 0 1-5.15 5.15l-2.406 2.407a7.036 7.036 0 0 0 9.945-9.947m-20.148.01a7.033 7.033 0 0 0-.002 9.681l2.397-2.397a3.643 3.643 0 0 1-.004-4.892zm7.664 7.423a3.635 3.635 0 0 1-5.017.113L2.182 17.1a7.03 7.03 0 0 0 9.007.546l.137-.112z"/></symbol>
+<symbol id="i-gemini" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68q.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58a12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68q-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96q2.19.93 3.81 2.55t2.55 3.81"/></symbol>
+<symbol id="i-figma" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491M12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539m-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019c1.705 0 3.093-1.376 3.093-3.068v-2.97zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49m-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019z"/></symbol>
+<symbol id="i-canva" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12s12-5.373 12-12S18.627 0 12 0M6.962 7.68c.754 0 1.337.549 1.405 1.2c.069.583-.171 1.097-.822 1.406c-.343.171-.48.172-.549.069c-.034-.069 0-.137.069-.206c.617-.514.617-.926.548-1.508c-.034-.378-.308-.618-.583-.618c-1.2 0-2.914 2.674-2.674 4.629c.103.754.549 1.646 1.509 1.646c.308 0 .65-.103.96-.24c.5-.264.799-.47 1.097-.8c-.073-.885.704-2.046 1.851-2.046c.515 0 .926.205.96.583c.068.514-.377.582-.514.582s-.378-.034-.378-.17c-.034-.138.309-.07.275-.378c-.035-.206-.24-.274-.446-.274c-.72 0-1.131.994-1.029 1.611c.035.275.172.549.447.549c.205 0 .514-.31.617-.755c.068-.308.343-.514.583-.514c.102 0 .17.034.205.171v.138c-.034.137-.137.548-.102.651c0 .069.034.171.17.171c.092 0 .436-.18.777-.459c.117-.59.253-1.298.253-1.357c.034-.24.137-.48.617-.48c.103 0 .171.034.205.171v.138l-.136.617c.445-.583 1.097-.994 1.508-.994c.172 0 .309.102.309.274c0 .103 0 .274-.069.446c-.137.377-.309.96-.412 1.474c0 .137.035.274.207.274s.685-.206 1.096-.754l.007-.004c-.002-.068-.007-.134-.007-.202c0-.411.035-.754.104-.994c.068-.274.411-.514.617-.514c.103 0 .205.069.205.171c0 .035 0 .103-.034.137c-.137.446-.24.857-.24 1.269c0 .24.034.582.102.788c0 .034.035.069.07.069c.068 0 .548-.445.89-1.028c-.308-.206-.48-.549-.48-.96c0-.72.446-1.097.858-1.097c.343 0 .617.24.617.72c0 .308-.103.65-.274.96h.102a.77.77 0 0 0 .584-.24a.3.3 0 0 1 .134-.117c.335-.425.83-.74 1.41-.74c.48 0 .924.205.959.582c.068.515-.378.618-.515.618l-.002-.002c-.138 0-.377-.035-.377-.172s.309-.068.274-.376c-.034-.206-.24-.275-.446-.275c-.686 0-1.13.891-1.028 1.611c.034.275.171.583.445.583c.206 0 .515-.308.652-.754c.068-.274.343-.514.583-.514c.103 0 .17.034.205.171c0 .069 0 .206-.137.652c-.17.308-.171.48-.137.617c.034.274.171.48.309.583c.034.034.068.102.068.102c0 .069-.034.138-.137.138c-.034 0-.068 0-.103-.035c-.514-.205-.72-.548-.789-.891c-.205.24-.445.377-.72.377c-.445 0-.89-.411-.96-.926a1.6 1.6 0 0 1 .075-.649c-.203.13-.422.203-.623.203h-.17c-.447.652-.927 1.098-1.27 1.303a.9.9 0 0 1-.377.104c-.068 0-.171-.035-.205-.104c-.095-.152-.156-.392-.193-.667c-.481.527-1.145.805-1.453.805c-.343 0-.548-.206-.582-.55v-.376c.102-.754.377-1.2.377-1.337a.074.074 0 0 0-.069-.07c-.24 0-1.028.824-1.166 1.373l-.103.445c-.068.309-.377.515-.582.515c-.103 0-.172-.035-.206-.172v-.137l.046-.233c-.435.31-.87.508-1.075.508c-.308 0-.48-.172-.514-.412c-.206.274-.445.412-.754.412c-.352 0-.696-.24-.862-.593c-.244.275-.523.553-.852.764c-.48.309-1.028.549-1.68.549c-.582 0-1.097-.309-1.371-.583c-.412-.377-.651-.96-.686-1.509c-.205-1.68.823-3.84 2.4-4.8c.378-.205.755-.343 1.132-.343m9.77 3.291c-.104 0-.172.172-.172.343c0 .274.137.583.309.755a1.7 1.7 0 0 0 .102-.583c0-.343-.137-.515-.24-.515z"/></symbol>
+</svg>
+<a class="skip" href="#about">Skip intro</a>
+
+<!-- ================= Floating navigation ================= -->
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="nav-brand" href="#landing" aria-label="Marc Arboleda, back to start">
+      <span class="logo">M<i></i></span><span class="nav-name">Marc Arboleda</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" data-spy="about">About</a></li>
+      <li><a href="#projects" data-spy="projects">Projects</a></li>
+      <li><a href="#skills" data-spy="skills">Skills</a></li>
+      <li><a href="#journey" data-spy="journey">Journey</a></li>
+      <li><a href="#contact" data-spy="contact">Contact</a></li>
+    </ul>
+    <div class="nav-tools">
+      <a class="pill pill-ghost nav-resume" href="Marc-Arboleda-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <button class="icon-btn theme-btn" type="button" aria-label="Switch color theme" title="Switch color theme">
+        <svg class="ico-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ================= Landing ================= -->
+  <section class="landing" id="landing" data-section="landing" aria-label="Introduction">
+    <div class="orbs" aria-hidden="true">
+      <i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i>
+    </div>
+
+    <div class="landing-grid">
+      <div class="landing-text">
+
+        <h1 class="name" aria-label="Marc Bradley Arboleda">
+          <span class="line" data-split>Marc Bradley</span>
+          <span class="line grad" data-split>Arboleda</span>
+        </h1>
+
+        <p class="role in-up" style="--d:900ms">
+          Computer Science student crafting
+          <span class="rotator" aria-live="polite">
+            <span class="on">UI &amp; UX design</span>
+            <span>data analysis</span>
+            <span>software</span>
+            <span>quality assurance</span>
+          </span>
+        </p>
+
+        <p class="intro in-up" style="--d:1050ms">Fourth-year at De La Salle Lipa. I like turning complicated information into something people can actually use.</p>
+
+        <div class="cta in-up" style="--d:1200ms">
+          <a class="pill pill-solid" href="#projects">Explore my work <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="pill pill-soft" href="Marc-Arboleda-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+
+      <div class="landing-art in-up" style="--d:500ms">
+        <figure class="arch"><img src="assets/images/marc.jpg" width="1000" height="1000" alt="Portrait of Marc Arboleda" fetchpriority="high"></figure>
+      </div>
+    </div>
+
+    <a class="scroll-cue in-up" style="--d:1500ms" href="#about" aria-label="Scroll to about">
+      <span class="mouse" aria-hidden="true"><i></i></span><span>Scroll</span>
+    </a>
+  </section>
+
+  <!-- ================= About ================= -->
+  <section class="section" id="about" data-section="about" aria-labelledby="h-about">
+    <div class="wrap">
+      <div class="about">
+        <h2 id="h-about" class="reveal">About me</h2>
+        <div class="about-body">
+          <div class="about-text reveal">
+            <p>I'm a Computer Science student who enjoys working on projects that combine design, technology, and data. I like figuring out how things work, finding ways to improve them, and making systems easier for people to use.</p>
+            <p>Through academic projects and my experience in student organizations, I've worked on application interfaces, data management, visualization, and software development. I'm always looking to learn new things and improve how I approach problems.</p>
+          </div>
+          <dl class="about-facts reveal">
+            <div><dt>Studying</dt><dd>BS Computer Science, De La Salle Lipa (4th year)</dd></div>
+            <div><dt>Based in</dt><dd>Laguna, Philippines. Open to remote or on-site</dd></div>
+            <div><dt>Looking for</dt><dd>Internships in UI design, data analytics, QA, and data management</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Projects ================= -->
+  <section class="section" id="projects" data-section="projects" aria-labelledby="h-projects">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="h-projects">Projects</h2>
+        <p class="lede">A few projects I've worked on through academics and organizational experience. Open any card to read the case study.</p>
+      </div>
+
+      <div class="works">
+        <article class="work reveal" data-open="dlg-tabula" tabindex="0" role="button" aria-label="Open case study: Tabula Rasa">
+          <div class="work-media tint-lilac"><div class="shot phone"><video class="autoplay" autoplay muted loop playsinline preload="auto" poster="assets/media/tabula-poster.jpg" aria-label="Tabula Rasa study recruitment story, preview"><source src="assets/media/tabula-story.mp4" type="video/mp4"></video></div></div>
+          <div class="work-info">
+            <p class="work-num">01 <span>Game UI · Research data · 2026</span></p>
+            <h3>Tabula Rasa</h3>
+            <p>A game that teaches reinforcement learning. Players shape the rewards, watch a creature learn to walk, then send it out to steal eggs.</p>
+            <ul class="chips"><li>UI design</li><li>Data analysis</li><li>Unity</li></ul>
+            <span class="more">View <i aria-hidden="true">→</i></span>
+          </div>
+        </article>
+        <article class="work reveal" data-open="dlg-dairy" tabindex="0" role="button" aria-label="Open case study: Dairy Farm Management System">
+          <div class="work-media tint-peach"><div class="shot"><div class="slides" role="img" aria-label="Dairy farm system screens, preview">
+              <img src="assets/media/inv-dashboard.jpg" width="1440" height="1024" alt="" style="--i:0">
+              <img src="assets/media/inv-milk.jpg" alt="" loading="lazy" style="--i:1">
+              <img src="assets/media/inv-animal.jpg" alt="" loading="lazy" style="--i:2">
+              <img src="assets/media/inv-calving.jpg" alt="" loading="lazy" style="--i:3">
+              <img src="assets/media/inv-medicine.jpg" alt="" loading="lazy" style="--i:4">
+            </div></div></div>
+          <div class="work-info">
+            <p class="work-num">02 <span>UI design · Dashboard · 2025</span></p>
+            <h3>Dairy Farm Management System</h3>
+            <p>One place for a dairy farm to track its herd, calving, milk production, and animal and medicine stock.</p>
+            <ul class="chips"><li>UI design</li><li>Dashboard</li><li>Design system</li></ul>
+            <span class="more">View <i aria-hidden="true">→</i></span>
+          </div>
+        </article>
+        <article class="work reveal" data-open="dlg-member" tabindex="0" role="button" aria-label="Open case study: Membership Database">
+          <div class="work-media tint-mint"><div class="shot"><video class="autoplay" autoplay muted loop playsinline preload="auto" poster="assets/media/membership-poster.jpg" aria-label="Membership database walkthrough, preview (fictional members)"><source src="assets/media/membership-walkthrough.mp4" type="video/mp4"></video></div></div>
+          <div class="work-info">
+            <p class="work-num">03 <span>Data visualization · Google Sheets · 2026</span></p>
+            <h3>Membership Database</h3>
+            <p>The org's member list, rebuilt so anyone can read the membership at a glance.</p>
+            <ul class="chips"><li>Google Sheets</li><li>Data visualization</li><li>Data validation</li></ul>
+            <span class="more">View <i aria-hidden="true">→</i></span>
+          </div>
+        </article>
+        </div>
+    </div>
+  </section>
+
+  <!-- ================= Skills & tools ================= -->
+  <section class="section" id="skills" data-section="skills" aria-labelledby="h-skills">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="h-skills">Skills &amp; <span class="grad">tools</span></h2>
+      </div>
+
+      <div class="skill-grid">
+        <div class="card skill tint-mint reveal" style="--d:0ms">
+          <h3><i class="dot d-mint"></i>Data Analytics</h3>
+          <ul class="chips big"><li>Data Cleaning</li><li>Data Preparation</li><li>Data Validation</li><li>Exploratory Data Analysis (EDA)</li><li>Data Visualization</li><li>Data Interpretation</li><li>Statistical Analysis</li><li>Data Reporting</li></ul>
+        </div>
+        <div class="card skill tint-lilac reveal" style="--d:100ms">
+          <h3><i class="dot d-violet"></i>Database Management</h3>
+          <ul class="chips big"><li>Database Design</li><li>Data Organization</li><li>SQL Queries</li><li>Data Management</li><li>Data Retrieval</li></ul>
+        </div>
+        <div class="card skill tint-peach reveal" style="--d:200ms">
+          <h3><i class="dot d-peach"></i>Programming &amp; Development</h3>
+          <ul class="chips big"><li>Python Programming</li><li>R Programming</li><li>Application Development</li><li>Problem Solving</li><li>Version Control</li></ul>
+        </div>
+        <div class="card skill tint-rose reveal" style="--d:300ms">
+          <h3><i class="dot d-rose"></i>Design</h3>
+          <ul class="chips big"><li>UI/UX Design</li><li>Wireframing</li><li>Prototyping</li><li>Interface Design</li></ul>
+        </div>
+        </div>
+    </div>
+
+    <div class="tools-head wrap reveal"><h3>Tools I use</h3></div>
+    <div class="marquee reveal" aria-label="Tools I use">
+      <ul class="track">
+        <li style="--b:#217346"><span class="tile"><svg><use href="#i-excel"/></svg></span>Excel</li>
+        <li style="--b:#1E8E3E"><span class="tile"><svg><use href="#i-sheets"/></svg></span>Google Sheets</li>
+        <li style="--b:#F37626"><span class="tile"><svg><use href="#i-jupyter"/></svg></span>Jupyter</li>
+        <li style="--b:#F9AB00"><span class="tile"><svg><use href="#i-colab"/></svg></span>Google Colab</li>
+        <li style="--b:#3776AB"><span class="tile"><svg><use href="#i-python"/></svg></span>Python</li>
+        <li style="--b:#276DC3"><span class="tile"><svg><use href="#i-r"/></svg></span>R</li>
+      </ul>
+    </div>
+    <div class="marquee reverse reveal" aria-hidden="true">
+      <ul class="track">
+        <li style="--b:#4479A1"><span class="tile"><svg class="wide"><use href="#i-mysql"/></svg></span>MySQL</li>
+        <li style="--b:#F05032"><span class="tile"><svg><use href="#i-git"/></svg></span>Git</li>
+        <li class="mono" style="--b:var(--ink)"><span class="tile"><svg><use href="#i-github"/></svg></span>GitHub</li>
+        <li style="--b:#3ECF8E"><span class="tile"><svg><use href="#i-supabase"/></svg></span>Supabase</li>
+        <li class="mono" style="--b:var(--ink)"><span class="tile"><svg><use href="#i-unity"/></svg></span>Unity</li>
+        <li style="--b:#3178C6"><span class="tile"><svg><use href="#i-ts"/></svg></span>TypeScript</li>
+      </ul>
+    </div>
+    <div class="marquee reveal" aria-hidden="true">
+      <ul class="track">
+        <li style="--b:#D97757"><span class="tile"><svg><use href="#i-claude"/></svg></span>Claude</li>
+        <li style="--b:#10A37F"><span class="tile"><svg><use href="#i-chatgpt"/></svg></span>ChatGPT</li>
+        <li style="--b:#4285F4"><span class="tile"><svg><use href="#i-gemini"/></svg></span>Gemini</li>
+        <li style="--b:#F24E1E"><span class="tile"><svg><use href="#i-figma"/></svg></span>Figma</li>
+        <li style="--b:#00C4CC"><span class="tile"><svg><use href="#i-canva"/></svg></span>Canva</li>
+      </ul>
+    </div>
+    </section>
+
+  <!-- ================= Journey ================= -->
+  <section class="section" id="journey" data-section="journey" aria-labelledby="h-journey">
+    <div class="wrap">
+      <div class="head reveal">
+        <h2 id="h-journey">My <span class="grad">journey</span></h2>
+      </div>
+
+      <div class="journey-grid">
+        <div>
+          <h3 class="sub reveal">Experience</h3>
+          <ol class="timeline">
+            <li class="reveal">
+              <span class="node" aria-hidden="true"></span>
+              <div class="card t-card">
+                <p class="when">2026 – 2027</p>
+                <h4>Statistics Officer</h4>
+                <p class="org">Musikalista, De La Salle Lipa</p>
+                <p>Manage the organization's membership database, keeping member records organized and updated. I also handle data validation, band assignments, searching, and visual summaries to make membership information easier to access.</p>
+              </div>
+            </li>
+            <li class="reveal" style="--d:120ms">
+              <span class="node" aria-hidden="true"></span>
+              <div class="card t-card">
+                <p class="when">2025 – 2026</p>
+                <h4>Logistics Officer</h4>
+                <p class="org">Musikalista, De La Salle Lipa</p>
+                <p>Helped organize event inventories, documents, and records while coordinating logistics requirements with different committees.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div>
+          <h3 class="sub reveal">Education</h3>
+          <ul class="stack">
+            <li class="card edu tint-lilac reveal">
+              <strong>De La Salle Lipa</strong><span>BS Computer Science</span><em>2023 – Present</em>
+            </li>
+            <li class="card edu tint-peach reveal" style="--d:100ms">
+              <strong>National University – Laguna</strong><span>Senior High School, STEM</span><em>Graduated 2023</em>
+            </li>
+          </ul>
+
+          <h3 class="sub reveal">Certifications</h3>
+          <ul class="certs">
+            <li class="card reveal"><strong>PyTorch Bootcamp</strong><span>OpenCV University</span><em>Oct 2026</em></li>
+            <li class="card reveal" style="--d:80ms"><strong>Intermediate R</strong><span>DataCamp</span><em>Apr 2026</em></li>
+            <li class="card reveal" style="--d:160ms"><strong>Introduction to R</strong><span>DataCamp</span><em>Mar 2026</em></li>
+            <li class="card reveal" style="--d:240ms"><strong>Elements of AI</strong><span>University of Helsinki</span><em>Nov 2025</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contact ================= -->
+  <section class="section" id="contact" data-section="contact" aria-labelledby="h-contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <i class="orb c1" aria-hidden="true"></i><i class="orb c2" aria-hidden="true"></i>
+        <h2 id="h-contact">Have an opportunity <span class="grad">or project in mind?</span></h2>
+        <p class="lede">I'd be happy to connect. I'm currently open to internship opportunities where I can learn, contribute, and gain experience in design, data, or software development.</p>
+        <div class="contact-actions">
+          <a class="pill pill-solid" id="mail-btn" href="mailto:marcarboleda1220@gmail.com" data-email="marcarboleda1220@gmail.com"><span class="mail-text">marcarboleda1220@gmail.com</span></a>
+          <a class="pill pill-soft" href="https://www.linkedin.com/in/marcarboleda" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a class="pill pill-soft" href="https://github.com/marcarboleda" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="pill pill-soft" href="Marc-Arboleda-Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= Case studies ================= -->
+<dialog class="case" id="dlg-tabula" aria-labelledby="c1-title">
+  <div class="case-inner">
+    <button class="case-close" type="button" aria-label="Close case study">×</button>
+    <header class="case-head">
+      <p class="p-meta"><span>01</span> Undergraduate thesis · De La Salle Lipa</p>
+      <h3 id="c1-title">Tabula Rasa</h3>
+      <p class="p-sub">Game UI · Research data · 2026</p>
+    </header>
+    <div class="case-grid portrait-layout">
+      <div class="case-media">
+        <div class="frame portrait-frame">
+          <video controls preload="none" playsinline poster="assets/media/tabula-poster.jpg" aria-label="Tabula Rasa study recruitment story">
+            <source src="assets/media/tabula-story.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="cap">Study recruitment story</p>
+      </div>
+      <div class="case-body">
+        <p class="tagline">A game that teaches reinforcement learning. Players shape the rewards, watch a creature learn to walk, then send it out to steal eggs.</p>
+        <dl class="roles"><div><dt>Role</dt><dd>Design &amp; data analysis</dd></div><div><dt>Team</dt><dd>Team of 3</dd></div></dl>
+        <p>I focused on the design and on the research data: the look and feel of the game and its study materials, gathering data from participants, and analyzing the results.</p>
+        <h4>What I did</h4>
+        <ul class="did">
+          <li>Designed the interface and visual style so a technical topic feels playful and approachable.</li>
+          <li>Handled data gathering for the evaluation: pretest, posttest and a 31-item user-acceptance questionnaire adapted from MEEGA+.</li>
+          <li>Analyzed the results. Mean scores rose from 15.49 to 18.84 out of 25 (n = 37), a significant gain: paired <i>t</i>(36) = 5.83, <i>p</i> &lt; .001, <i>d<sub>z</sub></i> = 0.96.</li>
+        </ul>
+        <dl class="metrics">
+          <div><dt>+3.35</dt><dd>mean score gain</dd></div>
+          <div><dt>61.9 → 75.4%</dt><dd>pretest to posttest</dd></div>
+          <div><dt>p &lt; .001</dt><dd>paired t-test</dd></div>
+          <div><dt>0.96</dt><dd>effect size (large)</dd></div>
+        </dl>
+        <ul class="chips"><li>UI design</li><li>Visual design</li><li>Data gathering</li><li>Statistical analysis</li><li>Unity</li></ul>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="case" id="dlg-dairy" aria-labelledby="c2-title">
+  <div class="case-inner">
+    <button class="case-close" type="button" aria-label="Close case study">×</button>
+    <header class="case-head">
+      <p class="p-meta"><span>02</span> D.H. Magpantay Dairy Farm · proposed system</p>
+      <h3 id="c2-title">Dairy Farm Management System</h3>
+      <p class="p-sub">UI design · Dashboard · 2025</p>
+    </header>
+    <div class="case-grid">
+      <div class="case-media" data-gallery>
+        <div class="frame"><img id="shot" src="assets/media/inv-dashboard.jpg" width="1440" height="1024" alt="Dairy farm system: Dashboard screen" loading="lazy"></div>
+        <div class="shot-tabs" role="group" aria-label="Choose a screen">
+          <button type="button" aria-pressed="true" data-src="assets/media/inv-dashboard.jpg" data-alt="Dairy farm system: Dashboard screen">Dashboard</button>
+          <button type="button" aria-pressed="false" data-src="assets/media/inv-animal.jpg" data-alt="Dairy farm system: Animal Inventory screen">Animal Inventory</button>
+          <button type="button" aria-pressed="false" data-src="assets/media/inv-medicine.jpg" data-alt="Dairy farm system: Medicine Inventory screen">Medicine Inventory</button>
+          <button type="button" aria-pressed="false" data-src="assets/media/inv-calving.jpg" data-alt="Dairy farm system: Calving Records screen">Calving Records</button>
+          <button type="button" aria-pressed="false" data-src="assets/media/inv-milk.jpg" data-alt="Dairy farm system: Milk Production screen">Milk Production</button>
+        </div>
+      </div>
+      <div class="case-body">
+        <p class="tagline">One place for a dairy farm to track its herd, calving, milk production, and animal and medicine stock.</p>
+        <dl class="roles"><div><dt>Role</dt><dd>UI designer</dd></div><div><dt>Team</dt><dd>With a developer friend</dd></div></dl>
+        <p>I designed the UI for the company's proposed inventory system. My friend handled all of the development; my part was the interface.</p>
+        <h4>What I did</h4>
+        <ul class="did">
+          <li>Designed five core screens: Dashboard, Animal Inventory, Medicine Inventory, Calving Records and Milk Production.</li>
+          <li>Kept every screen on one system: forest-green navigation, a shared table style, and search, filter and add actions in the same place.</li>
+          <li>Brought what staff must act on to the surface: reminders, expiry and low-stock alerts, upcoming calving and herd status.</li>
+        </ul>
+        <dl class="metrics">
+          <div><dt>5</dt><dd>core screens</dd></div>
+          <div><dt>2</dt><dd>modules: Records, Inventory</dd></div>
+          <div><dt>2</dt><dd>alert types: expiry, stock</dd></div>
+        </dl>
+        <ul class="chips"><li>UI design</li><li>Dashboard design</li><li>Design system</li><li>Data tables</li></ul>
+        <p class="credit">Development by a friend. UI design by me.</p>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="case" id="dlg-member" aria-labelledby="c3-title">
+  <div class="case-inner">
+    <button class="case-close" type="button" aria-label="Close case study">×</button>
+    <header class="case-head">
+      <p class="p-meta"><span>03</span> Musikalista · Statistics Officer</p>
+      <h3 id="c3-title">Membership Database</h3>
+      <p class="p-sub">Data visualization · Google Sheets · 2026</p>
+    </header>
+    <div class="case-grid">
+      <div class="case-media">
+        <div class="frame">
+          <video muted loop playsinline preload="none" poster="assets/media/membership-poster.jpg" controls aria-label="Walkthrough of the membership database, shown with fictional members">
+            <source src="assets/media/membership-walkthrough.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="cap">Walkthrough, shown with 50 fictional members</p>
+      </div>
+      <div class="case-body">
+        <p class="tagline">The org's member list, rebuilt so anyone can read the membership at a glance.</p>
+        <dl class="roles"><div><dt>Role</dt><dd>Database designer</dd></div><div><dt>Team</dt><dd>Solo</dd></div></dl>
+        <p>I developed a more visual version of our membership database so officers can see the whole membership at a glance instead of scrolling through rows.</p>
+        <h4>What I did</h4>
+        <ul class="did">
+          <li>Added a dashboard with live charts for department, year level, music roles and genres.</li>
+          <li>Kept entries clean with dropdowns and date checks on the member sheet.</li>
+          <li>Built a search that finds members by any field, including birth month for birthday greetings.</li>
+          <li>Shown with 50 fictional members. Real member data stays private.</li>
+        </ul>
+        <dl class="metrics">
+          <div><dt>4</dt><dd>live charts</dd></div>
+          <div><dt>4</dt><dd>sheets</dd></div>
+          <div><dt>1</dt><dd>formula behind search</dd></div>
+        </dl>
+        <ul class="chips"><li>Google Sheets</li><li>Data visualization</li><li>Data validation</li><li>Dynamic formulas</li></ul>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<div class="progress" aria-hidden="true"><i></i></div>
+<script src="main.js" defer></script>
+</body>
+</html>
