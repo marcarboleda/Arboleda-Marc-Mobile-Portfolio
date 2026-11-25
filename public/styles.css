@@ -430,7 +430,6 @@ dialog[open] .case-inner { animation: pop 500ms cubic-bezier(.2,.9,.2,1) both; }
 @media (max-width: 640px) {
   .skill-grid { grid-template-columns: 1fr; }
   body { font-size: 16.5px; }
-  .nav-resume { display: none; }
   .about-facts div { grid-template-columns: 1fr; gap: 4px; }
   .certs { grid-template-columns: 1fr; }
   .about-text p { font-size: 17px; }
