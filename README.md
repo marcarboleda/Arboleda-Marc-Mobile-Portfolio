@@ -1,39 +1,37 @@
 # Marc Arboleda — Portfolio
 
-Personal portfolio for internships in data analytics, quality assurance and data management.
-Built with **Expo (React Native + React Native Web)**, so the same code runs as a static website (deployed on Vercel) and as an iOS/Android app.
+Personal portfolio for internships in UI design, data analytics, quality assurance and data management.
 
-## Highlights
-
-- **Soft, calm theme** (Fraunces + Plus Jakarta Sans on warm cream) with restrained motion: scroll reveals, drifting background color, floating hero details, hover lifts. Motion is turned off when the device asks for reduced motion.
-- **Three case studies:** Tabula Rasa (looping study video), a dairy farm management UI (auto-rotating screens) and the Musikalista membership database (walkthrough GIF). Cards expand into a full case view.
-- **Responsive** for phone, tablet and desktop, and static-exported for Vercel.
-
-## Scripts
-
-| Command | What it does |
-| --- | --- |
-| `npm start` | Expo dev server (press `w` for web, or scan with Expo Go) |
-| `npm run build` | Static web export to `dist/` |
-| `npm run preview` | Serve `dist/` locally |
-| `npm run check` | Type-check and lint |
-
-Requires Node 22.6 or newer.
-
-## Deploying to Vercel
-
-`vercel.json` is already configured. Import the repo in Vercel and keep the defaults:
-
-- Build command: `npx expo export --platform web`
-- Output directory: `dist`
+Plain **HTML + CSS + a little JavaScript**. No framework and no build step — deployed as static files on Vercel.
 
 ## Structure
 
 ```
-app/            routes (index page, root layout, HTML shell, 404)
-src/components  Hero, Nav, Work (bento + case study), Media, Sections, motion
-src/data        profile, projects, demo registry rows
-assets/media    project video, GIF and screens
-public/         résumé PDF (served at /Marc-Arboleda-Resume.pdf)
-resume/         HTML source used to generate the résumé PDF
+public/
+  index.html                  all content (edit text here)
+  styles.css                  design: colors in :root / [data-theme="dark"]
+  main.js                     theme toggle, scroll index, gallery, reveal
+  Marc-Arboleda-Resume.pdf    served by the Résumé buttons
+  assets/
+    images/                   portrait, favicon
+    media/                    project screenshots and videos
+    fonts/                    Bricolage Grotesque + Figtree (self-hosted)
+resume/
+  resume.html                 source of the one-page résumé PDF
 ```
+
+## Run locally
+
+```bash
+npx serve public
+```
+
+or open `public/index.html` with the VS Code *Live Server* extension.
+
+## Update the résumé
+
+Edit `resume/resume.html`, export it to PDF, and replace `public/Marc-Arboleda-Resume.pdf` (same file name).
+
+## Privacy
+
+The Membership Database project is shown with fictional members only. No real member data is published.
